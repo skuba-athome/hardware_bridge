@@ -1,0 +1,11 @@
+<launch>
+
+	<node respawn="true" pkg="joy" type="joy" name="my_joy">
+	<param name="deadzone" value="0.12" />
+	</node>
+
+	<node name="joy_input" pkg="robot_connect" type="joy_input.py"/>
+
+	<node name="robot_serial" pkg="robot_connect" type="robot_serial.py"/>
+
+</launch>
