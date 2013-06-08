@@ -6,6 +6,4 @@
 
 	<node name="joy_input" pkg="robot_connect" type="joy_input.py"/>
 
-	<node name="robot_serial" pkg="robot_connect" type="robot_serial.py"/>
-
 </launch>

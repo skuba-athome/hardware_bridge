@@ -18,10 +18,13 @@
   <depend package="nav_core"/>
   <depend package="pluginlib"/>
   <depend package="costmap_2d"/>
-  <depend package="sbpl_lattice_planner"/>
-  <depend package="eband_local_planner"/>
   <depend package="pcl_ros"/>
   <depend package="carrot_planner"/>
+  <depend package="dynamixel_msgs"/>
+  <depend package="laser_assembler"/>
+  <depend package="laser_filters"/>
+  <depend package="laser_geometry"/>
+  <depend package="dynamixel_controllers"/>
 </package>
 
 

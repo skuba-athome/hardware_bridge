@@ -17,7 +17,7 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 
 #uncomment if you have defined messages
-#rosbuild_genmsg()
+rosbuild_genmsg()
 #uncomment if you have defined services
 #rosbuild_gensrv()
 
@@ -29,7 +29,11 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(example examples/example.cpp)
 #target_link_libraries(example ${PROJECT_NAME})
 
-rosbuild_add_executable(my_dwa src/my_dwa.cpp)
-rosbuild_add_executable(base_avoidance src/base_avoidance.cpp)
-rosbuild_add_executable(tf_broadcaster src/tf_broadcaster.cpp)
-rosbuild_add_executable(tf_listener src/tf_listener.cpp)
+#rosbuild_add_executable(my_dwa src/my_dwa.cpp)
+#rosbuild_add_executable(base_avoidance src/base_avoidance.cpp)
+#rosbuild_add_executable(tf_broadcaster src/tf_broadcaster.cpp)
+rosbuild_add_executable(prismatic_control src/prismatic_control.cpp)
+rosbuild_add_executable(kinect_preprocess src/kinect_preprocess.cpp)
+rosbuild_add_executable(tilt_laser_control src/tilt_laser_control.cpp)
+rosbuild_add_executable(tilt_laser_preprocess src/tilt_laser_preprocess.cpp)
+#rosbuild_add_executable(tilt_laser_assembler src/tilt_laser_assembler.cpp)
