@@ -20,9 +20,9 @@ class JoyInput(object):
 			cmd_vy = joy.axes[2]
 			cmd_vth = joy.axes[0]
 			joy_cmd = Twist()
-			joy_cmd.linear.x = cmd_vx*0.2		#maximum vx is 0.6 m/s
-			joy_cmd.linear.y = cmd_vy*0.2		#maximum vy is 0.6 m/s
-			joy_cmd.angular.z = cmd_vth*0.4		#maximum vth is 2 rad/s
+			joy_cmd.linear.x = cmd_vx*0.4		#maximum vx is 0.2 m/s
+			joy_cmd.linear.y = cmd_vy*0.4		#maximum vy is 0.2 m/s
+			joy_cmd.angular.z = cmd_vth*1.0		#maximum vth is 0.4 rad/s
 		elif joy.buttons[7] == 1:
 			joy_cmd = Twist()
 			joy_cmd.angular.x = 1			    #for enable			

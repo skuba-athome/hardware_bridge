@@ -55,9 +55,15 @@ class RobotConnect(object):
 			self.mySerialDataGateway.Write(self.start_byte+cmd_msg+self.stop_byte)
 			rate.sleep()
 
+	def Twist2Cmd(self,vel):
+		if self.joy_enable == 0:#debug self.joy_enable == 1
+			self.cmd_vx = int(vel.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s#if self.joy_enable == 1:
+			self.cmd_vy = int(vel.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
+			self.cmd_vth = int(vel.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
+
 	def JoyTwist2Cmd(self,twist):
 		self.joy_enable = int(twist.angular.x)
-		if self.joy_enable != 1:
+		if self.joy_enable == 0:#debug self.joy_enable == 0
 			self.cmd_vx = int(twist.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s
 			self.cmd_vy = int(twist.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
 			self.cmd_vth = int(twist.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
@@ -66,12 +72,6 @@ class RobotConnect(object):
 		#rospy.loginfo('Scaled cmd is: ' + str((self.cmd_vx,self.cmd_vy,self.cmd_vth)))
 		
 		#print 'Return'+str((self.fdb_vx,self.fdb_vy,self.fdb_vth))
-
-	def Twist2Cmd(self,vel):
-		if self.joy_enable == 1:
-			self.cmd_vx = int(vel.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s
-			self.cmd_vy = int(vel.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
-			self.cmd_vth = int(vel.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
 
 	def HandleReceivedLine(self,line):
 		if len(line) == 7 and line[0]==self.start_byte:  #if len(line) == 19 and line[0]==self.start_byte: 
