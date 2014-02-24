@@ -37,3 +37,6 @@ set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
 #rosbuild_add_executable(tilt_laser_control src/tilt_laser_control.cpp)
 #rosbuild_add_executable(tilt_laser_preprocess src/tilt_laser_preprocess.cpp)
 #rosbuild_add_executable(tilt_laser_assembler src/tilt_laser_assembler.cpp)
+
+rosbuild_add_executable(kinect_processing src/kinect_processing.cpp)
+rosbuild_add_executable(test_tf src/test_tf.cpp)
