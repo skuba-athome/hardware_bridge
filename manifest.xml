@@ -18,12 +18,15 @@
   <depend package="nav_core"/>
   <depend package="pluginlib"/>
   <depend package="costmap_2d"/>
+  <depend package="pcl"/>
   <depend package="pcl_ros"/>
+  <depend package="shape_msgs"/>
   <depend package="carrot_planner"/>
   <depend package="dynamixel_msgs"/>
   <depend package="laser_assembler"/>
   <depend package="laser_filters"/>
   <depend package="laser_geometry"/>
+  <depend package="roscpp"/>
   <depend package="dynamixel_controllers"/>
 </package>
 
