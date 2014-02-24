@@ -1,0 +1,14 @@
+<launch>
+	
+	<node name="hokuyo2" pkg="hokuyo_node" type="hokuyo_node" respawn="false" output="screen">
+    	<param name="min_ang" type="double" value="-1.57"/>
+		<param name="max_ang" type="double" value="1.57"/>
+    	<param name="port" type="string" value="/dev/ttyACM0"/>
+    	<param name="frame_id" type="string" value="/base_laser"/>
+    	<param name="intensity" type="bool" value="false"/>
+  	</node>
+
+	#### publish an base_link -> laser transform ###########
+
+	<node pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.26 0.0 0.18 0.0 0.0 0.0 base_link base_laser 100" />
+</launch>

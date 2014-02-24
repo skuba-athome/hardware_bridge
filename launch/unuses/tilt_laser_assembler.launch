@@ -1,0 +1,18 @@
+<launch>
+	<node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node" respawn="false" output="screen">
+    	<param name="min_ang" type="double" value="-1.57"/>
+		<param name="max_ang" type="double" value="1.57"/>
+    	<param name="port" type="string" value="/dev/ttyACM0"/>
+    	<param name="frame_id" type="string" value="/laser"/>
+    	<param name="inverted" type="bool" value="false"/>
+    	<param name="intensity" type="bool" value="false"/>
+  	</node>
+  <node type="laser_scan_assembler" pkg="laser_assembler"
+        name="my_assembler">
+    <param name="max_scans" type="int" value="400" />
+    <param name="fixed_frame" type="string" value="base_link" />
+  </node>
+  
+
+
+</launch>
