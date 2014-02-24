@@ -1,0 +1,15 @@
+EBandPlannerROS:
+  # for details see: http://www.ros.org/wiki/base_local_planner
+  max_vel_lin: 0.15
+  min_vel_lin: 0.05
+  max_vel_th: 0.3
+  min_vel_th: 0.05
+  
+  #max_translational_acceleration: 0.5
+  #max_rotational_acceleration: 1.5
+  
+  tolerance_trans: 0.5
+  tolerance_rot: 0.2
+
+
+

@@ -8,7 +8,7 @@ default_target: all
 #=============================================================================
 # Special targets provided by cmake.
 
-# Disable implicit rules so canoncical targets will work.
+# Disable implicit rules so canonical targets will work.
 .SUFFIXES:
 
 # Remove some rules from gmake that .SUFFIXES does not remove.
@@ -35,6 +35,9 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
+# The program to use to edit the cache.
+CMAKE_EDIT_COMMAND = /usr/bin/ccmake
+
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/skuba/skuba_athome/robot_connect
 
@@ -46,8 +49,8 @@ CMAKE_BINARY_DIR = /home/skuba/skuba_athome/robot_connect
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
-	/usr/bin/cmake -i .
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
+	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -174,32 +177,6 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
-# Target rules for targets named kinect_preprocess
-
-# Build rule for target.
-kinect_preprocess: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 kinect_preprocess
-.PHONY : kinect_preprocess
-
-# fast build rule for target.
-kinect_preprocess/fast:
-	$(MAKE) -f CMakeFiles/kinect_preprocess.dir/build.make CMakeFiles/kinect_preprocess.dir/build
-.PHONY : kinect_preprocess/fast
-
-#=============================================================================
-# Target rules for targets named prismatic_control
-
-# Build rule for target.
-prismatic_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 prismatic_control
-.PHONY : prismatic_control
-
-# fast build rule for target.
-prismatic_control/fast:
-	$(MAKE) -f CMakeFiles/prismatic_control.dir/build.make CMakeFiles/prismatic_control.dir/build
-.PHONY : prismatic_control/fast
-
-#=============================================================================
 # Target rules for targets named rosbuild_precompile
 
 # Build rule for target.
@@ -237,19 +214,6 @@ rospack_genmsg: cmake_check_build_system
 rospack_genmsg/fast:
 	$(MAKE) -f CMakeFiles/rospack_genmsg.dir/build.make CMakeFiles/rospack_genmsg.dir/build
 .PHONY : rospack_genmsg/fast
-
-#=============================================================================
-# Target rules for targets named rospack_genmsg_all
-
-# Build rule for target.
-rospack_genmsg_all: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 rospack_genmsg_all
-.PHONY : rospack_genmsg_all
-
-# fast build rule for target.
-rospack_genmsg_all/fast:
-	$(MAKE) -f CMakeFiles/rospack_genmsg_all.dir/build.make CMakeFiles/rospack_genmsg_all.dir/build
-.PHONY : rospack_genmsg_all/fast
 
 #=============================================================================
 # Target rules for targets named rospack_genmsg_libexe
@@ -342,92 +306,6 @@ tests/fast:
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
 
-#=============================================================================
-# Target rules for targets named tilt_laser_control
-
-# Build rule for target.
-tilt_laser_control: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tilt_laser_control
-.PHONY : tilt_laser_control
-
-# fast build rule for target.
-tilt_laser_control/fast:
-	$(MAKE) -f CMakeFiles/tilt_laser_control.dir/build.make CMakeFiles/tilt_laser_control.dir/build
-.PHONY : tilt_laser_control/fast
-
-#=============================================================================
-# Target rules for targets named tilt_laser_preprocess
-
-# Build rule for target.
-tilt_laser_preprocess: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 tilt_laser_preprocess
-.PHONY : tilt_laser_preprocess
-
-# fast build rule for target.
-tilt_laser_preprocess/fast:
-	$(MAKE) -f CMakeFiles/tilt_laser_preprocess.dir/build.make CMakeFiles/tilt_laser_preprocess.dir/build
-.PHONY : tilt_laser_preprocess/fast
-
-# target to build an object file
-src/kinect_preprocess.o:
-	$(MAKE) -f CMakeFiles/kinect_preprocess.dir/build.make CMakeFiles/kinect_preprocess.dir/src/kinect_preprocess.o
-.PHONY : src/kinect_preprocess.o
-
-# target to preprocess a source file
-src/kinect_preprocess.i:
-	$(MAKE) -f CMakeFiles/kinect_preprocess.dir/build.make CMakeFiles/kinect_preprocess.dir/src/kinect_preprocess.i
-.PHONY : src/kinect_preprocess.i
-
-# target to generate assembly for a file
-src/kinect_preprocess.s:
-	$(MAKE) -f CMakeFiles/kinect_preprocess.dir/build.make CMakeFiles/kinect_preprocess.dir/src/kinect_preprocess.s
-.PHONY : src/kinect_preprocess.s
-
-# target to build an object file
-src/prismatic_control.o:
-	$(MAKE) -f CMakeFiles/prismatic_control.dir/build.make CMakeFiles/prismatic_control.dir/src/prismatic_control.o
-.PHONY : src/prismatic_control.o
-
-# target to preprocess a source file
-src/prismatic_control.i:
-	$(MAKE) -f CMakeFiles/prismatic_control.dir/build.make CMakeFiles/prismatic_control.dir/src/prismatic_control.i
-.PHONY : src/prismatic_control.i
-
-# target to generate assembly for a file
-src/prismatic_control.s:
-	$(MAKE) -f CMakeFiles/prismatic_control.dir/build.make CMakeFiles/prismatic_control.dir/src/prismatic_control.s
-.PHONY : src/prismatic_control.s
-
-# target to build an object file
-src/tilt_laser_control.o:
-	$(MAKE) -f CMakeFiles/tilt_laser_control.dir/build.make CMakeFiles/tilt_laser_control.dir/src/tilt_laser_control.o
-.PHONY : src/tilt_laser_control.o
-
-# target to preprocess a source file
-src/tilt_laser_control.i:
-	$(MAKE) -f CMakeFiles/tilt_laser_control.dir/build.make CMakeFiles/tilt_laser_control.dir/src/tilt_laser_control.i
-.PHONY : src/tilt_laser_control.i
-
-# target to generate assembly for a file
-src/tilt_laser_control.s:
-	$(MAKE) -f CMakeFiles/tilt_laser_control.dir/build.make CMakeFiles/tilt_laser_control.dir/src/tilt_laser_control.s
-.PHONY : src/tilt_laser_control.s
-
-# target to build an object file
-src/tilt_laser_preprocess.o:
-	$(MAKE) -f CMakeFiles/tilt_laser_preprocess.dir/build.make CMakeFiles/tilt_laser_preprocess.dir/src/tilt_laser_preprocess.o
-.PHONY : src/tilt_laser_preprocess.o
-
-# target to preprocess a source file
-src/tilt_laser_preprocess.i:
-	$(MAKE) -f CMakeFiles/tilt_laser_preprocess.dir/build.make CMakeFiles/tilt_laser_preprocess.dir/src/tilt_laser_preprocess.i
-.PHONY : src/tilt_laser_preprocess.i
-
-# target to generate assembly for a file
-src/tilt_laser_preprocess.s:
-	$(MAKE) -f CMakeFiles/tilt_laser_preprocess.dir/build.make CMakeFiles/tilt_laser_preprocess.dir/src/tilt_laser_preprocess.s
-.PHONY : src/tilt_laser_preprocess.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -441,13 +319,10 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
-	@echo "... kinect_preprocess"
-	@echo "... prismatic_control"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
 	@echo "... rosbuild_premsgsrvgen"
 	@echo "... rospack_genmsg"
-	@echo "... rospack_genmsg_all"
 	@echo "... rospack_genmsg_libexe"
 	@echo "... rospack_gensrv"
 	@echo "... test"
@@ -455,20 +330,6 @@ help:
 	@echo "... test-results"
 	@echo "... test-results-run"
 	@echo "... tests"
-	@echo "... tilt_laser_control"
-	@echo "... tilt_laser_preprocess"
-	@echo "... src/kinect_preprocess.o"
-	@echo "... src/kinect_preprocess.i"
-	@echo "... src/kinect_preprocess.s"
-	@echo "... src/prismatic_control.o"
-	@echo "... src/prismatic_control.i"
-	@echo "... src/prismatic_control.s"
-	@echo "... src/tilt_laser_control.o"
-	@echo "... src/tilt_laser_control.i"
-	@echo "... src/tilt_laser_control.s"
-	@echo "... src/tilt_laser_preprocess.o"
-	@echo "... src/tilt_laser_preprocess.i"
-	@echo "... src/tilt_laser_preprocess.s"
 .PHONY : help
 
 
