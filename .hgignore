@@ -7,3 +7,4 @@ build
 CMakeCache.txt
 CMakeFiles
 src/robot_connect/*
+.idea
