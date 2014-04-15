@@ -22,9 +22,9 @@
                 --type=simple
                 pan_kinect
                 tilt_kinect
-                mark43_1
-                mark43_2
-                mark43_3
+                mark44_1
+                mark44_2
+                mark44_3
 		mark43_pris
                 gripper
                 joint1
