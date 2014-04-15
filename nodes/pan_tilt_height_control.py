@@ -18,11 +18,21 @@ class PanTiltControl(object):
 		self.PanTiltTransformBroadcaster = tf.TransformBroadcaster()
 		self.pan_ang = 0.0;
 		self.tilt_ang = 0.0;
+
 		#Servo params
-		self.pan_scale = 1.0
-		self.tilt_scale = -1.0
-		self.pan_offset = -0.00153398078788
-		self.tilt_offset = 0.0306796157577
+        #---------------------old parameters--------------------
+		#self.pan_scale = 1.0
+		#self.tilt_scale = -1.0
+		#self.pan_offset = -0.00153398078788
+		#self.tilt_offset = 0.0306796157577
+        #---------------------old parameters--------------------
+
+        #---------------------new parameters--------------------
+		self.pan_scale = 0.908468
+		self.tilt_scale = 0.94826
+		self.pan_offset = 0.030672
+		self.tilt_offset = -0.0861333
+        #---------------------new parameters--------------------
 		
 		self.kinect_height = 0.5#float(sys.argv[1])########
 		self.get_valid_height = True###########
@@ -58,8 +68,18 @@ class PanTiltControl(object):
 
 		uselessroll, tilt, pan = tf.transformations.euler_from_quaternion((q.x, q.y, q.z, q.w))
 		rospy.loginfo("cmd_angle: %s",str((pan,tilt)))
-		tilt_cmd_servo = (tilt - self.tilt_offset)/self.tilt_scale
-		pan_cmd_servo = (pan - self.pan_offset)/self.pan_scale
+
+        #-------------------old equations----------------
+		#tilt_cmd_servo = (tilt - self.tilt_offset)/self.tilt_scale
+		#pan_cmd_servo = (pan - self.pan_offset)/self.pan_scale
+        #-------------------old equations----------------
+
+
+        #-------------------new equations----------------
+		tilt_cmd_servo = tilt * self.tilt_scale + self.tilt_offset
+		pan_cmd_servo = pan * self.pan_scale + self.pan_offset
+        #-------------------new equations----------------
+
 		self.tilt_cmd.publish(tilt_cmd_servo)
 		self.pan_cmd.publish(pan_cmd_servo)
 		
