@@ -35,9 +35,6 @@ CMAKE_COMMAND = /usr/bin/cmake
 # The command to remove a file.
 RM = /usr/bin/cmake -E remove -f
 
-# The program to use to edit the cache.
-CMAKE_EDIT_COMMAND = /usr/bin/ccmake
-
 # The top-level source directory on which CMake was run.
 CMAKE_SOURCE_DIR = /home/skuba/skuba_athome/robot_connect
 
@@ -49,8 +46,8 @@ CMAKE_BINARY_DIR = /home/skuba/skuba_athome/robot_connect
 
 # Special rule for the target edit_cache
 edit_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake cache editor..."
-	/usr/bin/ccmake -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running interactive CMake command-line interface..."
+	/usr/bin/cmake -i .
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -177,6 +174,19 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
+# Target rules for targets named kinect_processing
+
+# Build rule for target.
+kinect_processing: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 kinect_processing
+.PHONY : kinect_processing
+
+# fast build rule for target.
+kinect_processing/fast:
+	$(MAKE) -f CMakeFiles/kinect_processing.dir/build.make CMakeFiles/kinect_processing.dir/build
+.PHONY : kinect_processing/fast
+
+#=============================================================================
 # Target rules for targets named rosbuild_precompile
 
 # Build rule for target.
@@ -294,6 +304,19 @@ test-results-run/fast:
 .PHONY : test-results-run/fast
 
 #=============================================================================
+# Target rules for targets named test_tf
+
+# Build rule for target.
+test_tf: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 test_tf
+.PHONY : test_tf
+
+# fast build rule for target.
+test_tf/fast:
+	$(MAKE) -f CMakeFiles/test_tf.dir/build.make CMakeFiles/test_tf.dir/build
+.PHONY : test_tf/fast
+
+#=============================================================================
 # Target rules for targets named tests
 
 # Build rule for target.
@@ -305,6 +328,36 @@ tests: cmake_check_build_system
 tests/fast:
 	$(MAKE) -f CMakeFiles/tests.dir/build.make CMakeFiles/tests.dir/build
 .PHONY : tests/fast
+
+# target to build an object file
+src/kinect_processing.o:
+	$(MAKE) -f CMakeFiles/kinect_processing.dir/build.make CMakeFiles/kinect_processing.dir/src/kinect_processing.o
+.PHONY : src/kinect_processing.o
+
+# target to preprocess a source file
+src/kinect_processing.i:
+	$(MAKE) -f CMakeFiles/kinect_processing.dir/build.make CMakeFiles/kinect_processing.dir/src/kinect_processing.i
+.PHONY : src/kinect_processing.i
+
+# target to generate assembly for a file
+src/kinect_processing.s:
+	$(MAKE) -f CMakeFiles/kinect_processing.dir/build.make CMakeFiles/kinect_processing.dir/src/kinect_processing.s
+.PHONY : src/kinect_processing.s
+
+# target to build an object file
+src/test_tf.o:
+	$(MAKE) -f CMakeFiles/test_tf.dir/build.make CMakeFiles/test_tf.dir/src/test_tf.o
+.PHONY : src/test_tf.o
+
+# target to preprocess a source file
+src/test_tf.i:
+	$(MAKE) -f CMakeFiles/test_tf.dir/build.make CMakeFiles/test_tf.dir/src/test_tf.i
+.PHONY : src/test_tf.i
+
+# target to generate assembly for a file
+src/test_tf.s:
+	$(MAKE) -f CMakeFiles/test_tf.dir/build.make CMakeFiles/test_tf.dir/src/test_tf.s
+.PHONY : src/test_tf.s
 
 # Help Target
 help:
@@ -319,6 +372,7 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
+	@echo "... kinect_processing"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
 	@echo "... rosbuild_premsgsrvgen"
@@ -329,7 +383,14 @@ help:
 	@echo "... test-future"
 	@echo "... test-results"
 	@echo "... test-results-run"
+	@echo "... test_tf"
 	@echo "... tests"
+	@echo "... src/kinect_processing.o"
+	@echo "... src/kinect_processing.i"
+	@echo "... src/kinect_processing.s"
+	@echo "... src/test_tf.o"
+	@echo "... src/test_tf.i"
+	@echo "... src/test_tf.s"
 .PHONY : help
 
 
