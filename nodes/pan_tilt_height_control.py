@@ -30,10 +30,10 @@ class PanTiltControl(object):
         #---------------------old parameters--------------------
 
         #---------------------new parameters--------------------
-        self.pan_scale = 0.908468
-        self.tilt_scale = 0.94826
-        self.pan_offset = 0.030672
-        self.tilt_offset = -0.0861333
+        self.pan_scale = 1.020707756
+        self.tilt_scale = 1.1057071522
+        self.pan_offset = -0.0009264295
+        self.tilt_offset = 0.0277520167
         #---------------------new parameters--------------------
 
         self.kinect_height = 0.5  #float(sys.argv[1])########
