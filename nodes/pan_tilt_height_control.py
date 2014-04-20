@@ -118,7 +118,8 @@ class PanTiltControl(object):
             )
             self.PanTiltTransformBroadcaster.sendTransform(
                 (0, 0, 0.08),
-                tf.transformations.quaternion_from_euler(0, 0, 3.14159),
+                #tf.transformations.quaternion_from_euler(0, 0, 3.14159),
+                tf.transformations.quaternion_from_euler(0,0, 0),
                 rospy.Time.now(),
                 "camera_link",
                 "tilt_link"
