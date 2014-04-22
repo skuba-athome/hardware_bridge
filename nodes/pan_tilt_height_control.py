@@ -30,10 +30,10 @@ class PanTiltControl(object):
         #---------------------old parameters--------------------
 
         #---------------------new parameters--------------------
-        self.pan_scale = 1.020707756
-        self.tilt_scale = 1.1057071522
-        self.pan_offset = -0.0009264295
-        self.tilt_offset = 0.0277520167
+        self.pan_scale = 1.0151014576
+        self.tilt_scale = 1.0682587634
+        self.pan_offset = -0.0104437649
+        self.tilt_offset = 0.0048443606
         #---------------------new parameters--------------------
 
         self.kinect_height = 0.5  #float(sys.argv[1])########
@@ -103,22 +103,21 @@ class PanTiltControl(object):
             rospy.logwarn("invalid servo name--> %s", str(pantilt_new.name));
         if self.get_valid_height:
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0.07, 0.04, self.kinect_height),
+                (0.0382, 0.00, self.kinect_height),
                 tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
                 rospy.Time.now(),
                 "pan_link",
                 "base_link"
             )
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0, 0, 0.025),
-                tf.transformations.quaternion_from_euler(0, self.tilt_ang, 0),
+                (0, 0, 0.081),
+                tf.transformations.quaternion_from_euler(0, self.tilt_ang*-1, 0),
                 rospy.Time.now(),
                 "tilt_link",
                 "pan_link"
             )
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0, 0, 0.08),
-                #tf.transformations.quaternion_from_euler(0, 0, 3.14159),
+                (0.02709, 0.0339, 0.04405),
                 tf.transformations.quaternion_from_euler(0,0, 0),
                 rospy.Time.now(),
                 "camera_link",
