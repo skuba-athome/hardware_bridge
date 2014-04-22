@@ -1,0 +1,24 @@
+<launch>
+	<include file="$(find openni_launch)/launch/openni.launch">
+        <!--arg name="depth_camera_info_url" value="$(find robot_connect)/calibrations/depth_B00362708888047B.yaml" /-->
+    </include>
+	
+
+	<!--node pkg="dynamic_reconfigure" type="dynparam" name="kinect_set" args="set_from_parameters /camera/driver">
+		<param name="image_mode" value="8" />
+		<param name="depth_mode" value="8" />
+		<param name="depth_registration" value="true" />
+	</node-->
+
+
+	<!--node pkg="dynamic_reconfigure" type="dynparam" name="kinect_set" args="set_from_parameters /camera/driver">
+		<param name="image_mode" value="2" />
+		<param name="depth_mode" value="2" />
+		<param name="depth_registration" value="true" />
+	</node-->
+	
+	<node name="pan_tilt_control" pkg="robot_connect" type="pan_tilt_height_control.py"/>
+	
+	<node pkg="robot_connect" type="kinect_processing" name="kinect_processing" output="screen"/>
+	
+</launch>

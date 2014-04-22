@@ -1,0 +1,12 @@
+<launch>
+
+	<node name="hokuyo" pkg="hokuyo_node" type="hokuyo_node" respawn="false" output="screen">
+    	<!-- Set the port to connect to here -->
+    	<param name="port" type="string" value="/dev/ttyACM0"/>
+    	<param name="min_ang" type="double" value="-1.57"/>
+		<param name="max_ang" type="double" value="1.57"/>
+    	<param name="frame_id" type="string" value="/laser"/>
+    	<param name="intensity" type="bool" value="false"/>
+  	</node>
+
+</launch>

@@ -1,0 +1,17 @@
+digraph G {
+"/base_link" -> "/pan_link"[label="Broadcaster: /pan_tilt_control\nAverage rate: 45.608 Hz\nMost recent transform: 0.007 sec old \nBuffer length: 4.933 sec\n"];
+"/pan_link" -> "/tilt_link"[label="Broadcaster: /pan_tilt_control\nAverage rate: 45.601 Hz\nMost recent transform: 0.006 sec old \nBuffer length: 4.934 sec\n"];
+"/tilt_link" -> "/camera_link"[label="Broadcaster: /pan_tilt_control\nAverage rate: 45.601 Hz\nMost recent transform: 0.006 sec old \nBuffer length: 4.934 sec\n"];
+"/base_link" -> "/mani_link"[label="Broadcaster: /pan_tilt_control\nAverage rate: 45.601 Hz\nMost recent transform: 0.006 sec old \nBuffer length: 4.934 sec\n"];
+"/camera_depth_frame" -> "/camera_depth_optical_frame"[label="Broadcaster: /camera_base_link2\nAverage rate: 10.178 Hz\nMost recent transform: -0.042 sec old \nBuffer length: 4.913 sec\n"];
+"/base_link" -> "/base_laser"[label="Broadcaster: /base_link_to_laser\nAverage rate: 10.186 Hz\nMost recent transform: -0.047 sec old \nBuffer length: 4.909 sec\n"];
+"/camera_link" -> "/camera_rgb_frame"[label="Broadcaster: /camera_base_link1\nAverage rate: 10.188 Hz\nMost recent transform: -0.071 sec old \nBuffer length: 4.908 sec\n"];
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1397514971.179"[ shape=plaintext ] ;
+ }->"/base_link";
+edge [style=invis];
+ subgraph cluster_legend { style=bold; color=black; label ="view_frames Result";
+"Recorded at time: 1397514971.179"[ shape=plaintext ] ;
+ }->"/camera_depth_frame";
+}
