@@ -10,10 +10,28 @@ class JoyInput(object):
 	def __init__(self):
 		rospy.init_node('joy_input')
 		rospy.Subscriber("joy", Joy, self.Joy2Twist)
-		self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', Twist)
-		rospy.on_shutdown(self.Stop)
+		rospy.Subscriber("joy", Joy, self.Joy2Manipulate)
+                self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', Twist)
+		self.joy_cmd_manipulate = rospy.Publisher('joy_cmd_manipulate', String)
+                rospy.on_shutdown(self.Stop)
 		self.Start()
-		
+
+	def Joy2Manipulate(self,joy):
+                mani_cmd = String()
+                if(joy.buttons[4] == 1 and joy.buttons[0] == 1 ):
+                        print 'LB + A = Normal'
+                        mani_cmd = "normal"
+                elif(joy.buttons[4] == 1 and joy.buttons[1] == 1):
+                        print 'LB + B = Straight'
+                        mani_cmd = "straight"
+                elif(joy.buttons[4] == 1 and joy.buttons[2] == 1):
+                        print 'LB + X = Walking'
+                        mani_cmd = "walking"
+                else:
+                        return
+                self.joy_cmd_manipulate.publish(mani_cmd)
+
+
 	def Joy2Twist(self,joy):
 		if joy.buttons[5] == 1:
 			cmd_vx = joy.axes[1]
