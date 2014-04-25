@@ -30,13 +30,15 @@ class PanTiltControl(object):
         #---------------------old parameters--------------------
 
         #---------------------new parameters--------------------
-        self.pan_scale = 1.0151014576
+        #self.pan_scale = 1.0151014576
+        self.pan_scale = 0.9968019112
         self.tilt_scale = 1.0682587634
-        self.pan_offset = -0.0104437649
+        #self.pan_offset = -0.0104437649
+        self.pan_offset = -0.0083947716
         self.tilt_offset = 0.0048443606
         #---------------------new parameters--------------------
 
-        self.kinect_height = 0.5  #float(sys.argv[1])########
+        self.mani_height = 0.82  #float(sys.argv[1])########
         self.get_valid_height = True  ###########
 
         self.tilt_cmd = rospy.Publisher("/tilt_kinect/command", Float64)
@@ -49,15 +51,15 @@ class PanTiltControl(object):
 
         rospy.Subscriber("/pan_tilt_cmd", Quaternion, self.pan_tilt_cmd_callback)
         rospy.Subscriber("/pan_tilt_RPY_cmd", Vector3, self.pan_tilt_RPY_cmd_callback)
-        rospy.Subscriber("/height_cmd", Float64, self.kinect_height_cmd_callback)
+        rospy.Subscriber("/height_cmd", Float64, self.mani_height_cmd_callback)
 
         rospy.spin()
 
-    def kinect_height_cmd_callback(self, msg):
-        height_real = (msg.data - 0.88) * 25.13274 / 0.5
+    def mani_height_cmd_callback(self, msg):
+        height_real = (msg.data - 0.82) / 0.01846290066
         h = Float64()
         h.data = height_real
-        print h.data
+        print "Send to mark43_pris :",h.data
         self.pris_cmd.publish(h)
 
     def pan_tilt_cmd_callback(self, q):
@@ -98,12 +100,12 @@ class PanTiltControl(object):
             self.tilt_ang = self.tilt_scale * tilt_ang_raw + self.tilt_offset
         elif pantilt_new.name == 'mark43_pris':
             height_raw = pantilt_new.current_pos
-            self.kinect_height = height_raw * 0.5 / 25.13274 + 0.88  #1440 deg = 25.13rad
+            self.mani_height = (height_raw*1.846290066)+0.82  #1440 deg = 25.13rad
         else:
             rospy.logwarn("invalid servo name--> %s", str(pantilt_new.name));
         if self.get_valid_height:
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0.0382, 0.00, self.kinect_height),
+                (0.0382, 0.00, self.mani_height+0.15),
                 tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
                 rospy.Time.now(),
                 "pan_link",
@@ -124,7 +126,7 @@ class PanTiltControl(object):
                 "tilt_link"
             )
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0.03, -0.15, self.kinect_height - 0.15),
+                (0.03, -0.15, self.mani_height),
                 tf.transformations.quaternion_from_euler(0, 0, 0),
                 rospy.Time.now(),
                 "mani_link",
