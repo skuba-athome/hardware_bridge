@@ -24,6 +24,32 @@ tilt_kinect:
         min: 1563
         max: 2015
 
+pan_kinecti_2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: pan_kinect_2
+    joint_speed: 0.4
+    motor:
+        id: 10
+        init: 2048
+        min: 0
+        max: 4095
+
+tilt_kinect_2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: tilt_kinect_2
+    joint_speed: 0.4
+    motor:
+        id: 11
+        init: 2048
+        min: 0
+        max: 4095
+
 tilt_laser:
     controller:
         package: dynamixel_controllers
@@ -74,7 +100,7 @@ mark44_3:
         id: 23
         init: 66500
         min: 26130
-        max: 55726
+        max: 54364
 
 mark43_pris:
     controller:
@@ -85,9 +111,9 @@ mark43_pris:
     joint_speed: 0.4
     motor:
         id: 26
-        init: 0
-        min: 0
-        max: 8192
+        init: 1336
+        min: 1336
+        max: 7515
 
 joint1:
     controller:

@@ -7,9 +7,7 @@
 	<node name="odometry_est" pkg="robot_connect" type="odometry_est.py"/>
 	
 	<include file="$(find robot_connect)/launch/dynamixel_connect.launch"/>
-
-	<include file="$(find robot_connect)/launch/kinect_launch.launch"/>
-	
+    <include file="$(find robot_connect)/launch/kinect_launch.launch"/>
 	<include file="$(find robot_connect)/launch/base_laser_launch.launch"/>
 	<!--include file="$(find robot_connect)/launch/tilt_laser_launch.launch"/-->
 
