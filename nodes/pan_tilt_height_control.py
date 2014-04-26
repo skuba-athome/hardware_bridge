@@ -105,7 +105,7 @@ class PanTiltControl(object):
             rospy.logwarn("invalid servo name--> %s", str(pantilt_new.name));
         if self.get_valid_height:
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0.0382, 0.00, self.mani_height+0.15),
+                (0.0382, 0.00, self.mani_height+0.11625),
                 tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
                 rospy.Time.now(),
                 "pan_link",
@@ -126,7 +126,7 @@ class PanTiltControl(object):
                 "tilt_link"
             )
             self.PanTiltTransformBroadcaster.sendTransform(
-                (0.03, -0.15, self.mani_height),
+                (0.01877, -0.14177, self.mani_height),
                 tf.transformations.quaternion_from_euler(0, 0, 0),
                 rospy.Time.now(),
                 "mani_link",
