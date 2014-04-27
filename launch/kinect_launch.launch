@@ -1,8 +1,5 @@
 <launch>
-	<include file="$(find openni_launch)/launch/openni.launch">
-        <!--arg name="depth_camera_info_url" value="$(find robot_connect)/calibrations/depth_B00362708888047B.yaml" /-->
-    </include>
-	
+	<include file="$(find robot_connect)/launch/open_kinect_webcam.launch"/>
 
 	<!--node pkg="dynamic_reconfigure" type="dynparam" name="kinect_set" args="set_from_parameters /camera/driver">
 		<param name="image_mode" value="8" />
