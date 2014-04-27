@@ -164,6 +164,6 @@ gripper:
     joint_torque_limit : 0.25
     motor:
         id: 43
-        init: 2048
-        min: 1786
-        max: 2587
+        init: 1870
+        min: 1653
+        max: 2178
