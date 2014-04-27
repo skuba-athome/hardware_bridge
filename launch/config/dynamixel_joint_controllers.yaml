@@ -99,8 +99,8 @@ mark44_3:
     motor:
         id: 23
         init: 66500
-        min: 26130
-        max: 54364
+        min: 23665
+        max: 55523
 
 mark43_pris:
     controller:
