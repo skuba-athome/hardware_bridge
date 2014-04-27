@@ -86,7 +86,7 @@ class PanTiltControl(object):
         try:
             pan_speed = rospy.ServiceProxy('/pan_kinect/set_speed', SetSpeed)
             tilt_speed = rospy.ServiceProxy('/tilt_kinect/set_speed', SetSpeed)
-            pan_speed(0.4)
+            pan_speed(0.4) 
             tilt_speed(0.4)
         except rospy.ServiceException, e:
             print "Service Speed call failed %s" % e
