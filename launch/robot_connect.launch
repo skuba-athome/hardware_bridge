@@ -2,7 +2,7 @@
 
 	<include file="$(find robot_connect)/launch/joy_play.launch"/>
 
-	<include file="$(find robot_connect)/launch/open_kinect_webcam.launch"/>
+	<!-- <include file="$(find robot_connect)/launch/open_kinect_webcam.launch"/> -->
 	
 	<node name="robot_serial" pkg="robot_connect" type="robot_serial.py"/>
 
