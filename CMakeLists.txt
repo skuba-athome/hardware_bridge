@@ -1,0 +1,48 @@
+cmake_minimum_required(VERSION 2.4.6)
+include($ENV{ROS_ROOT}/core/rosbuild/rosbuild.cmake)
+
+# Set the build type.  Options are:
+#  Coverage       : w/ debug symbols, w/o optimization, w/ code-coverage
+#  Debug          : w/ debug symbols, w/o optimization
+#  Release        : w/o debug symbols, w/ optimization
+#  RelWithDebInfo : w/ debug symbols, w/ optimization
+#  MinSizeRel     : w/o debug symbols, w/ optimization, stripped binaries
+#set(ROS_BUILD_TYPE RelWithDebInfo)
+
+rosbuild_init()
+
+#set the default path for built executables to the "bin" directory
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
+#set the default path for built libraries to the "lib" directory
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+
+#uncomment if you have defined messages
+#rosbuild_genmsg()
+#uncomment if you have defined services
+#rosbuild_gensrv()
+
+#common commands for building c++ executables and libraries
+#rosbuild_add_library(${PROJECT_NAME} src/example.cpp)
+#target_link_libraries(${PROJECT_NAME} another_library)
+#rosbuild_add_boost_directories()
+#rosbuild_link_boost(${PROJECT_NAME} thread)
+#rosbuild_add_executable(example examples/example.cpp)
+#target_link_libraries(example ${PROJECT_NAME})
+
+#rosbuild_add_executable(my_dwa src/my_dwa.cpp)
+#rosbuild_add_executable(base_avoidance src/base_avoidance.cpp)
+#rosbuild_add_executable(tf_broadcaster src/tf_broadcaster.cpp)
+#rosbuild_add_executable(prismatic_control src/prismatic_control.cpp)
+#rosbuild_add_executable(kinect_preprocess src/kinect_preprocess.cpp)
+#rosbuild_add_executable(tilt_laser_control src/tilt_laser_control.cpp)
+#rosbuild_add_executable(tilt_laser_preprocess src/tilt_laser_preprocess.cpp)
+#rosbuild_add_executable(tilt_laser_assembler src/tilt_laser_assembler.cpp)
+
+rosbuild_add_executable(kinect_processing src/kinect_processing.cpp)
+rosbuild_add_executable(test_tf src/test_tf.cpp)
+
+include_directories(/usr/include/gstreamer-0.10 /usr/include/glib-2.0 /usr/lib/glib-2.0/include /usr/lib/i386-linux-gnu/glib-2.0/include /usr/lib/x86_64-linux-gnu/glib-2.0/include /usr/include/libxml2)
+rosbuild_add_executable(gscam src/gscam.cpp)
+target_link_libraries(gscam gstreamer-0.10 gobject-2.0 gmodule-2.0 gthread-2.0 rt xml2 glib-2.0 gstapp-0.10 pthread)
+
+

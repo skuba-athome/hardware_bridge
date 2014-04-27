@@ -1,0 +1,8 @@
+<launch>
+
+  <include file="$(find robot_connect)/launch/open_webcam.launch"/>
+rosrun camera_calibration cameracalibrator.py --size 8x6 --square 0.108 image:=/camera/image_raw camera:=/camera
+
+  <node name="cameracalibrator" pkg="camera_calibration" type="cameracalibrator.py" args="--size 8x6 --square 0.0719 image:=/logitech_cam/image_raw camera:=/logitech_cam" output = "screen"/>
+
+</launch>
