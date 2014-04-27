@@ -1,0 +1,20 @@
+<launch>
+
+  <!-- Bring up Kinect -->
+<!--
+  <include file="$(find openni_launch)/launch/openni.launch">
+    <arg name="depth_camera_info_url" default="package://robot_connect/calibrations/depth_0000000000000000.yaml" />
+  </include>
+-->
+
+  <include file="$(find robot_connect)/launch/open_webcam.launch"/>
+
+
+  <node pkg="tf" type="static_transform_publisher" name="logitech_cam_to_kinect" args="0.008 -0.002 0.026 0.052 0.015 -0.004 camera_depth_optical_frame logitech_cam 100 " /> 
+
+  <!-- webcam resolution 1280x720 -->
+  <!-- <node pkg="tf" type="static_transform_publisher" name="logitech_cam_to_kinect" args="-0.020754926094 0.03658407037935 -0.031290058944121596 -0.02250038345658 0.005170368610318 0.009053554677859099 camera_depth_optical_frame logitech_cam 100 " />  -->
+</launch>
+
+<!-- webcam resolution 640x480 -->
+  <!--last use <node pkg="tf" type="static_transform_publisher" name="logitech_cam_to_kinect" args="0.021 -0.038 0.041 0.025 0.007 -0.002 camera_depth_optical_frame logitech_cam 100 " />  -->

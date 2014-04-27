@@ -174,6 +174,19 @@ clean-test-results/fast:
 .PHONY : clean-test-results/fast
 
 #=============================================================================
+# Target rules for targets named gscam
+
+# Build rule for target.
+gscam: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 gscam
+.PHONY : gscam
+
+# fast build rule for target.
+gscam/fast:
+	$(MAKE) -f CMakeFiles/gscam.dir/build.make CMakeFiles/gscam.dir/build
+.PHONY : gscam/fast
+
+#=============================================================================
 # Target rules for targets named kinect_processing
 
 # Build rule for target.
@@ -330,6 +343,21 @@ tests/fast:
 .PHONY : tests/fast
 
 # target to build an object file
+src/gscam.o:
+	$(MAKE) -f CMakeFiles/gscam.dir/build.make CMakeFiles/gscam.dir/src/gscam.o
+.PHONY : src/gscam.o
+
+# target to preprocess a source file
+src/gscam.i:
+	$(MAKE) -f CMakeFiles/gscam.dir/build.make CMakeFiles/gscam.dir/src/gscam.i
+.PHONY : src/gscam.i
+
+# target to generate assembly for a file
+src/gscam.s:
+	$(MAKE) -f CMakeFiles/gscam.dir/build.make CMakeFiles/gscam.dir/src/gscam.s
+.PHONY : src/gscam.s
+
+# target to build an object file
 src/kinect_processing.o:
 	$(MAKE) -f CMakeFiles/kinect_processing.dir/build.make CMakeFiles/kinect_processing.dir/src/kinect_processing.o
 .PHONY : src/kinect_processing.o
@@ -372,6 +400,7 @@ help:
 	@echo "... ROSBUILD_gensrv_lisp"
 	@echo "... clean-test-results"
 	@echo "... edit_cache"
+	@echo "... gscam"
 	@echo "... kinect_processing"
 	@echo "... rebuild_cache"
 	@echo "... rosbuild_precompile"
@@ -385,6 +414,9 @@ help:
 	@echo "... test-results-run"
 	@echo "... test_tf"
 	@echo "... tests"
+	@echo "... src/gscam.o"
+	@echo "... src/gscam.i"
+	@echo "... src/gscam.s"
 	@echo "... src/kinect_processing.o"
 	@echo "... src/kinect_processing.i"
 	@echo "... src/kinect_processing.s"

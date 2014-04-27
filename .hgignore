@@ -8,3 +8,4 @@ CMakeCache.txt
 CMakeFiles
 src/robot_connect/*
 .idea
+cmake_install.cmake
