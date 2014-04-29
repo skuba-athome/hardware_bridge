@@ -161,9 +161,9 @@ gripper:
         type: JointPositionController
     joint_name: gripper
     joint_speed: 0.4
-    joint_torque_limit : 0.25
+    joint_torque_limit : 0.30
     motor:
         id: 43
-        init: 1870
-        min: 1653
-        max: 2178
+        init: 800
+        min: 620
+        max: 1283
