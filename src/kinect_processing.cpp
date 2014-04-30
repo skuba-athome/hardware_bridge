@@ -57,16 +57,18 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
 
     // sampling data
     pcl::VoxelGrid<PointT> voxelGrid;
+    PointCloudT::Ptr cloud_sampling (new PointCloudT);
     voxelGrid.setInputCloud (cloud_obj);
     voxelGrid.setLeafSize (VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
-    voxelGrid.filter (*cloud_tmp);
+    voxelGrid.filter (*cloud_sampling);
 
     // remove ground plane
     pcl::PassThrough<PointT> passThrough;
-    passThrough.setInputCloud (cloud_tmp);
+    PointCloudT::Ptr cloud_partition (new PointCloudT);
+    passThrough.setInputCloud (cloud_sampling);
     passThrough.setFilterFieldName ("z");
     passThrough.setFilterLimits (0.15, 2.0);
-    passThrough.filter (*_cloud_tmp);
+    passThrough.filter (*cloud_partition);
 
     // project point to ground plane
     pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
@@ -75,17 +77,19 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
     coefficients->values[2] = 0.1;
 
     pcl::ProjectInliers<PointT> proj;
+    PointCloudT::Ptr cloud_project (new PointCloudT);
     proj.setModelType (pcl::SACMODEL_PLANE);
-    proj.setInputCloud (_cloud_tmp);
+    proj.setInputCloud (cloud_partition);
     proj.setModelCoefficients (coefficients);
-    proj.filter (*cloud_tmp);
+    proj.filter (*cloud_project);
 
     // remove outlier
     pcl::RadiusOutlierRemoval<PointT> outrem;
-    outrem.setInputCloud (cloud_tmp);
+    PointCloudT::Ptr cloud_clustered (new PointCloudT);
+    outrem.setInputCloud (cloud_project);
     outrem.setRadiusSearch (0.4);
     outrem.setMinNeighborsInRadius (6);
-    outrem.filter (*_cloud_tmp);
+    outrem.filter (*cloud_clustered);
 
     // sampling again
     //voxelGrid.setInputCloud (_cloud_tmp);
@@ -94,13 +98,13 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
 
     // remove if near to robot
     PointCloudT::Ptr virtual_scan (new PointCloudT);
-    for(unsigned int n = 0; n < _cloud_tmp->points.size(); ++n)
+    for(unsigned int n = 0; n < cloud_clustered->points.size(); ++n)
     {
-        float x = _cloud_tmp->points[n].x;
-        float y = _cloud_tmp->points[n].y;
+        float x = cloud_clustered->points[n].x;
+        float y = cloud_clustered->points[n].y;
         if( x*x + y*y  > ROBOT_RADIUS* ROBOT_RADIUS)
         {
-            virtual_scan->points.push_back(_cloud_tmp->points[n]);
+            virtual_scan->points.push_back(cloud_clustered->points[n]);
         }
     }
 
