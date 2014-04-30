@@ -24,7 +24,7 @@ tilt_kinect:
         min: 1563
         max: 2015
 
-pan_kinecti_2:
+pan_kinect_2:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
@@ -33,9 +33,9 @@ pan_kinecti_2:
     joint_speed: 0.4
     motor:
         id: 10
-        init: 2048
-        min: 0
-        max: 4095
+        init: 2552
+        min: 1469
+        max: 3300
 
 tilt_kinect_2:
     controller:
@@ -46,9 +46,9 @@ tilt_kinect_2:
     joint_speed: 0.4
     motor:
         id: 11
-        init: 2048
-        min: 0
-        max: 4095
+        init: 2015
+        min: 1570
+        max: 2030
 
 tilt_laser:
     controller:
