@@ -1,0 +1,6 @@
+<launch>
+
+  <include file="$(find robot_connect)/launch/extrinsic_calibration_external.launch"/>
+  <include file="$(find camera_pose_calibration)/launch_extrinsics/calibrate_2_camera.launch" args="camera1_ns:=logitech_cam camera2_ns:=camera/ir_augmented checker_rows:=4 checker_cols:=6 checker_size:=0.05415"/>
+
+</launch>
