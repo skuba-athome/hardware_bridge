@@ -14,13 +14,8 @@
 #include <pcl/filters/project_inliers.h>
 #include <pcl/filters/radius_outlier_removal.h>
 
-#define ROBOT_RADIUS    0.55f
-//4m/0.05m = 80 (L:-2.0m, R:+2.0m, Step_size: 0.05m)
-#define SCAN_START     -2.0f
-#define SCAN_STOP        2.0f
-#define STEP_SIZE        0.05f
-#define ARRAY_SIZE     80 //((SCAN_STOP - SCAN_START)/STEP_SIZE)
-#define MAX_DIS            4.0f
+#define ROBOT_RADIUS    0.65f
+#define MAX_DIS         3.5f
 
 #define VOXEL_SIZE  0.02f
 
@@ -52,7 +47,6 @@ void cloudCallback(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
 
 void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
 {         
-    PointCloudT::Ptr cloud_tmp, _cloud_tmp (new PointCloudT);
     ROS_INFO("Camera points : %d", cloud_obj->points.size());
 
     // sampling data
@@ -67,7 +61,7 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
     PointCloudT::Ptr cloud_partition (new PointCloudT);
     passThrough.setInputCloud (cloud_sampling);
     passThrough.setFilterFieldName ("z");
-    passThrough.setFilterLimits (0.15, 2.0);
+    passThrough.setFilterLimits (0.30, 2.0);
     passThrough.filter (*cloud_partition);
 
     // project point to ground plane
@@ -83,18 +77,19 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
     proj.setModelCoefficients (coefficients);
     proj.filter (*cloud_project);
 
+    // sampling again
+    voxelGrid.setInputCloud (cloud_project);
+    PointCloudT::Ptr cloud_sampling_2 (new PointCloudT);
+    voxelGrid.setLeafSize (VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
+    voxelGrid.filter (*cloud_sampling_2);
+    
     // remove outlier
     pcl::RadiusOutlierRemoval<PointT> outrem;
     PointCloudT::Ptr cloud_clustered (new PointCloudT);
-    outrem.setInputCloud (cloud_project);
+    outrem.setInputCloud (cloud_sampling_2);
     outrem.setRadiusSearch (0.4);
     outrem.setMinNeighborsInRadius (6);
     outrem.filter (*cloud_clustered);
-
-    // sampling again
-    //voxelGrid.setInputCloud (_cloud_tmp);
-    //voxelGrid.setLeafSize (VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
-    //voxelGrid.filter (*cloud_tmp);
 
     // remove if near to robot
     PointCloudT::Ptr virtual_scan (new PointCloudT);
@@ -102,7 +97,8 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
     {
         float x = cloud_clustered->points[n].x;
         float y = cloud_clustered->points[n].y;
-        if( x*x + y*y  > ROBOT_RADIUS* ROBOT_RADIUS)
+        float distance = x*x + y*y;
+        if( distance  > ROBOT_RADIUS*ROBOT_RADIUS && distance < MAX_DIS*MAX_DIS)
         {
             virtual_scan->points.push_back(cloud_clustered->points[n]);
         }
