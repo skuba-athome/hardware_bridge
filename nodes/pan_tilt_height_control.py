@@ -56,6 +56,7 @@ class PanTiltControl(object):
         rospy.spin()
 
     def mani_height_cmd_callback(self, msg):
+        self.mani_height = msg.data
         height_real = (msg.data - 0.82) / 0.01846290066
         h = Float64()
         h.data = height_real
@@ -92,10 +93,10 @@ class PanTiltControl(object):
             print "Service Speed call failed %s" % e
 
     def pantilt_callback(self, pantilt_new):
-        if pantilt_new.name == 'pan_kinect':
+        if pantilt_new.name == 'pan_kinect' or pantilt_new.name == 'pan_kinect_2':
             pan_ang_raw = pantilt_new.current_pos
             self.pan_ang = self.pan_scale * pan_ang_raw + self.pan_offset
-        elif pantilt_new.name == 'tilt_kinect':
+        elif pantilt_new.name == 'tilt_kinect' or pantilt_new.name == 'tilt_kinect_2':
             tilt_ang_raw = pantilt_new.current_pos
             self.tilt_ang = self.tilt_scale * tilt_ang_raw + self.tilt_offset
         elif pantilt_new.name == 'mark43_pris':

@@ -19,7 +19,7 @@
 
   <!-- Extrinsic transform publisher -->
   <include file="$(find camera_pose_calibration)/blocks/calibration_tf_publisher.launch">
-    <arg name="cache_file" value="$(find robot_connect)/calibrations/kinect_extrinsics_cache.bag" />
+    <arg name="cache_file" value="$(find robot_connect)/calibrations/second_kinect_extrinsics_cache.bag" />
   </include>
 
   <node name="contrast_augmenter" pkg="contrast" type="contrast_augmenter" args="image:=/camera/ir/image_raw"/>
