@@ -1,6 +1,6 @@
 <launch>
 
   <include file="$(find openni_launch)/launch/openni.launch"/>
-  <node name="cameracalibrator" pkg="camera_calibration" type="cameracalibrator.py" args="image:=/camera/ir/image_raw camera:=/camera/ir --size 6x4 --square 0.05415" output = "screen"/>
+  <node name="cameracalibrator" pkg="camera_calibration" type="cameracalibrator.py" args="image:=/camera/ir/image_raw camera:=/camera/ir --size 4x6 --square 0.05415" output = "screen"/>
 
 </launch>

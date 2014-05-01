@@ -25,6 +25,10 @@
           output="screen"/>
   
     <!--node name="tilt_laser_control" pkg="robot_connect" type="tilt_laser_control" output="screen"/-->
-    <!--node name="pan_tilt_control" pkg="robot_connect" type="pan_tilt_control.py"/-->
+    <node name="pan_tilt_height_control" pkg="robot_connect" type="pan_tilt_height_control.py">
+        <remap from="/pan_kinect/state" to="/pan_kinect_2/state"/>
+        <remap from="/tilt_kinect/state" to="/tilt_kinect_2/state"/>
+    </node>
     <!--node pkg="robot_connect" type="kinect_preprocess" name="kinect_preprocess" output="screen"/-->
+    <include file="$(find robot_connect)/launch/kinect_launch.launch"/>
 </launch>
