@@ -72,7 +72,7 @@ mark44_1:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 32767
+        init: 20804
         min: 1000
         max: 64500
 
@@ -85,7 +85,7 @@ mark44_2:
     joint_speed: 0.4
     motor:
         id: 22
-        init: 32770
+        init: 33245
         min: 1000
         max: 64500
 
@@ -98,9 +98,9 @@ mark44_3:
     joint_speed: 0.4
     motor:
         id: 23
-        init: 66500
-        min: 23665
-        max: 55523
+        init: 67100
+        min: 26130
+        max: 54612
 
 mark43_pris:
     controller:
