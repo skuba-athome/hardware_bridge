@@ -1,0 +1,7 @@
+<launch>
+
+  <include file="$(find robot_connect)/launch/open_webcam.launch"/>
+
+  <node name="cameracalibrator" pkg="camera_calibration" type="cameracalibrator.py" args="--size 4x6 --square 0.05415 image:=/logitech_cam/image_raw camera:=/logitech_cam" output = "screen"/>
+
+</launch>
