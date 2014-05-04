@@ -72,7 +72,7 @@ mark44_1:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 20804
+        init: 32748
         min: 1000
         max: 64500
 
@@ -85,7 +85,7 @@ mark44_2:
     joint_speed: 0.4
     motor:
         id: 22
-        init: 33245
+        init: 32771
         min: 1000
         max: 64500
 
