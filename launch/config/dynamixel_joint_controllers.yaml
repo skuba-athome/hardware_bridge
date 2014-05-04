@@ -98,7 +98,7 @@ mark44_3:
     joint_speed: 0.4
     motor:
         id: 23
-        init: 67100
+        init: 65300
         min: 26130
         max: 54612
 
