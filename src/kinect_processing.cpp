@@ -61,9 +61,10 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
     PointCloudT::Ptr cloud_partition (new PointCloudT);
     passThrough.setInputCloud (cloud_sampling);
     passThrough.setFilterFieldName ("z");
-    passThrough.setFilterLimits (0.30, 2.0);
+    passThrough.setFilterLimits (0.2, 2.0);
     passThrough.filter (*cloud_partition);
 
+    if (cloud_partition->points.size() == 0) return;
     // project point to ground plane
     pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
     coefficients->values.resize (4);
