@@ -57,7 +57,8 @@ class PanTiltControl(object):
 
     def mani_height_cmd_callback(self, msg):
         self.mani_height = msg.data
-        height_real = (msg.data - 0.82) / 0.01846290066
+        #height_real = (msg.data - 0.82) / 0.01846290066
+        height_real = (msg.data - 0.82) / 0.02057294645513783 
         h = Float64()
         h.data = height_real
         print "Send to mark43_pris :",h.data
@@ -101,7 +102,7 @@ class PanTiltControl(object):
             self.tilt_ang = self.tilt_scale * tilt_ang_raw + self.tilt_offset
         elif pantilt_new.name == 'mark43_pris':
             height_raw = pantilt_new.current_pos
-            self.mani_height = (height_raw*0.01846290066)+0.82  #1440 deg = 25.13rad
+            self.mani_height = (height_raw*0.02057294645513783)+0.82  #1440 deg = 25.13rad
         else:
             rospy.logwarn("invalid servo name--> %s", str(pantilt_new.name));
         if self.get_valid_height:
