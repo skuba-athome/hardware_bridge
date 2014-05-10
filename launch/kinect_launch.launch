@@ -1,11 +1,11 @@
 <launch>
 	<include file="$(find robot_connect)/launch/open_kinect_webcam.launch"/>
 
-	<!--node pkg="dynamic_reconfigure" type="dynparam" name="kinect_set" args="set_from_parameters /camera/driver">
+	<!--<node pkg="dynamic_reconfigure" type="dynparam" name="kinect_set" args="set_from_parameters /camera/driver">
 		<param name="image_mode" value="8" />
 		<param name="depth_mode" value="8" />
 		<param name="depth_registration" value="true" />
-	</node-->
+	</node>-->
 
 
 	<!--node pkg="dynamic_reconfigure" type="dynparam" name="kinect_set" args="set_from_parameters /camera/driver">

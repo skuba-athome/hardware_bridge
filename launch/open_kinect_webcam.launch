@@ -2,7 +2,7 @@
 
   <!-- Bring up Kinect -->
   <include file="$(find openni_launch)/launch/openni.launch">
-    <arg name="depth_camera_info_url" default="package://robot_connect/calibrations/depth_0000000000000000.yaml" />
+    <!--<arg name="depth_camera_info_url" default="package://robot_connect/calibrations/depth_0000000000000000.yaml" />-->
   </include>
 
   <include file="$(find robot_connect)/launch/open_webcam.launch"/>
