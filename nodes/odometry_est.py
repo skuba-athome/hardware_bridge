@@ -1,8 +1,8 @@
 #! /usr/bin/python
-import roslib
-roslib.load_manifest('robot_connect')
+
 import rospy
 import tf
+
 from math import sin, cos, pi
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import TwistStamped, TwistWithCovarianceStamped, Quaternion, Pose2D, TransformStamped

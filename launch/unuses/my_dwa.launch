@@ -1,7 +1,0 @@
-<launch>
-  <!-- Run the costmap node -->
-  <node name="my_dwa" pkg="robot_connect" type="my_dwa" output="screen">
-    <rosparam file="$(find robot_connect)/launch/local_costmap_params.yaml" command="load" ns="costmap" />
-  </node>
-
-</launch>

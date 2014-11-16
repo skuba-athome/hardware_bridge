@@ -1,15 +1,12 @@
 #! /usr/bin/python
-import roslib
+
 import rospy
-
-roslib.load_manifest('robot_connect')
-
 import tf
+
 from std_msgs.msg import Float64
 from dynamixel_msgs.msg import JointState
 from geometry_msgs.msg import Quaternion, Vector3
 from dynamixel_controllers.srv import SetSpeed
-
 
 class PanTiltControl(object):
     def __init__(self):

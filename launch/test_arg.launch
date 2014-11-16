@@ -1,5 +1,0 @@
-<launch>
-
-	<node name="pan_tilt_control" pkg="robot_connect" type="pan_tilt_control.py" args="1.2" output="screen"/>
-	
-</launch>
