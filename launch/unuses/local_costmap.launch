@@ -1,7 +1,0 @@
-<launch>
-  <!-- Run the costmap node -->
-  <node name="costmap_node" pkg="costmap_2d" type="costmap_2d_node" >
-    <rosparam file="$(find robot_connect)/launch/local_costmap_params.yaml" command="load" ns="costmap" />
-  </node>
-
-</launch>

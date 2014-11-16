@@ -1,12 +1,12 @@
 #!/usr/bin/env python
-import roslib; roslib.load_manifest('robot_connect')
+
 import rospy
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 from std_msgs.msg import String
 
-
 class JoyInput(object):
+
     def __init__(self):
         rospy.init_node('joy_input')
         rospy.Subscriber("joy", Joy, self.Joy2Twist)

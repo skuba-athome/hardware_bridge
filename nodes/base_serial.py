@@ -1,17 +1,18 @@
 #!/usr/bin/env python
-import roslib; roslib.load_manifest('robot_connect')
+
 import rospy
 import time
 import sys
+
 from math import pi
 from geometry_msgs.msg import Twist, TwistStamped, TwistWithCovarianceStamped
 from sensor_msgs.msg import Imu
 from std_msgs.msg import String
 from SerialDataGateway import SerialDataGateway
-#sys.argv[1]
-class RobotConnect(object):
+
+class BaseSerial(object):
 	def __init__(self, port="/dev/ttyUSB0", baudrate=9600):
-		rospy.init_node('robot_serial')
+		rospy.init_node('base_serial')
 		rospy.Subscriber("joy_cmd_vel", Twist, self.JoyTwist2Cmd)
 		rospy.Subscriber("cmd_vel", Twist, self.Twist2Cmd)
 		self.base_imu = rospy.Publisher('imu', Imu)
@@ -144,4 +145,4 @@ class RobotConnect(object):
 		self.mySerialDataGateway.Stop()
 
 if __name__ == '__main__':
-	RobotConnect()
+	BaseSerial()
