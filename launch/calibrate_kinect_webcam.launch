@@ -1,0 +1,27 @@
+<launch>
+
+  <!-- Bring up Kinect -->
+
+ <!-- 
+  <include file="$(find openni_launch)/launch/openni.launch">
+    <arg name="depth_camera_info_url" default="package://robot_connect/calibrations/depth_0000000000000000.yaml" />
+  </include>
+  --!>
+
+  <include file="$(find hardware_bridge)/launch/open_webcam.launch"/>
+
+  <node ns="logitech_cam" pkg="image_proc" type="image_proc" name="image_proc"/>
+
+<!--
+  <include ns="logitech_cam" file="$(find image_proc)/launch/image_proc.launch">
+    <arg name="manager" value="/camera_nodelet_manager" />
+  </include>
+  <include file="$(find camera_pose_calibration)/blocks/calibration_tf_publisher.launch">
+    <arg name="cache_file" value="package://hardware_bridge/calibrations/kinect_extrinsics_cache.bag" />
+  </include>
+-->
+
+  <!-- Publish tf from RGB camera to Depth camera -->
+ <!-- <node pkg="tf" type="static_transform_publisher" name="logitech_cam_to_kinect" args="0.008 -0.002 0.026 0.052 0.015 -0.004 camera_depth_optical_frame logitech_cam 100 " /> -->
+
+</launch>
