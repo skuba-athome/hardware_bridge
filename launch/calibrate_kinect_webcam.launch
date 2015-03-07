@@ -1,21 +1,24 @@
 <launch>
 
   <!-- Bring up Kinect -->
-
- <!-- 
   <include file="$(find openni_launch)/launch/openni.launch">
     <arg name="depth_camera_info_url" default="package://robot_connect/calibrations/depth_0000000000000000.yaml" />
   </include>
-  --!>
-
+  
+  <!-- Bring up webcam -->
   <include file="$(find hardware_bridge)/launch/open_webcam.launch"/>
-
   <node ns="logitech_cam" pkg="image_proc" type="image_proc" name="image_proc"/>
 
+  <include file="$(find camera_pose_calibration)/launch_extrinsics/calibrate_2_camera.launch">
+    <arg name="camera1_ns" value="logitech_cam"/>
+    <arg name="camera2_ns" value="camera/rgb"/>
+    <arg name="checker_rows" value="6"/>
+    <arg name="checker_cols" value="8"/>
+    <arg name="checker_size" value="0.0361"/>
+  </include>  
+  <node ns="camera/rgb" pkg="image_proc" type="image_proc" name="image_proc"/>
+
 <!--
-  <include ns="logitech_cam" file="$(find image_proc)/launch/image_proc.launch">
-    <arg name="manager" value="/camera_nodelet_manager" />
-  </include>
   <include file="$(find camera_pose_calibration)/blocks/calibration_tf_publisher.launch">
     <arg name="cache_file" value="package://hardware_bridge/calibrations/kinect_extrinsics_cache.bag" />
   </include>
