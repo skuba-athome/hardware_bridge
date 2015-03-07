@@ -10,6 +10,8 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   sensor_msgs
   tf
+#  cv_bridge
+#  image_transport
 )
 
 ## System dependencies are found with CMake's conventions
@@ -85,7 +87,7 @@ catkin_package(
 #  INCLUDE_DIRS include
 #  LIBRARIES hardware_bridge
 #  CATKIN_DEPENDS geometry_msgs roscpp rospy sensor_msgs tf
-#  DEPENDS system_lib
+#   DEPENDS opencv
 )
 
 ###########
@@ -105,7 +107,8 @@ include_directories(
 # )
 
 ## Declare a cpp executable
-# add_executable(hardware_bridge_node src/hardware_bridge_node.cpp)
+# add_executable(contrast_augmenter src/contrast_augmenter.cpp)
+# target_link_libraries(contrast_augmenter ${catkin_LIBRARIES})
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
