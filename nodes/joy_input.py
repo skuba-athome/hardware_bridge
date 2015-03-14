@@ -22,7 +22,6 @@ class Button(Enum):
 
 
 class ButtonHandler(object):
-
     def __init__(self, joy=None):
         self.joy = joy
 
@@ -74,11 +73,36 @@ class JoyInput(object):
         rospy.init_node('joy_input')
         rospy.Subscriber("joy", ButtonHandler, self.Joy2Twist)
         rospy.Subscriber("joy", ButtonHandler, self.Joy2Manipulate)
+        rospy.Subscriber("joy", ButtonHandler, self.Joy2Motor)
         self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', Twist)
         self.joy_cmd_manipulate = rospy.Publisher('joy_cmd_manipulate', String)
         self.joy_cmd_prismatic = rospy.Publisher('/mark43_pris/command', Float64)
         rospy.on_shutdown(self.Stop)
         self.Start()
+
+    def Joy2Motor(self, joy):
+
+        motors = []
+        motors[Button.X] = ""
+        motors[Button.A] = ""
+        motors[Button.B] = ""
+
+        buttons = ButtonHandler(joy)
+
+        cmd = 0.0
+        if buttons.arrow_left_active():
+            cmd = 1.0
+        elif buttons.arrow_right_active():
+            cmd = -1.0
+
+        if cmd != 0.0:
+            if buttons.x_active():
+                rospy.Publisher(motors[Button.X], Float64).publish(Float64(cmd))
+            if buttons.a_active():
+                rospy.Publisher(motors[Button.A], Float64).publish(Float64(cmd))
+            if buttons.b_active():
+                rospy.Publisher(motors[Button.B], Float64).publish(Float64(cmd))
+
 
     def Joy2Manipulate(self, joy):
 
