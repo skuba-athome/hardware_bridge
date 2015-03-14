@@ -111,12 +111,16 @@ class JoyInput(object):
         buttons = ButtonHandler(joy)
 
         if buttons.lb_active() and buttons.a_active():
+            print 'LB + A = Normal'
             mani_cmd = "normal"
         elif buttons.lb_active() and buttons.b_active():
+            print 'LB + B = Straight'
             mani_cmd = "straight"
         elif buttons.lb_active() and buttons.x_active():
+            print 'LB + X = Walking'
             mani_cmd = "walking"
         elif buttons.lb_active() and buttons.y_active():
+            print 'LB + Y = Prepare'
             mani_cmd = "prepare"
 
         if mani_cmd == "":
