@@ -4,7 +4,7 @@
 	<node name="pan_tilt_control" pkg="hardware_bridge" type="pan_tilt_height_control.py"/>
 
 	<include file="$(find hardware_bridge)/launch/joy_play.launch"/>
-	<include file="$(find hardware_bridge)/launch/dynamixel_connect.launch"/>
+	<!--<include file="$(find hardware_bridge)/launch/dynamixel_connect.launch"/>-->
 	<!--<include file="$(find hardware_bridge)/launch/open_kinect_webcam.launch"/> -->
 	<include file="$(find hardware_bridge)/launch/base_laser_launch.launch"/>
 
