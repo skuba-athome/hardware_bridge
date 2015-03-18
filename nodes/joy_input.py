@@ -42,17 +42,17 @@ class JoyInput(object):
             cmd_vy = joy.axes[4]
             cmd_vth = joy.axes[0]
             joy_cmd = Twist()
-            joy_cmd.linear.x = cmd_vx*0.5       #maximum vx is 0.2 m/s
+            joy_cmd.linear.x = cmd_vx*0.3       #maximum vx is 0.2 m/s --0.5
             joy_cmd.linear.y = cmd_vy*0.2        #maximum vy is 0.2 m/s
-            joy_cmd.angular.z = cmd_vth*0.8        #maximum vth is 0.4 rad/s
+            joy_cmd.angular.z = cmd_vth*1        #maximum vth is 0.4 rad/s --0.8
             
             cmd_pris = joy.axes[6]
         else:
             joy_cmd = Twist()
             cmd_pris = 0
         self.joy_cmd_vel.publish(joy_cmd)
-        self.joy_cmd_prismatic.publish(Float64(cmd_pris))
-        rospy.loginfo(joy_cmd)
+        #self.joy_cmd_prismatic.publish(Float64(cmd_pris))
+        rospy.loginfo(joy)
     
     def Start(self):
         print 'Start joyplay'

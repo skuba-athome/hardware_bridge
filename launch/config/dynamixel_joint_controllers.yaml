@@ -157,7 +157,7 @@ joint2:
         min: 65
         max: 420
                 
-griper:
+gripper:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
