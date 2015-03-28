@@ -5,11 +5,8 @@ from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 from std_msgs.msg import String, Float64
 
-from enum import Enum
-
-
-class Button(Enum):
-    # buttons
+class Button:
+    # enum buttons
     A = 0
     B = 1
     X = 2
@@ -71,9 +68,9 @@ class ButtonHandler(object):
 class JoyInput(object):
     def __init__(self):
         rospy.init_node('joy_input')
-        rospy.Subscriber("joy", ButtonHandler, self.Joy2Twist)
-        rospy.Subscriber("joy", ButtonHandler, self.Joy2Manipulate)
-        rospy.Subscriber("joy", ButtonHandler, self.Joy2Motor)
+        rospy.Subscriber("joy", Joy, self.Joy2Twist)
+        rospy.Subscriber("joy", Joy, self.Joy2Manipulate)
+        #rospy.Subscriber("joy", Joy, self.Joy2Motor)
         self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', Twist)
         self.joy_cmd_manipulate = rospy.Publisher('joy_cmd_manipulate', String)
         self.joy_cmd_prismatic = rospy.Publisher('/mark43_pris/command', Float64)
@@ -134,11 +131,11 @@ class JoyInput(object):
 
         if buttons.rb_active():
             cmd_vx = joy.axes[1]
-            cmd_vy = joy.axes[4]
-            cmd_vth = joy.axes[0]
+            cmd_vy = joy.axes[0]
+            cmd_vth = joy.axes[4]
             joy_cmd = Twist()
             joy_cmd.linear.x = cmd_vx * 0.5  # maximum vx is 0.2 m/s
-            joy_cmd.linear.y = cmd_vy * 0.2  # maximum vy is 0.2 m/s
+            joy_cmd.linear.y = cmd_vy * 0.3  # maximum vy is 0.2 m/s
             joy_cmd.angular.z = cmd_vth * 0.8  # maximum vth is 0.4 rad/s
 
             cmd_pris = joy.axes[6]
@@ -146,7 +143,7 @@ class JoyInput(object):
             joy_cmd = Twist()
             cmd_pris = 0
         self.joy_cmd_vel.publish(joy_cmd)
-        self.joy_cmd_prismatic.publish(Float64(cmd_pris))
+        #self.joy_cmd_prismatic.publish(Float64(cmd_pris))
         rospy.loginfo(joy_cmd)
 
     def Start(self):
