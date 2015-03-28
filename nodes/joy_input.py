@@ -4,68 +4,9 @@ import rospy
 from geometry_msgs.msg import Twist
 from sensor_msgs.msg import Joy
 from std_msgs.msg import String, Float64
+from include.ButtonHandler import Button, ButtonHandler
 
-class Button:
-    # enum buttons
-    A = 0
-    B = 1
-    X = 2
-    Y = 3
-    LB = 4
-    RB = 5
-    Black = 6
-    Start = 7
-    Center = 8
-
-
-class ButtonHandler(object):
-    def __init__(self, joy=None):
-        self.joy = joy
-
-    def is_active(self, button):
-        return self.joy.buttons[button] == 1
-
-    def a_active(self):
-        return self.is_active(Button.A)
-
-    def b_active(self):
-        return self.is_active(Button.B)
-
-    def x_active(self):
-        return self.is_active(Button.X)
-
-    def y_active(self):
-        return self.is_active(Button.Y)
-
-    def lb_active(self):
-        return self.is_active(Button.LB)
-
-    def rb_active(self):
-        return self.is_active(Button.RB)
-
-    def black_active(self):
-        return self.is_active(Button.Black)
-
-    def start_active(self):
-        return self.is_active(Button.Start)
-
-    def center_active(self):
-        return self.is_active(Button.Center)
-
-    def arrow_up_active(self):
-        return self.joy.axes[7] == 1.0
-
-    def arrow_down_active(self):
-        return self.joy.axes[7] == -1.0
-
-    def arrow_left_active(self):
-        return self.joy.axes[6] == 1.0
-
-    def arrow_right_active(self):
-        return self.joy.axes[6] == -1.0
-
-
-class JoyInput(object):
+class JoyInput:
     def __init__(self):
         rospy.init_node('joy_input')
         rospy.Subscriber("joy", Joy, self.Joy2Twist)
@@ -126,13 +67,12 @@ class JoyInput(object):
         self.joy_cmd_manipulate.publish(mani_cmd)
 
     def Joy2Twist(self, joy):
-
         buttons = ButtonHandler(joy)
 
         if buttons.rb_active():
             cmd_vx = joy.axes[1]
-            cmd_vy = joy.axes[0]
-            cmd_vth = joy.axes[4]
+            cmd_vy = joy.axes[3]
+            cmd_vth = joy.axes[0]
             joy_cmd = Twist()
             joy_cmd.linear.x = cmd_vx * 0.5  # maximum vx is 0.2 m/s
             joy_cmd.linear.y = cmd_vy * 0.3  # maximum vy is 0.2 m/s
