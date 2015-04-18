@@ -10,6 +10,9 @@ find_package(catkin REQUIRED COMPONENTS
   rospy
   sensor_msgs
   tf
+  pcl_ros
+  pcl_conversions
+
 #  cv_bridge
 #  image_transport
 )
@@ -110,6 +113,8 @@ include_directories(
 # add_executable(contrast_augmenter src/contrast_augmenter.cpp)
 # target_link_libraries(contrast_augmenter ${catkin_LIBRARIES})
 
+add_executable(kinect_processing src/kinect_processing.cpp)
+
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
 # add_dependencies(hardware_bridge_node hardware_bridge_generate_messages_cpp)
@@ -118,6 +123,9 @@ include_directories(
 # target_link_libraries(hardware_bridge_node
 #   ${catkin_LIBRARIES}
 # )
+
+target_link_libraries(kinect_processing ${pcl_ros_LIBRARIES} ${catkin_LIBRARIES})
+
 
 #############
 ## Install ##
