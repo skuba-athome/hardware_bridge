@@ -1,9 +1,5 @@
 <launch>
+	<include file="$(find hardware_bridge)/launch/joy_connect.launch"/>
 
-	<node respawn="true" pkg="joy" type="joy_node" name="joy_node">
-	    <param name="deadzone" value="0.12" />
-	</node>
-
-	<node name="joy_input" pkg="hardware_bridge" type="joy_input.py" output="screen"/>
-
+	<node name="base_serial" pkg="hardware_bridge" type="base_serial.py"/>
 </launch>
