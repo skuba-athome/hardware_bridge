@@ -25,6 +25,6 @@
   </group>
 
   <!-- Publish tf from RGB camera to Depth camera -->
-  <node pkg="tf" type="static_transform_publisher" name="external_cam_to_kinect" args="0.01941 -0.046 -0.037 0.019 0.002 0.088 camera_depth_optical_frame external_cam 100 " />
+  <node pkg="tf" type="static_transform_publisher" name="external_cam_to_kinect" args="0.0271954518690079107 -0.05185873777617955 -0.0369652725485426 0.018242697823674495 -0.01289498535959129 0.0538873143444272 camera_depth_optical_frame external_cam 100 " />
 
 </launch>
