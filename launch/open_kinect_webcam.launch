@@ -1,0 +1,30 @@
+<launch>
+  <!-- Bring up Kinect -->
+
+  <include file="$(find openni_launch)/launch/openni.launch">
+    <!--<arg name="depth_camera_info_url" default="package://robot_connect/calibrations/depth_0000000000000000.yaml" />-->
+  </include>
+
+  <include file="$(find hardware_bridge)/launch/open_webcam.launch"/>
+  <node ns="external_cam" name="nodelet_manager" pkg="nodelet" type="nodelet" args="manager"/>
+  <include ns="external_cam" file="$(find image_proc)/launch/image_proc.launch">
+    <arg name="manager" value="nodelet_manager" />
+  </include>
+
+  <group ns="depth_registered">
+    <node name="nodelet_manager" pkg="nodelet" type="nodelet" args="manager"/>
+
+    <include file="$(find rgbd_launch)/launch/includes/depth_registered.launch.xml">
+      <arg name="manager" value="nodelet_manager" />
+      <arg name="rgb" value="/external_cam" />
+      <arg name="depth" value="/camera/depth" />
+      <!-- New namespace 'my_camera_depth' contains the outputs -->
+      <arg name="depth_registered" value="depth_registered" />
+      <arg name="suffix" value="depth_registered" />
+    </include>
+  </group>
+
+  <!-- Publish tf from RGB camera to Depth camera -->
+  <node pkg="tf" type="static_transform_publisher" name="external_cam_to_kinect" args="0.01941 -0.046 -0.037 0.019 0.002 0.088 camera_depth_optical_frame external_cam 100 " />
+
+</launch>
