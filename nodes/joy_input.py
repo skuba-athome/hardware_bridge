@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 import rospy
-from geometry_msgs.msg import Twist
+from geometry_msgs.msg import TwistStamped
 from sensor_msgs.msg import Joy
 from std_msgs.msg import String, Float64
 from include.ButtonHandler import Button, ButtonHandler
@@ -12,11 +12,17 @@ class JoyInput:
         rospy.Subscriber("joy", Joy, self.Joy2Twist)
         rospy.Subscriber("joy", Joy, self.Joy2Manipulate)
         #rospy.Subscriber("joy", Joy, self.Joy2Motor)
-        self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', Twist)
+        self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', TwistStamped)
         self.joy_cmd_manipulate = rospy.Publisher('joy_cmd_manipulate', String)
         self.joy_cmd_prismatic = rospy.Publisher('/mark43_pris/command', Float64)
         rospy.on_shutdown(self.Stop)
+        self.joy_cmd = TwistStamped()
         self.Start()
+        rate = rospy.Rate(30) # 30hz
+        while not rospy.is_shutdown():
+            self.joy_cmd.header.stamp = rospy.Time.now()
+            self.joy_cmd_vel.publish(self.joy_cmd)
+            rate.sleep()
 
     def Joy2Motor(self, joy):
 
@@ -69,35 +75,34 @@ class JoyInput:
     def Joy2Twist(self, joy):
         buttons = ButtonHandler(joy)
 
+        self.joy_cmd = TwistStamped()
         if buttons.rb_active():
-            cmd_vx = joy.axes[1]
-            cmd_vy = joy.axes[2]
+            #cmd_vx = joy.axes[1]
+            cmd_vx = joy.axes[5]
+            #cmd_vy = joy.axes[2]
+            cmd_vy = joy.axes[4]
             cmd_vth = joy.axes[0]
-            joy_cmd = Twist()
-            joy_cmd.linear.x = cmd_vx * 0.5  # maximum vx is 0.2 m/s
-            joy_cmd.linear.y = cmd_vy * 0.3  # maximum vy is 0.2 m/s
-            joy_cmd.angular.z = cmd_vth * 0.8  # maximum vth is 0.4 rad/s
+            self.joy_cmd.twist.linear.x = cmd_vx * 0.1  # maximum vx is 0.2 m/s
+            self.joy_cmd.twist.linear.y = cmd_vy * 0.1  # maximum vy is 0.2 m/s
+            self.joy_cmd.twist.angular.z = cmd_vth * 0.65  # maximum vth is 0.4 rad/s
 
             cmd_pris = joy.axes[5]
         else:
-            joy_cmd = Twist()
             cmd_pris = 0
-        self.joy_cmd_vel.publish(joy_cmd)
         #self.joy_cmd_prismatic.publish(Float64(cmd_pris))
-        rospy.loginfo(joy)
+        rospy.loginfo(self.joy_cmd)
 
     def Start(self):
         print 'Start joyplay'
-        self.joy_cmd_vel.publish(Twist())
+        self.joy_cmd_vel.publish(TwistStamped())
 
     def Stop(self):
         print 'Stop joyplay'
-        self.joy_cmd_vel.publish(Twist())
+        self.joy_cmd_vel.publish(TwistStamped())
 
 
 if __name__ == '__main__':
     try:
         JoyInput()
-        rospy.spin()
     except    rospy.ROSInterruptException:
         rospy.loginfo("stop joyplay")

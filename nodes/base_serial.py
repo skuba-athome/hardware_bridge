@@ -13,7 +13,7 @@ from SerialDataGateway import SerialDataGateway
 class BaseSerial(object):
 	def __init__(self, port="/dev/ttyUSB0", baudrate=9600):
 		rospy.init_node('base_serial')
-		rospy.Subscriber("joy_cmd_vel", Twist, self.JoyTwist2Cmd)
+		rospy.Subscriber("joy_cmd_vel", TwistStamped, self.JoyTwist2Cmd)
 		rospy.Subscriber("cmd_vel", Twist, self.Twist2Cmd)
 		self.base_imu = rospy.Publisher('imu', Imu)
 		self.base_twist = rospy.Publisher('vel_odom',TwistWithCovarianceStamped)
@@ -63,11 +63,11 @@ class BaseSerial(object):
 			self.cmd_vth = int(vel.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
 
 	def JoyTwist2Cmd(self,twist):
-		self.joy_enable = int(twist.angular.x)
+		self.joy_enable = int(twist.twist.angular.x)
 		if self.joy_enable == 0:#debug self.joy_enable == 0
-			self.cmd_vx = int(twist.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s
-			self.cmd_vy = int(twist.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
-			self.cmd_vth = int(twist.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
+			self.cmd_vx = int(twist.twist.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s
+			self.cmd_vy = int(twist.twist.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
+			self.cmd_vth = int(twist.twist.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
 
 		#rospy.loginfo('Scaled cmd is: ' + str(self.cmd_vx) + ',' + str(self.cmd_vy) + ',' + str(self.cmd_vth))
 		#rospy.loginfo('Scaled cmd is: ' + str((self.cmd_vx,self.cmd_vy,self.cmd_vth)))
