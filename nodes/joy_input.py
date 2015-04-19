@@ -77,14 +77,12 @@ class JoyInput:
 
         self.joy_cmd = TwistStamped()
         if buttons.rb_active():
-            #cmd_vx = joy.axes[1]
-            cmd_vx = joy.axes[5]
-            #cmd_vy = joy.axes[2]
-            cmd_vy = joy.axes[4]
+            cmd_vx = joy.axes[1]
+            cmd_vy = joy.axes[2]
             cmd_vth = joy.axes[0]
-            self.joy_cmd.twist.linear.x = cmd_vx * 0.1  # maximum vx is 0.2 m/s
-            self.joy_cmd.twist.linear.y = cmd_vy * 0.1  # maximum vy is 0.2 m/s
-            self.joy_cmd.twist.angular.z = cmd_vth * 0.65  # maximum vth is 0.4 rad/s
+            self.joy_cmd.twist.linear.x = cmd_vx * 0.3  # maximum vx is 0.2 m/s
+            self.joy_cmd.twist.linear.y = cmd_vy * 0.3  # maximum vy is 0.2 m/s
+            self.joy_cmd.twist.angular.z = cmd_vth * 0.7  # maximum vth is 0.4 rad/s
 
             cmd_pris = joy.axes[5]
         else:
