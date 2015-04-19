@@ -1,5 +1,8 @@
 <launch>
-	<include file="$(find hardware_bridge)/launch/joy_connect.launch"/>
+	<!-- Connect to base and joy -->
+	<include file="$(find hardware_bridge)/launch/joy_play.launch"/>
+	<node name="odometry_est" pkg="hardware_bridge" type="odometry_est.py"/>
 
-	<node name="base_serial" pkg="hardware_bridge" type="base_serial.py"/>
+	<!-- Connect to hokuyo -->
+	<include file="$(find hardware_bridge)/launch/base_laser_connect.launch"/>
 </launch>

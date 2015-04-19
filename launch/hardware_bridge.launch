@@ -1,15 +1,13 @@
 <launch>
-	<node name="odometry_est" pkg="hardware_bridge" type="odometry_est.py"/>
-	<node name="pan_tilt_control" pkg="hardware_bridge" type="pan_tilt_height_control.py"/>
-
-	<include file="$(find hardware_bridge)/launch/base_connect.launch">
+	<!-- Connect to base and hokuyo -->
+	<include file="$(find hardware_bridge)/launch/base_connect.launch"/>
 	
+	<!-- Connect to Dynamixel and publish transform -->
 	<include file="$(find hardware_bridge)/launch/dynamixel_connect.launch">
 		<arg name="dynamixel_port_name" value="/dev/ttyUSB1"/>
         </include>
+	<node name="pan_tilt_control" pkg="hardware_bridge" type="pan_tilt_height_control.py"/>
 
-	<include file="$(find hardware_bridge)/launch/open_webcam.launch"/>
-	<!--<include file="$(find hardware_bridge)/launch/open_kinect_webcam.launch"/> -->
-	<include file="$(find hardware_bridge)/launch/base_laser_launch.launch"/>
-
+	<!-- Connect to kinect and webcam -->
+	<include file="$(find hardware_bridge)/launch/open_kinect_webcam.launch"/>
 </launch>
