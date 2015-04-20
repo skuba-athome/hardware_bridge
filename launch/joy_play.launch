@@ -1,5 +1,5 @@
 <launch>
 	<include file="$(find hardware_bridge)/launch/joy_connect.launch"/>
 
-	<node name="base_serial" pkg="hardware_bridge" type="base_serial.py"/>
+	<node ns="hardware_bridge" name="base_serial" pkg="hardware_bridge" type="base_serial.py"/>
 </launch>

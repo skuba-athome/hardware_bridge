@@ -6,7 +6,7 @@
 	<include file="$(find hardware_bridge)/launch/dynamixel_connect.launch">
 		<arg name="dynamixel_port_name" value="/dev/ttyUSB1"/>
         </include>
-	<node name="pan_tilt_control" pkg="hardware_bridge" type="pan_tilt_height_control.py"/>
+	<node ns="hardware_bridge" name="pan_tilt_control" pkg="hardware_bridge" type="pan_tilt_height_control.py"/>
 
 	<!-- Connect to kinect and webcam -->
 	<include file="$(find hardware_bridge)/launch/open_kinect_webcam.launch"/>
