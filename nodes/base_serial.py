@@ -42,7 +42,7 @@ class BaseSerial(object):
 		self.cmd_vy = 0
 		self.cmd_vth = 0
 
-		self.joy_enable = 0
+		self.joy_enable = False
 
 		rate = rospy.Rate(30.0)
 		self.Start()
@@ -57,14 +57,11 @@ class BaseSerial(object):
 			rate.sleep()
 
 	def Twist2Cmd(self,vel):
-		if self.joy_enable == 0:#debug self.joy_enable == 1
 			self.cmd_vx = int(vel.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s#if self.joy_enable == 1:
 			self.cmd_vy = int(vel.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
 			self.cmd_vth = int(vel.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
 
 	def JoyTwist2Cmd(self,twist):
-		self.joy_enable = int(twist.twist.angular.x)
-		if self.joy_enable == 0:#debug self.joy_enable == 0
 			self.cmd_vx = int(twist.twist.linear.x*(2**15-1)/2.0)		#maximum robot cmd in vx is 2 m/s
 			self.cmd_vy = int(twist.twist.linear.y*(2**15-1)/2.0)		#maximum robot cmd in vy is 2 m/s
 			self.cmd_vth = int(twist.twist.angular.z*(2**15-1)/6.0)		#maximum robot cmd in vth is 6 rad/s
@@ -73,6 +70,12 @@ class BaseSerial(object):
 		#rospy.loginfo('Scaled cmd is: ' + str((self.cmd_vx,self.cmd_vy,self.cmd_vth)))
 		
 		#print 'Return'+str((self.fdb_vx,self.fdb_vy,self.fdb_vth))
+
+	def is_moving(self):
+		if abs(self.cmd_vx + self.cmd_vy + self.cmd_vth) >= 0.0001:
+			return True
+		else:
+			return False
 
 	def HandleReceivedLine(self,line):
 		if len(line) == 7 and line[0]==self.start_byte:  #if len(line) == 19 and line[0]==self.start_byte: 

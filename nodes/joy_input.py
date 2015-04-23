@@ -13,6 +13,7 @@ class JoyInput:
         rospy.Subscriber("joy", Joy, self.Joy2Manipulate)
         #rospy.Subscriber("joy", Joy, self.Joy2Motor)
         self.joy_cmd_vel = rospy.Publisher('joy_cmd_vel', TwistStamped)
+        self.joy_cmd_plot = rospy.Publisher('joy_cmd_plot', TwistStamped)
         self.joy_cmd_manipulate = rospy.Publisher('joy_cmd_manipulate', String)
         self.joy_cmd_prismatic = rospy.Publisher('/mark43_pris/command', Float64)
         rospy.on_shutdown(self.Stop)
@@ -21,7 +22,7 @@ class JoyInput:
         rate = rospy.Rate(30) # 30hz
         while not rospy.is_shutdown():
             self.joy_cmd.header.stamp = rospy.Time.now()
-            self.joy_cmd_vel.publish(self.joy_cmd)
+            self.joy_cmd_plot.publish(self.joy_cmd)
             rate.sleep()
 
     def Joy2Motor(self, joy):
@@ -88,6 +89,7 @@ class JoyInput:
         else:
             cmd_pris = 0
         #self.joy_cmd_prismatic.publish(Float64(cmd_pris))
+        self.joy_cmd_vel.publish(self.joy_cmd)
         rospy.loginfo(self.joy_cmd)
 
     def Start(self):
