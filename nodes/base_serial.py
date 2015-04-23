@@ -15,8 +15,8 @@ class BaseSerial(object):
 		rospy.init_node('base_serial')
 		rospy.Subscriber("joy_cmd_vel", TwistStamped, self.JoyTwist2Cmd)
 		rospy.Subscriber("cmd_vel", Twist, self.Twist2Cmd)
-		self.base_imu = rospy.Publisher('imu', Imu)
-		self.base_twist = rospy.Publisher('vel_odom',TwistWithCovarianceStamped)
+		#self.base_imu = rospy.Publisher('imu', Imu)
+		self.base_twist = rospy.Publisher('base_vel',TwistWithCovarianceStamped)
 		rospy.on_shutdown(self.Stop)
 		self.mySerialDataGateway = SerialDataGateway(port, baudrate, self.HandleReceivedLine)
 		self.start_byte = '\xFF'

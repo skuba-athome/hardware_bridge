@@ -20,7 +20,7 @@ class OdometryEstimation(object):
 		self.init = True
 		self.OdometryTransformBroadcaster = tf.TransformBroadcaster()
 		self.pose_odom = rospy.Publisher("odom", Odometry)
-		rospy.Subscriber("vel_odom", TwistWithCovarianceStamped, self.velOdom_callback)
+		rospy.Subscriber("base_vel", TwistWithCovarianceStamped, self.velOdom_callback)
 		rospy.spin()
 				
 	def velOdom_callback(self,vel_odom):
