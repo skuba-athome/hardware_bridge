@@ -1,0 +1,172 @@
+pan_kinect:
+    controller:
+        package: dynamixel_controllers
+        module: joint_torque_controller
+        type: JointTorqueController
+    joint_name: motor_1
+    joint_speed: 0.0
+    motor:
+        id: 10
+        init: 0
+        min: 0
+        max: 3396
+
+tilt_kinect:
+    controller:
+        package: dynamixel_controllers
+        module: joint_torque_controller
+        type: JointTorqueController
+    joint_name: motor_2
+    joint_speed: 0.0
+    motor:
+        id: 2
+        init: 0
+        min: 0
+        max: 3396
+
+pan_kinect_2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: pan_kinect_2
+    joint_speed: 0.4
+    motor:
+        id: 10
+        init: 2552
+        min: 1469
+        max: 3300
+
+tilt_kinect_2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: tilt_kinect_2
+    joint_speed: 0.4
+    motor:
+        id: 11
+        init: 2015
+        min: 1570
+        max: 2030
+
+tilt_laser:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: tilt_laser
+    joint_speed: 1.0
+    motor:
+        id: 1
+        init: 214
+        min: 20
+        max: 856
+        
+mark44_1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: mark44_1
+    joint_speed: 0.4
+    motor:
+        id: 21
+        init: 32748
+        min: 1000
+        max: 64500
+
+mark44_2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: mark44_2
+    joint_speed: 0.4
+    motor:
+        id: 22
+        init: 32771
+        min: 1000
+        max: 64500
+
+mark44_3:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: mark44_3
+    joint_speed: 0.7
+    motor:
+        id: 23
+        init: 32399
+        min: 14349
+        max: 54449
+
+mark43_pris:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: mark43_pris
+    joint_speed: 0.4
+    motor:
+        id: 26
+        init: 3000
+        min: 1336
+        max: 7515
+
+joint1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: joint1
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 40
+        init: 2048
+        min: 0
+        max: 8190         
+        
+joint3:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: joint3
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 42
+        init: 2048
+        min: 0
+        max: 8190
+        
+joint2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: joint2
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 41
+        init: 403
+        min: 65
+        max: 420
+                
+gripper:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: griper
+    joint_speed: 0.4
+    joint_torque_limit : 0.60
+    motor:
+        id: 43
+        init: 800
+        min: 500
+        max: 1283
