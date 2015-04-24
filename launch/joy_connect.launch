@@ -3,5 +3,5 @@
         <param name="deadzone" value="0.12" />
     </node>
     
-    <node ns="joy" name="joy_input" pkg="hardware_bridge" type="joy_input.py" output="screen"/>
+    <node ns="joy" name="joy_input" pkg="hardware_bridge" type="joy_input.py" />
 </launch>
