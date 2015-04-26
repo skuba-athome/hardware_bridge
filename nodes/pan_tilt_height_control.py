@@ -36,7 +36,6 @@ class PanTiltControl(object):
         #---------------------new parameters--------------------
 
         self.mani_height = 0.82  #float(sys.argv[1])########
-        self.get_valid_height = True  ###########
 
         self.tilt_cmd = rospy.Publisher("/tilt_kinect/command", Float64)
         self.pan_cmd = rospy.Publisher("/pan_kinect/command", Float64)
@@ -50,7 +49,11 @@ class PanTiltControl(object):
         rospy.Subscriber("/pan_tilt_RPY_cmd", Vector3, self.pan_tilt_RPY_cmd_callback)
         rospy.Subscriber("/height_cmd", Float64, self.mani_height_cmd_callback)
 
-        rospy.spin()
+        rate = rospy.Rate(20)
+        while not rospy.is_shutdown():
+            self.publishTransform()
+            rate.sleep()
+
 
     def mani_height_cmd_callback(self, msg):
         self.mani_height = msg.data
@@ -102,36 +105,44 @@ class PanTiltControl(object):
             self.mani_height = (height_raw*0.02057294645513783)+0.82  #1440 deg = 25.13rad
         else:
             rospy.logwarn("invalid servo name--> %s", str(pantilt_new.name));
-        if self.get_valid_height:
-            self.PanTiltTransformBroadcaster.sendTransform(
-                (0.0382, 0.00, self.mani_height+0.11625),
-                tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
-                rospy.Time.now(),
-                "pan_link",
-                "base_link"
-            )
-            self.PanTiltTransformBroadcaster.sendTransform(
-                (0, 0, 0.081),
-                tf.transformations.quaternion_from_euler(0, self.tilt_ang*-1, 0),
-                rospy.Time.now(),
-                "tilt_link",
-                "pan_link"
-            )
-            self.PanTiltTransformBroadcaster.sendTransform(
-                (0.02709, 0.0339, 0.04405),
-                tf.transformations.quaternion_from_euler(0,0, 0),
-                rospy.Time.now(),
-                "camera_link",
-                "tilt_link"
-            )
-            self.PanTiltTransformBroadcaster.sendTransform(
-                (0.01877, -0.14177, self.mani_height),
-                tf.transformations.quaternion_from_euler(0, 0, 0),
-                rospy.Time.now(),
-                "mani_link",
-                "base_link"
-            )
         rospy.loginfo(str((self.pan_ang, self.tilt_ang)))
+
+    def publishTransform(self):
+        self.PanTiltTransformBroadcaster.sendTransform(
+            (0.0863, 0.00, self.mani_height),
+            tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
+            rospy.Time.now(),
+            "torso_link",
+            "base_link"
+        )
+        self.PanTiltTransformBroadcaster.sendTransform(
+            (-0.01, 0.00, 0.608),
+            tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
+            rospy.Time.now(),
+            "pan_link",
+            "torso_link"
+        )
+        self.PanTiltTransformBroadcaster.sendTransform(
+            (0, 0, 0.06214),
+            tf.transformations.quaternion_from_euler(0, self.tilt_ang*-1, 0),
+            rospy.Time.now(),
+            "tilt_link",
+            "pan_link"
+        )
+        self.PanTiltTransformBroadcaster.sendTransform(
+            (0.02832, 0.0339, 0.04405),
+            tf.transformations.quaternion_from_euler(0,0, 0),
+            rospy.Time.now(),
+            "camera_link",
+            "tilt_link"
+        )
+        self.PanTiltTransformBroadcaster.sendTransform(
+            (-0.01491, 0.20818, -0.12301),
+            tf.transformations.quaternion_from_euler(0, 0, 0),
+            rospy.Time.now(),
+            "mani_link",
+            "pan_link"
+        )
 
 
 if __name__ == '__main__':
