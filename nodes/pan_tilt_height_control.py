@@ -2,6 +2,7 @@
 
 import rospy
 import tf
+from math import degrees
 
 from std_msgs.msg import Float64
 from dynamixel_msgs.msg import JointState
@@ -35,13 +36,13 @@ class PanTiltControl(object):
         self.tilt_offset = 0.0048443606
         #---------------------new parameters--------------------
 
-        self.mani_height = 0.82  #float(sys.argv[1])########
+        self.torso_link_height = 0.340  # lowest height
 
         self.tilt_cmd = rospy.Publisher("/tilt_kinect/command", Float64)
         self.pan_cmd = rospy.Publisher("/pan_kinect/command", Float64)
         self.pris_cmd = rospy.Publisher("/mark43_pris/command", Float64)
 
-        rospy.Subscriber("/mark43_pris/state", JointState, self.pantilt_callback)
+        rospy.Subscriber("/dynamixel/prismatic/state", JointState, self.prismatic_callback)
         rospy.Subscriber("/tilt_kinect/state", JointState, self.pantilt_callback)
         rospy.Subscriber("/pan_kinect/state", JointState, self.pantilt_callback)
 
@@ -107,9 +108,18 @@ class PanTiltControl(object):
             rospy.logwarn("invalid servo name--> %s", str(pantilt_new.name));
         rospy.loginfo(str((self.pan_ang, self.tilt_ang)))
 
+    def prismatic_callback(self, prismatic_new):
+        lowest_height = 0.340
+        voltage = degrees(prismatic_new.current_pos)
+        inverse_distance = 3.74762814444849e-5*voltage + 0.4089057845
+        print voltage, inverse_distance
+        # lowest_height made sensor's distance 15.6 
+        distance = (1.0 / (inverse_distance - 0.42)) - 15.6
+        self.torso_link_height = distance/100 + lowest_height
+
     def publishTransform(self):
         self.PanTiltTransformBroadcaster.sendTransform(
-            (0.0863, 0.00, self.mani_height),
+            (0.0863, 0.00, self.torso_link_height),
             tf.transformations.quaternion_from_euler(0, 0, self.pan_ang),
             rospy.Time.now(),
             "torso_link",

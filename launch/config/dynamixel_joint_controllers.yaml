@@ -115,6 +115,19 @@ mark43_pris:
         min: 1336
         max: 7515
 
+prismatic:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: prismatic
+    joint_speed: 0.4
+    motor:
+        id: 50
+        init: 0
+        min: 960
+        max: 2050
+
 joint1:
     controller:
         package: dynamixel_controllers
