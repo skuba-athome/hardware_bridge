@@ -11,5 +11,5 @@
 
 	<!--#### publish an base_link -> laser transform ###########-->
 
-	<node ns="tf" pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.25291 0.0 0.204 0.0 0.0 0.0 base_link base_laser 100" />
+	<node ns="tf" pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.27027 0.0 0.204 0.0 0.0 0.0 base_link base_laser 100" />
 </launch>
