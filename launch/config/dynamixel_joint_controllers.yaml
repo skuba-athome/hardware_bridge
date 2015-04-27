@@ -1,35 +1,35 @@
-pan_kinect:
+left_motor:
     controller:
         package: dynamixel_controllers
         module: joint_torque_controller
         type: JointTorqueController
-    joint_name: motor_1
-    joint_speed: 0.0
+    joint_name: left_motor
+    joint_speed: 0.4
     motor:
-        id: 10
+        id: 1
         init: 0
         min: 0
         max: 3396
 
-tilt_kinect:
+right_motor:
     controller:
         package: dynamixel_controllers
         module: joint_torque_controller
         type: JointTorqueController
-    joint_name: motor_2
-    joint_speed: 0.0
+    joint_name: right_motor
+    joint_speed: 0.4
     motor:
         id: 2
         init: 0
         min: 0
         max: 3396
 
-pan_kinect_2:
+pan_kinect:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: pan_kinect_2
+    joint_name: pan_kinect
     joint_speed: 0.4
     motor:
         id: 10
@@ -37,12 +37,12 @@ pan_kinect_2:
         min: 1469
         max: 3300
 
-tilt_kinect_2:
+tilt_kinect:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: tilt_kinect_2
+    joint_name: tilt_kinect
     joint_speed: 0.4
     motor:
         id: 11
