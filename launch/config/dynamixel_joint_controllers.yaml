@@ -1,8 +1,8 @@
 left_motor:
     controller:
         package: dynamixel_controllers
-        module: joint_torque_controller
-        type: JointTorqueController
+        module: joint_position_controller
+        type: JointPositionController
     joint_name: left_motor
     joint_speed: 0.4
     motor:
@@ -33,9 +33,9 @@ pan_kinect:
     joint_speed: 0.4
     motor:
         id: 10
-        init: 2552
-        min: 1469
-        max: 3300
+        init: 2030
+        min: 1005
+        max: 3045
 
 tilt_kinect:
     controller:
@@ -46,9 +46,9 @@ tilt_kinect:
     joint_speed: 0.4
     motor:
         id: 11
-        init: 2015
-        min: 1570
-        max: 2030
+        init: 2058
+        min: 1470
+        max: 2258
 
 tilt_laser:
     controller:
@@ -71,10 +71,49 @@ mark44_1:
     joint_name: mark44_1
     joint_speed: 0.4
     motor:
-        id: 21
+        id: 211
         init: 32748
         min: 1000
         max: 64500
+
+right_1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_1
+    joint_speed: 0.4
+    motor:
+        id: 20
+        init: 586
+        min: 0
+        max: 1024
+
+right_2:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_2
+    joint_speed: 0.4
+    motor:
+        id: 21
+        init: 482
+        min: 0
+        max: 1024
+
+right_3:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_3
+    joint_speed: 0.4
+    motor:
+        id: 22
+        init: 705
+        min: 0
+        max: 728
 
 mark44_2:
     controller:
