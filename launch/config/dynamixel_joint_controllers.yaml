@@ -98,7 +98,7 @@ right_2:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 482
+        init: 525
         min: 0
         max: 1024
 
