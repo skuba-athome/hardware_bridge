@@ -2,8 +2,7 @@
 
     <arg name="dynamixel_port_name" default="/dev/ttyUSB0"/>
 
-    <!--<node ns="dynamixel" name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">-->
-    <node name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
+    <node ns="dynamixel" name="dynamixel_manager" pkg="dynamixel_controllers" type="controller_manager.py" required="true" output="screen">
         <param name="serial_ports/actuator_port/port_name" value="$(arg dynamixel_port_name)"/>
         <rosparam>
             namespace: dxl_manager
@@ -17,18 +16,20 @@
     </node>
     
     <!-- Load controller configuration to parameter server -->
-    <!--<rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/dynamixel_joint_controllers.yaml" command="load"/>-->
-    <rosparam file="$(find hardware_bridge)/launch/config/dynamixel_joint_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/dynamixel_joint_controllers.yaml" command="load"/>
     
     <!-- start specified joint controllers -->
-    <!--<node ns="dynamixel" name="dynamixel_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"-->
-    <node name="dynamixel_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
+    <node ns="dynamixel" name="dynamixel_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
           args="--manager=dxl_manager
                 --port=actuator_port
                 --type=simple
+                left_motor
 		prismatic
                 pan_kinect
                 tilt_kinect
+                right_1
+                right_2
+                right_3
            	"
           output="screen"/>
           
