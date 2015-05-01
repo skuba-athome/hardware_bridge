@@ -27,9 +27,17 @@
 		prismatic
                 pan_kinect
                 tilt_kinect
-                right_1
-                right_2
-                right_3
+                shoulder_L_20
+                shoulder_L_21
+                elbow_L_22
+		hand_L_40
+		hand_L_41
+		hand_L_42
+		gripper_L_43
+		hand_R_45
+		hand_R_46
+		hand_R_47
+		gripper_R_48
            	"
           output="screen"/>
           

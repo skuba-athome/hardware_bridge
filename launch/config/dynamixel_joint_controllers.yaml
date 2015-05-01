@@ -46,9 +46,9 @@ tilt_kinect:
     joint_speed: 0.4
     motor:
         id: 11
-        init: 2058
-        min: 1470
-        max: 2258
+        init: 1775
+        min: 1217
+        max: 1992
 
 tilt_laser:
     controller:
@@ -76,12 +76,12 @@ mark44_1:
         min: 1000
         max: 64500
 
-right_1:
+shoulder_L_20:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: right_1
+    joint_name: shoulder_L_20
     joint_speed: 0.4
     motor:
         id: 20
@@ -89,12 +89,12 @@ right_1:
         min: 0
         max: 1024
 
-right_2:
+shoulder_L_21:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: right_2
+    joint_name: shoulder_L_21
     joint_speed: 0.4
     motor:
         id: 21
@@ -102,12 +102,12 @@ right_2:
         min: 0
         max: 1024
 
-right_3:
+elbow_L_22:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: right_3
+    joint_name: elbow_L_22
     joint_speed: 0.4
     motor:
         id: 22
@@ -141,19 +141,6 @@ mark44_3:
         min: 14349
         max: 54449
 
-mark43_pris:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: mark43_pris
-    joint_speed: 0.4
-    motor:
-        id: 26
-        init: 3000
-        min: 1336
-        max: 7515
-
 prismatic:
     controller:
         package: dynamixel_controllers
@@ -167,58 +154,114 @@ prismatic:
         min: 960
         max: 2050
 
-joint1:
+hand_L_40:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: joint1
+    joint_name: hand_L_40
     joint_speed: 0.4
     joint_torque_limit : 1.00
     motor:
         id: 40
-        init: 2048
+        init: 2047
         min: 0
-        max: 8190         
+        max: 4095         
         
-joint3:
+hand_L_41:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: joint3
-    joint_speed: 0.4
-    joint_torque_limit : 1.00
-    motor:
-        id: 42
-        init: 2048
-        min: 0
-        max: 8190
-        
-joint2:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: joint2
+    joint_name: hand_L_41
     joint_speed: 0.4
     joint_torque_limit : 1.00
     motor:
         id: 41
-        init: 403
-        min: 65
-        max: 420
-                
-gripper:
+        init: 2047
+        min: 0
+        max: 4095
+        
+hand_L_42:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: griper
+    joint_name: hand_L_42
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 42
+        init: 2047
+        min: 0
+        max: 4095
+                
+gripper_L_43:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: griper_L_43
     joint_speed: 0.4
     joint_torque_limit : 0.60
     motor:
         id: 43
+        init: 800
+        min: 500
+        max: 1283
+
+hand_R_45:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: hand_R_45
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 45
+        init: 2047
+        min: 0
+        max: 4095        
+        
+hand_R_46:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: hand_R_46
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 46
+        init: 512
+        min: 0
+        max: 1024
+        
+hand_R_47:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: hand_R_47
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 47
+        init: 2047
+        min: 0
+        max: 4095
+                
+gripper_R_48:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: griper_R_48
+    joint_speed: 0.4
+    joint_torque_limit : 0.60
+    motor:
+        id: 48
         init: 800
         min: 500
         max: 1283
