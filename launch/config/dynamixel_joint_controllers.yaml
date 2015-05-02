@@ -33,9 +33,9 @@ pan_kinect:
     joint_speed: 0.4
     motor:
         id: 10
-        init: 2030
-        min: 1005
-        max: 3045
+        init: 380
+        min: 0
+        max: 953
 
 tilt_kinect:
     controller:
