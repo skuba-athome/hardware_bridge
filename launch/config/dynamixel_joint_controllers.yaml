@@ -62,6 +62,19 @@ tilt_laser:
         init: 214
         min: 20
         max: 856
+        
+mark44_1:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: mark44_1
+    joint_speed: 0.4
+    motor:
+        id: 211
+        init: 32748
+        min: 1000
+        max: 64500
 
 right_1:
     controller:
@@ -162,67 +175,11 @@ gripper:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: griper
+    joint_name: gripper
     joint_speed: 0.4
     joint_torque_limit : 0.60
     motor:
         id: 43
-        init: 800
-        min: 500
-        max: 1283
-
-hand_R_45:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: hand_R_45
-    joint_speed: 0.4
-    joint_torque_limit : 1.00
-    motor:
-        id: 45
-        init: 2047
-        min: 0
-        max: 4095        
-        
-hand_R_46:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: hand_R_46
-    joint_speed: 0.4
-    joint_torque_limit : 1.00
-    motor:
-        id: 46
-        init: 512
-        min: 0
-        max: 1024
-        
-hand_R_47:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: hand_R_47
-    joint_speed: 0.4
-    joint_torque_limit : 1.00
-    motor:
-        id: 47
-        init: 2047
-        min: 0
-        max: 4095
-                
-gripper_R_48:
-    controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
-    joint_name: griper_R_48
-    joint_speed: 0.4
-    joint_torque_limit : 0.60
-    motor:
-        id: 48
         init: 800
         min: 500
         max: 1283
