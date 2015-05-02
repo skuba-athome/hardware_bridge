@@ -27,9 +27,9 @@
 		prismatic
                 pan_kinect
                 tilt_kinect
-                mark44_1
-                mark44_2
-                mark44_3
+		right_1
+		right_2
+		right_3
 		joint1
 		joint2
 		joint3
