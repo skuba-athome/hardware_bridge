@@ -38,8 +38,8 @@ class PanTiltControl(object):
 
         self.torso_link_height = 0.340  # lowest height
 
-        self.tilt_cmd = rospy.Publisher("/tilt_kinect/command", Float64)
-        self.pan_cmd = rospy.Publisher("/pan_kinect/command", Float64)
+        self.tilt_cmd = rospy.Publisher("/dynamixel/tilt_kinect/command", Float64)
+        self.pan_cmd = rospy.Publisher("/dynamixel/pan_kinect/command", Float64)
         self.pris_cmd = rospy.Publisher("/mark43_pris/command", Float64)
 
         rospy.Subscriber("/dynamixel/prismatic/state", JointState, self.prismatic_callback)
@@ -47,7 +47,7 @@ class PanTiltControl(object):
         rospy.Subscriber("/pan_kinect/state", JointState, self.pantilt_callback)
 
         rospy.Subscriber("/pan_tilt_cmd", Quaternion, self.pan_tilt_cmd_callback)
-        rospy.Subscriber("/pan_tilt_RPY_cmd", Vector3, self.pan_tilt_RPY_cmd_callback)
+        rospy.Subscriber("/hardware_bridge/set_neck_angle", Vector3, self.pan_tilt_RPY_cmd_callback)
         rospy.Subscriber("/height_cmd", Float64, self.mani_height_cmd_callback)
 
         rate = rospy.Rate(20)
@@ -84,11 +84,11 @@ class PanTiltControl(object):
         self.pan_cmd.publish(data.z)
 
     def pan_tilt_set_max_speed(self):
-        rospy.wait_for_service('/pan_kinect/set_speed')
-        rospy.wait_for_service('/tilt_kinect/set_speed')
+        rospy.wait_for_service('/dynamixel/pan_kinect/set_speed')
+        rospy.wait_for_service('/dynamixel/tilt_kinect/set_speed')
         try:
-            pan_speed = rospy.ServiceProxy('/pan_kinect/set_speed', SetSpeed)
-            tilt_speed = rospy.ServiceProxy('/tilt_kinect/set_speed', SetSpeed)
+            pan_speed = rospy.ServiceProxy('/dynamixel/pan_kinect/set_speed', SetSpeed)
+            tilt_speed = rospy.ServiceProxy('/dynamixel/tilt_kinect/set_speed', SetSpeed)
             pan_speed(0.4) 
             tilt_speed(0.4)
         except rospy.ServiceException, e:
