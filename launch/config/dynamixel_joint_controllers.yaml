@@ -85,7 +85,7 @@ right_1:
     joint_speed: 0.4
     motor:
         id: 20
-        init: 23665
+        init: 22591
         min: 16383
         max: 23665
 
@@ -98,7 +98,7 @@ right_2:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 29183
+        init: 30655
         min: 15473
         max: 48241
 
@@ -162,7 +162,7 @@ joint3:
         module: joint_position_controller
         type: JointPositionController
     joint_name: joint3
-    joint_speed: 0.4
+    joint_speed: 0.4 
     joint_torque_limit : 1.00
     motor:
         id: 42
