@@ -24,16 +24,20 @@
                 --port=actuator_port
                 --type=simple
                 left_motor
-		        prismatic
+		prismatic
                 pan_kinect
                 tilt_kinect
-                right_1
-                right_2
-                right_3
-				joint1
-				joint2
-				joint3
-                gripper
+		right_1
+		right_2
+		right_3
+		joint1
+		joint2
+		joint3
+		gripper
+		hand_R_45
+		hand_R_46
+		hand_R_47
+		gripper_R_48
            	"
           output="screen"/>
           
