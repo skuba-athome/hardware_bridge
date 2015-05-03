@@ -97,10 +97,10 @@ right_2:
     joint_name: right_2
     joint_speed: 0.4
     motor:
-        id: 21
-        init: 30655
-        min: 15473
-        max: 48241
+        id: 21        
+        init: 26495
+        min: 11313
+        max: 41677
 
 right_3:
     controller:
@@ -135,12 +135,12 @@ joint1:
         type: JointPositionController
     joint_name: joint1
     joint_speed: 0.4
-    joint_torque_limit : 1.00
+    joint_torque_imit : 1.00
     motor:
         id: 40
-        init: 2047
-        min: 0
-        max: 4095         
+        init: 1949
+        min: 892
+        max: 2243         
 
 joint2:
     controller:
@@ -152,9 +152,9 @@ joint2:
     joint_torque_limit : 1.00
     motor:
         id: 41
-        init: 2047
-        min: 0
-        max: 4095
+        init: 513
+        min: 441
+        max: 771
 
 joint3:
     controller:
@@ -166,9 +166,9 @@ joint3:
     joint_torque_limit : 1.00
     motor:
         id: 42
-        init: 2047
-        min: 0
-        max: 4095
+        init: 1789
+        min: 674
+        max: 2873
                 
 gripper:
     controller:
@@ -180,6 +180,6 @@ gripper:
     joint_torque_limit : 0.60
     motor:
         id: 43
-        init: 800
-        min: 500
-        max: 1283
+        init: 943
+        min: 1000
+        max: 1683

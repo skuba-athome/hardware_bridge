@@ -23,7 +23,6 @@
           args="--manager=dxl_manager
                 --port=actuator_port
                 --type=simple
-                left_motor
 		prismatic
                 pan_kinect
                 tilt_kinect
@@ -34,10 +33,6 @@
 		joint2
 		joint3
 		gripper
-		hand_R_45
-		hand_R_46
-		hand_R_47
-		gripper_R_48
            	"
           output="screen"/>
           
