@@ -85,9 +85,9 @@ right_1:
     joint_speed: 0.4
     motor:
         id: 20
-        init: 22591
-        min: 16383
-        max: 23665
+        init: 19071
+        min: 0
+        max: 65535
 
 right_2:
     controller:
@@ -98,9 +98,9 @@ right_2:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 30655
-        min: 15473
-        max: 48241
+        init: 35000
+        min: 0
+        max: 65535
 
 right_3:
     controller:
@@ -108,12 +108,12 @@ right_3:
         module: joint_position_controller
         type: JointPositionController
     joint_name: right_3
-    joint_speed: 0.7
+    joint_speed: 0.4
     motor:
         id: 22
-        init: 623
+        init: 40895
         min: 0
-        max: 1024
+        max: 65535
 
 prismatic:
     controller:
