@@ -138,9 +138,9 @@ joint1:
     joint_torque_limit : 1.00
     motor:
         id: 40
-        init: 2047
-        min: 0
-        max: 4095         
+        init: 1949
+        min: 892
+        max: 2243         
 
 joint2:
     controller:
@@ -152,9 +152,9 @@ joint2:
     joint_torque_limit : 1.00
     motor:
         id: 41
-        init: 2047
-        min: 0
-        max: 4095
+        init: 513
+        min: 441
+        max: 771
 
 joint3:
     controller:
@@ -166,9 +166,9 @@ joint3:
     joint_torque_limit : 1.00
     motor:
         id: 42
-        init: 2047
-        min: 0
-        max: 4095
+        init: 1789
+        min: 674
+        max: 2873
                 
 gripper:
     controller:
@@ -176,10 +176,10 @@ gripper:
         module: joint_position_controller
         type: JointPositionController
     joint_name: gripper
-    joint_speed: 0.4
-    joint_torque_limit : 0.60
+    joint_speed: 2.0
+    joint_torque_limit : 1.0
     motor:
         id: 43
-        init: 800
-        min: 500
-        max: 1283
+        init: 943
+        min: 700
+        max: 1683
