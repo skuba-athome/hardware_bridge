@@ -1,0 +1,7 @@
+<launch>
+    <node ns="joy" respawn="true" pkg="joy" type="joy_node" name="joy_node">
+        <param name="deadzone" value="0.12" />
+    </node>
+    
+    <node ns="joy" name="joy_input" pkg="hardware_bridge" type="joy_input.py" />
+</launch>
