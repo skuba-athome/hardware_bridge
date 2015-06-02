@@ -16,24 +16,61 @@
     </node>
     
     <!-- Load controller configuration to parameter server -->
-    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/dynamixel_joint_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/neck_joint_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/prismatic_joint_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/right_arm_joint_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/joint_trajectory_controllers.yaml" command="load"/>
     
     <!-- start specified joint controllers -->
     <node ns="dynamixel" name="dynamixel_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
           args="--manager=dxl_manager
                 --port=actuator_port
                 --type=simple
-		prismatic
-                pan_kinect
-                tilt_kinect
-		right_1
-		right_2
-		right_3
-		joint1
-		joint2
-		joint3
-		gripper
+                pan_controller
+                tilt_controller
+ 
+                prismatic_controller
+
+		right_shoulder_1_controller
+		right_shoulder_2_controller
+		right_elbow_controller
+		right_wrist_1_controller
+		right_wrist_2_controller
+		right_wrist_3_controller
+           	"
+          output="screen"/>
+
+    <node ns="dynamixel" name="neck_controller" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port=actuator_port
+                --type=meta
+		neck_controller
+                pan_controller
+                tilt_controller
            	"
           output="screen"/>
           
+    <node ns="dynamixel" name="torso_controller" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port=actuator_port
+                --type=meta
+		torso_controller
+                prismatic_controller
+           	"
+          output="screen"/>
+
+    <node ns="dynamixel" name="right_arm_controller" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port=actuator_port
+                --type=meta
+		right_arm_controller
+		right_shoulder_1_controller
+		right_shoulder_2_controller
+		right_elbow_controller
+		right_wrist_1_controller
+		right_wrist_2_controller
+		right_wrist_3_controller
+           	"
+          output="screen"/>
+
 </launch>

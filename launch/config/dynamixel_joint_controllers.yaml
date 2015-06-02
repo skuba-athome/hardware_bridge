@@ -24,12 +24,12 @@ right_motor:
         min: 0
         max: 3396
 
-pan_kinect:
+pan_controller:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: pan_kinect
+    joint_name: pan_joint
     joint_speed: 0.4
     motor:
         id: 10
@@ -37,12 +37,12 @@ pan_kinect:
         min: 346
         max: 2394
 
-tilt_kinect:
+tilt_controller:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: tilt_kinect
+    joint_name: tilt_joint
     joint_speed: 0.4
     motor:
         id: 11

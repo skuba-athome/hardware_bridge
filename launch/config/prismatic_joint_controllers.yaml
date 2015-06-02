@@ -1,12 +1,12 @@
-arm_test:
+prismatic_controller:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller
         type: JointPositionController
-    joint_name: arm_test
+    joint_name: prismatic
     joint_speed: 0.4
     motor:
-        id: 2
-        init: 2351
-        min: 1100
-        max: 3500
+        id: 50
+        init: 0
+        min: 960
+        max: 2050
