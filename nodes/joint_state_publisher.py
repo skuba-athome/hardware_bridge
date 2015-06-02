@@ -38,6 +38,20 @@ class JointStatesPublisher:
 
         joint_states.name.append('torso_joint')
         joint_states.position.append(0.0)
+        joint_states.name.append('left_shoulder_1_joint')
+        joint_states.position.append(0.0)
+        joint_states.name.append('left_shoulder_2_joint')
+        joint_states.position.append(0.0)
+        joint_states.name.append('left_elbow_joint')
+        joint_states.position.append(0.0)
+        joint_states.name.append('left_wrist_1_joint')
+        joint_states.position.append(0.0)
+        joint_states.name.append('left_wrist_2_joint')
+        joint_states.position.append(0.0)
+        joint_states.name.append('left_wrist_3_joint')
+        joint_states.position.append(0.0)
+        joint_states.name.append('left_gripper_joint')
+        joint_states.position.append(0.0)
 
         self.publisher.publish(joint_states)
         
