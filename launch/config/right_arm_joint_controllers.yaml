@@ -79,7 +79,7 @@ right_wrist_3_controller:
         min: 674
         max: 2873
                 
-right_gripper_controller:
+right_gripper_joint_controller:
     controller:
         package: dynamixel_controllers
         module: joint_position_controller

@@ -18,7 +18,27 @@ right_arm_controller:
         constraints:
             goal_time: 0.5
     
+right_gripper_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_trajectory_action_controller
+        type: JointTrajectoryActionController
+    joint_trajectory_action_node:
+        min_velocity: 0.1
+        constraints:
+            goal_time: 0.5
+    
 left_arm_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_trajectory_action_controller
+        type: JointTrajectoryActionController
+    joint_trajectory_action_node:
+        min_velocity: 0.1
+        constraints:
+            goal_time: 0.5
+
+left_gripper_controller:
     controller:
         package: dynamixel_controllers
         module: joint_trajectory_action_controller
@@ -37,3 +57,4 @@ torso_controller:
         min_velocity: 0.1
         constraints:
             goal_time: 5.0
+
