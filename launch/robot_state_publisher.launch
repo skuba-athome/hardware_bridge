@@ -1,0 +1,29 @@
+<launch>
+
+    <param name="robot_description" textfile="$(find lumyai_descriptions)/robots/lumyai_neli.URDF"/>
+
+    <!-- joint state publisher node -->
+    <node ns="dynamixel" name="joint_state_publisher" pkg="hardware_bridge" type="joint_state_publisher.py" output="screen">
+        <rosparam param="motors_list">
+            [   'pan_controller',
+                'tilt_controller',
+ 
+                'prismatic_controller',
+
+                'right_shoulder_1_controller',
+                'right_shoulder_2_controller',
+                'right_elbow_controller',
+                'right_wrist_1_controller',
+                'right_wrist_2_controller',
+                'right_wrist_3_controller',
+                'right_gripper_joint_controller'
+            ]
+        </rosparam>
+        <param name="urdf_file_path" value="$(find lumyai_descriptions)/robots/lumyai_neli.URDF"/>
+    </node>
+
+    <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" respawn="true" output="screen">
+        <remap from="joint_states" to="/dynamixel/joint_states"/>
+    </node>
+
+</launch>
