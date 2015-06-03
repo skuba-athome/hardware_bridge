@@ -2,6 +2,7 @@
 import rospy
 from dynamixel_msgs.msg import JointState
 from sensor_msgs.msg import JointState as SensorJointState
+from include.urdf_parser_py.urdf import URDF
 
 
 class JointStatesPublisher:
@@ -9,9 +10,21 @@ class JointStatesPublisher:
         rospy.init_node('joint_states_publisher')
 
         motors_list = rospy.get_param('~motors_list')
-        joint_state_publisher_topic = rospy.get_param('joint_state_topic', '/dynamixel/joint_states')
+        joint_state_publisher_topic = rospy.get_param('~joint_state_topic', '/dynamixel/joint_states')
+        urdf_file_path = rospy.get_param('~urdf_file_path', '')
 
         self.joint_state = {}
+        if len(urdf_file_path) == 0:
+            robot = URDF.from_parameter_server()
+        else:
+            robot = URDF.from_xml_string(open(urdf_file_path,'r').read())
+
+        for joint in robot.joints:
+            joint_state = JointState()
+            joint_state.name = joint.name
+            joint_state.current_pos = 0
+            self.joint_state[joint.name] = joint_state
+
         for motor in motors_list:
             joint_state_topic = '/dynamixel/' + motor + '/state'
             rospy.Subscriber(joint_state_topic, JointState, self.state_callback)
@@ -35,23 +48,6 @@ class JointStatesPublisher:
             joint_states.position.append(joint.current_pos)
             #joint_states.velocity.append(joint.velocity)
             #joint_states.effort.append(joint.load)
-
-        joint_states.name.append('torso_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_shoulder_1_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_shoulder_2_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_elbow_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_wrist_1_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_wrist_2_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_wrist_3_joint')
-        joint_states.position.append(0.0)
-        joint_states.name.append('left_gripper_joint')
-        joint_states.position.append(0.0)
 
         self.publisher.publish(joint_states)
         
