@@ -87,7 +87,7 @@
           output="screen"/>
 
     <!-- publish virtual odom if needed  -->
-    <node if="$(arg use_virtual_odom)" ns="tf" pkg="tf" type="static_transform_publisher" name="virtual_odom_tf" args="0.0 0.0 0.0 0.0 0.0 0.0 odom base_link 100"/>
+    <node if="$(arg use_virtual_odom)" pkg="tf" type="static_transform_publisher" name="virtual_odom_tf" args="0.0 0.0 0.0 0.0 0.0 0.0 odom_combined base_link 100"/>
 
     <!-- Publish transform  -->
     <include if="$(arg use_local_robot_descriptions)" file="$(find hardware_bridge)/launch/robot_state_publisher.launch"/>
