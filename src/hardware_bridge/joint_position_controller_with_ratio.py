@@ -70,7 +70,7 @@ class JointPositionWithRatioController(JointPositionController):
                 self.joint_state_pub.publish(self.joint_state)
 
     def process_command(self, msg):
-        angle = msg.data / self.mechanical_ratio
+        angle = msg.data 
         mcv = (self.motor_id, self.pos_rad_to_raw(angle))
         self.dxl_io.set_multi_position([mcv])
 
