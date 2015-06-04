@@ -69,8 +69,9 @@ class JointPositionWithRatioController(JointPositionController):
                 
                 self.joint_state_pub.publish(self.joint_state)
 
-    def process_command(self, msg):
-        angle = msg.data 
-        mcv = (self.motor_id, self.pos_rad_to_raw(angle))
-        self.dxl_io.set_multi_position([mcv])
+    def pos_rad_to_raw(self, pos_rad):
+        pos_rad = pos_rad / self.mechanical_ratio
+        if pos_rad < self.min_angle: pos_rad = self.min_angle
+        elif pos_rad > self.max_angle: pos_rad = self.max_angle
+        return self.rad_to_raw(pos_rad, self.initial_position_raw, self.flipped, self.ENCODER_TICKS_PER_RADIAN)
 
