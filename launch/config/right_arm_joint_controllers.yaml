@@ -1,6 +1,6 @@
 right_shoulder_1_controller:
     controller:
-        package: dynamixel_controllers
+        package: hardware_bridge
         module: joint_position_controller_with_ratio
         type: JointPositionWithRatioController
     joint_name: right_shoulder_1_joint
