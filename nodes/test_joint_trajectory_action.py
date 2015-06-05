@@ -37,7 +37,7 @@ class RightArm:
 
 def main():
             arm = RightArm()
-            arm.move_joint([1.57*1.75,0.0,1.57,0.0,0.0,0.0])
+            arm.move_joint([0.8/1.75,0.0,1.57,0.0,0.0,0.0])
 
                         
 if __name__ == '__main__':
