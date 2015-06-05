@@ -26,4 +26,6 @@
         <remap from="joint_states" to="/dynamixel/joint_states"/>
     </node>
 
+    <node pkg="tf" type="static_transform_publisher" name="camera_joint_tf" args="0.02832 -0.0606 0.04405 0.0 0.0 0.0 odom_combined base_link 100"/>
+
 </launch>
