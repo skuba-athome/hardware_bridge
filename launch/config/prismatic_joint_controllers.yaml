@@ -1,8 +1,8 @@
 prismatic_controller:
     controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
+        package: hardware_bridge
+        module: lumyai_prismatic_controller
+        type: LumyaiPrismaticController
     joint_name: torso_joint
     joint_speed: 0.4
     motor:
