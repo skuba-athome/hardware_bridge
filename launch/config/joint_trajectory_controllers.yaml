@@ -6,7 +6,7 @@ neck_controller:
     joint_trajectory_action_node:
         min_velocity: 0.1
         constraints:
-            goal_time: 2
+            goal_time: 1.5
 
 right_arm_controller:
     controller:
@@ -56,5 +56,5 @@ torso_controller:
     joint_trajectory_action_node:
         min_velocity: 0.1
         constraints:
-            goal_time: 5.0
+            goal_time: 10.0
 
