@@ -76,8 +76,8 @@ right_wrist_3_controller:
     joint_torque_limit : 1.00
     motor:
         id: 42
-        init: 1733
-        min: 600
+        init: 1779
+        min: 770
         max: 3000
                 
 right_gripper_joint_controller:
@@ -90,6 +90,6 @@ right_gripper_joint_controller:
     joint_torque_limit : 1.0
     motor:
         id: 43
-        init: 943
-        min: 700
-        max: 1683
+        init: 557
+        min: 557
+        max: 730
