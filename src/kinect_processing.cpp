@@ -129,6 +129,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "kinect_processing");
     ros::NodeHandle n;
     ros::Subscriber cloub_sub = n.subscribe("/camera/depth_registered/points", 1, cloudCallback);
+    //ros::Subscriber cloub_sub = n.subscribe("/depth_registered/depth_registered/points", 1, cloudCallback);
     ros::Subscriber obstacle = n.subscribe("/cloud_tf", 1, processObstacle);
     cloud_tf = n.advertise<sensor_msgs::PointCloud2>("/cloud_tf",1);
     virtual_scan_pub = n.advertise<sensor_msgs::PointCloud2>("virtual_scan",1);
