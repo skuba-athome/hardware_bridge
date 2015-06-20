@@ -54,7 +54,7 @@ class LumyaiPrismaticController(JointPositionController):
     def raw_to_rad(self, raw, initial_position_raw, flipped, radians_per_encoder_tick):
         inverse_distance = 3.74762814444849e-5 * raw + 0.4089057845
         distance = (1.0 / (inverse_distance - 0.42)) - 15.6
-        return distance/100
+        return raw
         
     def process_motor_states(self, state_list):
         if self.running:
@@ -73,10 +73,11 @@ class LumyaiPrismaticController(JointPositionController):
                 self.joint_state_pub.publish(self.joint_state)
 
     def pos_rad_to_raw(self, pos_rad):
-        pos_rad = pos_rad * 100 + 15.6
-        inverse_distance = (1.0 / pos_rad) + 0.42
-        raw = 26670.1898477475 * inverse_distance - 10904.8925919201 
-        if raw < self.min_angle_raw : raw = self.min_angle_raw
-        elif raw > self.max_angle_raw : raw = self.max_angle_raw
+        #pos_rad = pos_rad * 100 + 15.6
+        #inverse_distance = (1.0 / pos_rad) + 0.42
+        #raw = 26670.1898477475 * inverse_distance - 10904.8925919201 
+        #if raw < self.min_angle_raw : raw = self.min_angle_raw
+        #elif raw > self.max_angle_raw : raw = self.max_angle_raw
+        raw = int(pos_rad) 
         return raw
 
