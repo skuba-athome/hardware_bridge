@@ -16,7 +16,7 @@ right_arm_controller:
     joint_trajectory_action_node:
         min_velocity: 0.1
         constraints:
-            goal_time: 2.0
+            goal_time: 0.5
     
 left_arm_controller:
     controller:

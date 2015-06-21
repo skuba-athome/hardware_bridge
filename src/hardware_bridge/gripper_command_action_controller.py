@@ -83,7 +83,7 @@ class GripperCommandActionController():
         self.running = True
         
         self.state_sub = rospy.Subscriber(self.joint_namespace + '/state', JointState, self.process_state)
-        self.command_pub = rospy.Subscriber(self.joint_namespace + '/command', Float64, queue_size=None)
+        self.command_pub = rospy.Publisher(self.joint_namespace + '/command', Float64, queue_size=None)
 
         self.command_sub = rospy.Subscriber(self.controller_namespace + '/command', GripperCommand, self.process_command)
         self.state_pub = rospy.Publisher(self.controller_namespace + '/state', GripperCommandFeedback, queue_size=None)
