@@ -37,7 +37,6 @@ from __future__ import division
 
 __author__ = 'Krit Chaiso'
 __copyright__ = 'Copyright (c) 2015 Krit Chaiso'
-__credits__ = 'Antons Rebguns'
 
 __license__ = 'BSD'
 __maintainer__ = 'Krit Chaiso'
@@ -61,7 +60,7 @@ class GripperCommandActionController():
         self.update_rate = 50
         
         self.controller_namespace = controller_namespace
-        self.joint_namespace = controllers[0]
+        self.joint_namespace = controllers[0].controller_namespace
         
     def initialize(self):
         ns = self.controller_namespace + '/gripper_command_action_node/constraints'
@@ -75,6 +74,8 @@ class GripperCommandActionController():
         self.msg.effort = 0.0
         self.msg.stalled = False
         self.msg.reached_goal = False
+
+        self.goal_effort = 50.0
         
         return True
 
@@ -101,7 +102,7 @@ class GripperCommandActionController():
         while self.action_server.is_active():
             rospy.sleep(0.01)
             
-        self.process_command(msg)
+        self.process_gripper_command(msg)
 
     def process_state(self, msg):
         self.joint_state = msg
@@ -123,9 +124,9 @@ class GripperCommandActionController():
             self.msg.reached_goal = False
 
     def process_gripper_action(self, goal):
-        self.process_command(goal.command)
+        self.process_gripper_command(goal.command)
 
-    def process_command(self, command):
+    def process_gripper_command(self, command):
         self.goal_effort = command.max_effort
         self.command_pub.publish(command.position)
             
