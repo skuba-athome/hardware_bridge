@@ -8,5 +8,5 @@ prismatic_controller:
     motor:
         id: 50
         init: 0
-        min: 0
-        max: 65535
+        min: 16000
+        max: 32000
