@@ -1,0 +1,21 @@
+right_gripper_controller:
+    controller:
+        package: hardware_bridge
+        module: gripper_command_action_controller
+        type: GripperCommandActionController
+    gripper_command_action_node:
+        constraints:
+            goal_tolerance: 0.1
+            effort_tolerance: 0.1
+            velocity: 0.4
+    
+left_gripper_controller:
+    controller:
+        package: hardware_bridge
+        module: gripper_command_action_controller
+        type: GripperCommandActionController
+    gripper_command_action_node:
+        constraints:
+            goal_tolerance: 0.1
+            effort_tolerance: 0.1
+            velocity: 0.4
