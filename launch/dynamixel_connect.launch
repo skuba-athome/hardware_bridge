@@ -23,6 +23,7 @@
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/prismatic_joint_controllers.yaml" command="load"/>
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/right_arm_joint_controllers.yaml" command="load"/>
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/joint_trajectory_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/gripper_controllers.yaml" command="load"/>
     
     <!-- start specified joint controllers -->
     <node ns="dynamixel" name="dynamixel_controller_spawner" pkg="dynamixel_controllers" type="controller_spawner.py"
