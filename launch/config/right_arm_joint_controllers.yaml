@@ -8,9 +8,9 @@ right_shoulder_1_controller:
     mechanical_ratio: 1.75
     motor:
         id: 20
-        init: 19775
-        min: 14550
-        max: 23850
+        init: 34928
+        min: 23400
+        max: 38433
 
 right_shoulder_2_controller:
     controller:
