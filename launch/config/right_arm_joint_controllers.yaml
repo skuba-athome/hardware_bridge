@@ -62,9 +62,9 @@ right_wrist_2_controller:
     joint_torque_limit : 1.00
     motor:
         id: 41
-        init: 1738
-        min: 1400
-        max: 2600
+        init: 2005
+        min: 1680
+        max: 2960
 
 right_wrist_3_controller:
     controller:
