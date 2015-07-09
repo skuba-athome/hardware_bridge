@@ -5,12 +5,12 @@ right_shoulder_1_controller:
         type: JointPositionWithRatioController
     joint_name: right_shoulder_1_joint
     joint_speed: 0.4
-    mechanical_ratio: 1.75
+    mechanical_ratio: 2.9166666667
     motor:
         id: 20
-        init: 34928
-        min: 23400
-        max: 38433
+        init: 18751
+        min: 12000
+        max: 21000
 
 right_shoulder_2_controller:
     controller:
