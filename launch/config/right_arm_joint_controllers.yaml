@@ -14,16 +14,17 @@ right_shoulder_1_controller:
 
 right_shoulder_2_controller:
     controller:
-        package: dynamixel_controllers
-        module: joint_position_controller
-        type: JointPositionController
+        package: hardware_bridge
+        module: joint_position_controller_with_ratio
+        type: JointPositionWithRatioController
     joint_name: right_shoulder_2_joint
     joint_speed: 0.4
+    mechanical_ratio: 0.5
     motor:
         id: 21
-        init: 38720
-        min: 22600
-        max: 54200
+        init: 32127
+        min: 2750
+        max: 62500
 
 right_elbow_controller:
     controller:
@@ -36,7 +37,7 @@ right_elbow_controller:
         id: 22
         init: 40191
         min: 21760
-        max: 41300
+        max: 42300
 
 right_wrist_1_controller:
     controller:
