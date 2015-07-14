@@ -22,6 +22,7 @@
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/neck_joint_controllers.yaml" command="load"/>
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/prismatic_joint_controllers.yaml" command="load"/>
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/right_arm_joint_controllers.yaml" command="load"/>
+    <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/left_arm_joint_controllers.yaml" command="load"/>
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/joint_trajectory_controllers.yaml" command="load"/>
     <rosparam ns="dynamixel" file="$(find hardware_bridge)/launch/config/gripper_controllers.yaml" command="load"/>
     
@@ -42,6 +43,16 @@
                 right_wrist_2_controller
                 right_wrist_3_controller
                 right_gripper_joint_controller
+
+                left_shoulder_1_controller
+                left_shoulder_2_controller
+                left_elbow_controller
+                left_wrist_1_controller
+                left_wrist_2_controller
+                left_wrist_3_controller
+                left_gripper_joint_controller
+
+
                 "
           output="screen"/>
 
@@ -78,6 +89,20 @@
                "
           output="screen"/>
 
+    <node ns="dynamixel" name="left_arm_controller" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port=actuator_port
+                --type=meta
+                left_arm_controller
+                left_shoulder_1_controller
+                left_shoulder_2_controller
+                left_elbow_controller
+                left_wrist_1_controller
+                left_wrist_2_controller
+                left_wrist_3_controller
+               "
+          output="screen"/>
+
     <node ns="dynamixel" name="right_gripper_controller" pkg="dynamixel_controllers" type="controller_spawner.py"
           args="--manager=dxl_manager
                 --port=actuator_port
@@ -86,6 +111,15 @@
                 right_gripper_joint_controller
                "
           output="screen"/>
+
+    <node ns="dynamixel" name="left_gripper_controller" pkg="dynamixel_controllers" type="controller_spawner.py"
+          args="--manager=dxl_manager
+                --port=actuator_port
+                --type=meta
+                left_gripper_controller
+                left_gripper_joint_controller
+               "
+    output="screen"/>
 
     <!-- publish virtual odom if needed  -->
     <node if="$(arg use_virtual_odom)" pkg="tf" type="static_transform_publisher" name="virtual_odom_tf" args="0.0 0.0 0.0 0.0 0.0 0.0 odom_combined base_link 100"/>
