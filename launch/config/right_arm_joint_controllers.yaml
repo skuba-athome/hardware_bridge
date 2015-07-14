@@ -5,12 +5,12 @@ right_shoulder_1_controller:
         type: JointPositionWithRatioController
     joint_name: right_shoulder_1_joint
     joint_speed: 0.4
-    mechanical_ratio: 2.9166666667
+    mechanical_ratio: 0.33333333333
     motor:
         id: 20
-        init: 18751
-        min: 12000
-        max: 21000
+        init: 52287
+        min: 1855
+        max: 67000
 
 right_shoulder_2_controller:
     controller:
@@ -79,7 +79,7 @@ right_wrist_3_controller:
         init: 1817
         min: 770
         max: 3000
-                
+
 right_gripper_joint_controller:
     controller:
         package: dynamixel_controllers
