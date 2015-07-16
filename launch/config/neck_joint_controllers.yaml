@@ -7,7 +7,7 @@ pan_controller:
     joint_speed: 0.4
     motor:
         id: 10
-        init: 1319
+        init: 1385
         min: 500
         max: 2000
 
