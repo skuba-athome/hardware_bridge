@@ -8,9 +8,9 @@ left_shoulder_1_controller:
     mechanical_ratio: 0.33333333333
     motor:
         id: 25
-        init: 52287
-        min: 1855
-        max: 67000
+        init: 14975
+        min: 1800
+        max: 64500
 
 left_shoulder_2_controller:
     controller:
@@ -22,7 +22,7 @@ left_shoulder_2_controller:
     mechanical_ratio: 0.5
     motor:
         id: 26
-        init: 32127
+        init: 22463
         min: 2750
         max: 62500
 
@@ -35,9 +35,9 @@ left_elbow_controller:
     joint_speed: 0.4
     motor:
         id: 27
-        init: 40191
-        min: 21760
-        max: 42300
+        init: 27327
+        min: 23420
+        max: 44800
 
 left_wrist_1_controller:
     controller:
@@ -63,9 +63,9 @@ left_wrist_2_controller:
     joint_torque_limit : 1.00
     motor:
         id: 46
-        init: 2005
-        min: 1680
-        max: 2960
+        init: 2235
+        min: 1850
+        max: 3300
 
 left_wrist_3_controller:
     controller:
