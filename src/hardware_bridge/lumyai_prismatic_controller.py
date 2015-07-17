@@ -80,5 +80,5 @@ class LumyaiPrismaticController(JointPositionController):
         raw = 529095.560329262 * inverse_distance + 2233.4055946581 
         if raw < self.min_angle_raw : raw = self.min_angle_raw
         elif raw > self.max_angle_raw : raw = self.max_angle_raw
-        return raw
+        return int(raw)
 
