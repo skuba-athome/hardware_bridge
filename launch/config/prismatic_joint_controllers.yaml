@@ -1,0 +1,12 @@
+prismatic_controller:
+    controller:
+        package: hardware_bridge
+        module: lumyai_prismatic_controller
+        type: LumyaiPrismaticController
+    joint_name: torso_joint
+    joint_speed: 0.4
+    motor:
+        id: 50
+        init: 0
+        min: 16000
+        max: 32000

@@ -1,0 +1,96 @@
+right_shoulder_1_controller:
+    controller:
+        package: hardware_bridge
+        module: joint_position_controller_with_ratio
+        type: JointPositionWithRatioController
+    joint_name: right_shoulder_1_joint
+    joint_speed: 0.4
+    mechanical_ratio: 0.33333333333
+    motor:
+        id: 20
+        init: 52287
+        min: 1855
+        max: 67000
+
+right_shoulder_2_controller:
+    controller:
+        package: hardware_bridge
+        module: joint_position_controller_with_ratio
+        type: JointPositionWithRatioController
+    joint_name: right_shoulder_2_joint
+    joint_speed: 0.4
+    mechanical_ratio: 0.5
+    motor:
+        id: 21
+        init: 32127
+        min: 2750
+        max: 62500
+
+right_elbow_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_elbow_joint
+    joint_speed: 0.4
+    motor:
+        id: 22
+        init: 40191
+        min: 21760
+        max: 42300
+
+right_wrist_1_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_wrist_1_joint
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 40
+        init: 1015
+        min: 630
+        max: 3000         
+
+right_wrist_2_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_wrist_2_joint
+    joint_speed: 0.4
+    joint_torque_limit : 1.00
+    motor:
+        id: 41
+        init: 2005
+        min: 1680
+        max: 2960
+
+right_wrist_3_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_wrist_3_joint
+    joint_speed: 0.4 
+    joint_torque_limit : 1.00
+    motor:
+        id: 42
+        init: 1817
+        min: 770
+        max: 3000
+
+right_gripper_joint_controller:
+    controller:
+        package: dynamixel_controllers
+        module: joint_position_controller
+        type: JointPositionController
+    joint_name: right_gripper_joint
+    joint_speed: 0.4
+    joint_torque_limit : 0.2
+    motor:
+        id: 43
+        init: 700
+        min: 545
+        max: 700

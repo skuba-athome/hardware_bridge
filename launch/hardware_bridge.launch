@@ -1,0 +1,19 @@
+<launch>
+
+    <!-- Connect to base and hokuyo -->
+    <include file="$(find hardware_bridge)/launch/base_connect.launch">
+        <arg name="use_local_robot_descriptions" value="false"/>
+    </include>
+    
+    <!-- Connect to Dynamixel and publish transform -->
+    <include file="$(find hardware_bridge)/launch/dynamixel_connect.launch">
+        <arg name="dynamixel_port_name" value="/dev/ttyUSB1"/>
+        <arg name="use_virtual_odom" value="false"/>
+    </include>
+
+    <!-- Connect to kinect and webcam -->
+    <include file="$(find hardware_bridge)/launch/open_kinect_webcam.launch"/>
+
+    <!-- Publish transform -->
+    <include file="$(find hardware_bridge)/launch/robot_state_publisher.launch"/>
+</launch>

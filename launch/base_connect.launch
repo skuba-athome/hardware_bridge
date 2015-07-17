@@ -1,0 +1,17 @@
+<launch>
+
+    <arg name="use_local_robot_descriptions" default="true"/>
+
+    <!-- Connect to base and joy -->
+    <include file="$(find hardware_bridge)/launch/joy_play.launch"/>
+
+    <node ns="base" name="odometry_est" pkg="hardware_bridge" type="odometry_est.py">
+        <remap from="base_vel" to="velocity"/>
+    </node>
+
+    <!-- Connect to hokuyo -->
+    <include file="$(find hardware_bridge)/launch/base_laser_connect.launch"/>
+
+    <!-- Publish transform  -->
+    <include if="$(arg use_local_robot_descriptions)" file="$(find hardware_bridge)/launch/robot_state_publisher.launch"/>
+</launch>
