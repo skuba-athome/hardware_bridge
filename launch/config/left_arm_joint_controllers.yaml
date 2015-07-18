@@ -5,7 +5,7 @@ left_shoulder_1_controller:
         type: JointPositionWithRatioController
     joint_name: left_shoulder_1_joint
     joint_speed: 0.4
-    mechanical_ratio: 0.33333333333
+    mechanical_ratio: 1.00
     motor:
         id: 25
         init: 14975
@@ -19,7 +19,7 @@ left_shoulder_2_controller:
         type: JointPositionWithRatioController
     joint_name: left_shoulder_2_joint
     joint_speed: 0.4
-    mechanical_ratio: 0.5
+    mechanical_ratio: 1.00
     motor:
         id: 26
         init: 22463
