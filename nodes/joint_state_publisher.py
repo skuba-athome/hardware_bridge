@@ -30,6 +30,7 @@ class JointStatesPublisher:
             rospy.Subscriber(joint_state_topic, JointState, self.state_callback)
 
         self.publisher = rospy.Publisher(joint_state_publisher_topic, SensorJointState)
+        self.fix_publisher = rospy.Publisher('/joint_states', SensorJointState)
     
         rate = rospy.Rate(20)
         while not rospy.is_shutdown():
@@ -50,6 +51,7 @@ class JointStatesPublisher:
             #joint_states.effort.append(joint.load)
 
         self.publisher.publish(joint_states)
+        self.fix_publisher.publish(joint_states)
         
 if __name__ == '__main__':
     JointStatesPublisher()
