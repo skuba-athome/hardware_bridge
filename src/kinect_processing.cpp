@@ -19,7 +19,7 @@
 #include <pcl/filters/project_inliers.h>
 #include <pcl/filters/radius_outlier_removal.h>
 
-#define ROBOT_RADIUS    0.65f
+#define ROBOT_RADIUS    0.55f
 #define MAX_DIS         3.5f
 
 #define VOXEL_SIZE  0.02f
@@ -130,9 +130,9 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ros::Subscriber cloub_sub = n.subscribe("/camera/depth_registered/points", 1, cloudCallback);
     //ros::Subscriber cloub_sub = n.subscribe("/depth_registered/depth_registered/points", 1, cloudCallback);
-    ros::Subscriber obstacle = n.subscribe("/cloud_tf", 1, processObstacle);
-    cloud_tf = n.advertise<sensor_msgs::PointCloud2>("/cloud_tf",1);
-    virtual_scan_pub = n.advertise<sensor_msgs::PointCloud2>("virtual_scan",1);
+    ros::Subscriber obstacle = n.subscribe("/camera/cloud_tf", 1, processObstacle);
+    cloud_tf = n.advertise<sensor_msgs::PointCloud2>("/camera/cloud_tf",1);
+    virtual_scan_pub = n.advertise<sensor_msgs::PointCloud2>("/kinect/virtual_scan",1);
     listener = new tf::TransformListener();
 
     ros::spin();
