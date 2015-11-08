@@ -7,9 +7,9 @@ right_shoulder_1_controller:
     joint_speed: 0.4
     motor:
         id: 20
-        init: 52543
-        min: 2800
-        max: 62300
+        init: 8362
+        min: 2920
+        max: 25000
 
 right_shoulder_2_controller:
     controller:
@@ -20,9 +20,9 @@ right_shoulder_2_controller:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 34303
-        min: 15000
-        max: 41599
+        init: 33151
+        min: 17790
+        max: 41030
 
 right_elbow_controller:
     controller:
@@ -33,9 +33,9 @@ right_elbow_controller:
     joint_speed: 0.4
     motor:
         id: 22
-        init: 39615
-        min: 21183
-        max: 42300
+        init: 38271
+        min: 22780
+        max: 41800
 
 right_wrist_1_controller:
     controller:
@@ -48,8 +48,8 @@ right_wrist_1_controller:
     motor:
         id: 40
         init: 1015
-        min: 630
-        max: 3000         
+        min: 500
+        max: 3610        
 
 right_wrist_2_controller:
     controller:
@@ -61,9 +61,9 @@ right_wrist_2_controller:
     joint_torque_limit : 2.00
     motor:
         id: 41
-        init: 2005
-        min: 1680
-        max: 2960
+        init: 2016
+        min: 1500
+        max: 3000
 
 right_wrist_3_controller:
     controller:
@@ -75,8 +75,8 @@ right_wrist_3_controller:
     joint_torque_limit : 2.00
     motor:
         id: 42
-        init: 1817
-        min: 770
+        init: 1825
+        min: 490
         max: 3000
 
 right_gripper_joint_controller:
