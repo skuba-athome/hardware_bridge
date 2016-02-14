@@ -82,7 +82,7 @@ class JoyInput:
             cmd_vy = joy.axes[2]
             cmd_vth = joy.axes[0]
             self.joy_cmd.twist.linear.x = cmd_vx * 0.3  # maximum vx is 0.2 m/s
-            self.joy_cmd.twist.linear.y = cmd_vy * 0.3  # maximum vy is 0.2 m/s
+            # self.joy_cmd.twist.linear.y = cmd_vy * 0.3  # maximum vy is 0.2 m/s
             self.joy_cmd.twist.angular.z = cmd_vth * 0.7  # maximum vth is 0.4 rad/s
 
             cmd_pris = joy.axes[5]
