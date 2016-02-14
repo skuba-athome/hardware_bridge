@@ -1,0 +1,8 @@
+<launch>
+    <include file="$(find hardware_bridge)/launch/joy_connect.launch"/>
+
+    <node ns="base" name="base_serial" pkg="hardware_bridge" type="base_serial.py" output="screen">
+        <remap from="joy_cmd_vel" to="/joy/joy_cmd_vel"/>
+        <remap from="base_vel" to="/base/velocity"/>
+    </node>
+</launch>
