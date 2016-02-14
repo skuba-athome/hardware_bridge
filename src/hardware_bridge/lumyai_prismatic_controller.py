@@ -52,9 +52,10 @@ class LumyaiPrismaticController(JointPositionController):
         JointPositionController.__init__(self, dxl_io, controller_namespace, port_namespace)
 
     def raw_to_rad(self, raw, initial_position_raw, flipped, radians_per_encoder_tick):
-        
+        VOLTAGE_DROP_BIAS = 2360
+        TUNNING_BIAS = 2000
+        raw = raw + VOLTAGE_DROP_BIAS + TUNNING_BIAS #raw bias value to fix voltage drop in sensor line
         inverse_distance = 1.88170825382235e-6 * raw - 0.0040422542 
-
         distance = (1.0 / (inverse_distance)) - 15.6
         return (distance/100.00)
         
