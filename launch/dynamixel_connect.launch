@@ -33,7 +33,7 @@
                 --type=simple
                 pan_controller
                 tilt_controller
- 
+
                 prismatic_controller
 
                 right_shoulder_1_controller
@@ -51,8 +51,6 @@
                 left_wrist_2_controller
                 left_wrist_3_controller
                 left_gripper_joint_controller
-
-
                 "
           output="screen"/>
 
