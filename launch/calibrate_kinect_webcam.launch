@@ -12,7 +12,7 @@
     <arg name="camera2_ns" value="/camera/rgb"/>
     <arg name="checker_rows" value="6"/>
     <arg name="checker_cols" value="8"/>
-    <arg name="checker_size" value="0.0719"/>
+    <arg name="checker_size" value="0.09188"/>
   </include>  
   <node ns="/camera/rgb" pkg="image_proc" type="image_proc" name="image_proc"/>
 
