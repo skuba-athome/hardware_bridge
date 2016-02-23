@@ -50,11 +50,11 @@ from dynamixel_controllers.joint_position_controller import JointPositionControl
 class LumyaiPrismaticController(JointPositionController):
     def __init__(self, dxl_io, controller_namespace, port_namespace):
         JointPositionController.__init__(self, dxl_io, controller_namespace, port_namespace)
+        self.VOLTAGE_DROP_BIAS = 2360
+        self.TUNNING_BIAS = 2000
 
     def raw_to_rad(self, raw, initial_position_raw, flipped, radians_per_encoder_tick):
-        VOLTAGE_DROP_BIAS = 2360
-        TUNNING_BIAS = 2000
-        raw = raw + VOLTAGE_DROP_BIAS + TUNNING_BIAS #raw bias value to fix voltage drop in sensor line
+        raw = raw + self.VOLTAGE_DROP_BIAS + self.TUNNING_BIAS #raw bias value to fix voltage drop in sensor line
         inverse_distance = 1.88170825382235e-6 * raw - 0.0040422542 
         distance = (1.0 / (inverse_distance)) - 15.6
         return (distance/100.00)
@@ -78,7 +78,7 @@ class LumyaiPrismaticController(JointPositionController):
     def pos_rad_to_raw(self, pos_rad):
         pos_rad = pos_rad * 100 + 15.6
         inverse_distance = (1.0 / pos_rad)
-        raw = 529095.560329262 * inverse_distance + 2233.4055946581 
+        raw = 529095.560329262 * inverse_distance + 2233.4055946581 - self.VOLTAGE_DROP_BIAS - self.TUNNING_BIAS
         if raw < self.min_angle_raw : raw = self.min_angle_raw
         elif raw > self.max_angle_raw : raw = self.max_angle_raw
         return int(raw)
