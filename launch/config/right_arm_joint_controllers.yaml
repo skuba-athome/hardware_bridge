@@ -7,7 +7,7 @@ right_shoulder_1_controller:
     joint_speed: 0.4
     motor:
         id: 20
-        init: 35135
+        init: 42175
         min: 1000
         max: 49000
 
