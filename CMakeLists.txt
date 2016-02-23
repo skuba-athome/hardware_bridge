@@ -114,6 +114,7 @@ include_directories(
 # target_link_libraries(contrast_augmenter ${catkin_LIBRARIES})
 
 add_executable(kinect_processing src/kinect_processing.cpp)
+add_executable(kinect_processing_node src/kinect_processing_node.cpp)
 
 ## Add cmake target dependencies of the executable/library
 ## as an example, message headers may need to be generated before nodes
@@ -125,6 +126,7 @@ add_executable(kinect_processing src/kinect_processing.cpp)
 # )
 
 target_link_libraries(kinect_processing ${pcl_ros_LIBRARIES} ${catkin_LIBRARIES})
+target_link_libraries(kinect_processing_node ${pcl_ros_LIBRARIES} ${catkin_LIBRARIES})
 
 
 #############
