@@ -7,8 +7,8 @@ right_shoulder_1_controller:
     joint_speed: 0.4
     motor:
         id: 20
-        init: 19775
-        min: 8000
+        init: 46720
+        min: 6200
         max: 60600
 
 right_shoulder_2_controller:
@@ -20,9 +20,9 @@ right_shoulder_2_controller:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 35775
-        min: 26000
-        max: 53000
+        init: 29440
+        min: 13120
+        max: 40000
 
 right_elbow_controller:
     controller:
@@ -33,9 +33,9 @@ right_elbow_controller:
     joint_speed: 0.4
     motor:
         id: 22
-        init: 25343
-        min: 21900
-        max: 37250
+        init: 39871
+        min: 27970
+        max: 43380
 
 right_wrist_1_controller:
     controller:
@@ -44,7 +44,7 @@ right_wrist_1_controller:
         type: JointPositionController
     joint_name: right_wrist_1_joint
     joint_speed: 0.4
-    joint_torque_limit : 2.00
+    joint_torque_limit : 4.00
     motor:
         id: 40
         init: 2233
@@ -58,12 +58,12 @@ right_wrist_2_controller:
         type: JointPositionController
     joint_name: right_wrist_2_joint
     joint_speed: 0.4
-    joint_torque_limit : 2.00
+    joint_torque_limit : 4.00
     motor:
         id: 41
-        init: 2016
-        min: 1500
-        max: 3000
+        init: 2240
+        min: 1769
+        max: 3536
 
 right_wrist_3_controller:
     controller:
@@ -72,11 +72,11 @@ right_wrist_3_controller:
         type: JointPositionController
     joint_name: right_wrist_3_joint
     joint_speed: 0.4 
-    joint_torque_limit : 2.00
+    joint_torque_limit : 4.00
     motor:
         id: 42
-        init: 1825
-        min: 100
+        init: 1800
+        min: 307
         max: 3900
 
 right_gripper_joint_controller:
@@ -86,9 +86,9 @@ right_gripper_joint_controller:
         type: JointPositionController
     joint_name: right_gripper_joint
     joint_speed: 0.6
-    joint_torque_limit : 0.5
+    joint_torque_limit : 1.0
     motor:
         id: 43
-        init: 1230
-        min: 700
-        max: 1600
+        init: 751
+        min: 751
+        max: 1360
