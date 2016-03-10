@@ -28,15 +28,17 @@ std::string robot_frame = "/base_link";
 std::string pan_frame = "/pan_link";
 ros::Publisher cloud_pub,virtual_scan_pub,cloud_tf;
 tf::TransformListener* listener;
-
 typedef pcl::PointXYZRGB PointT;
 typedef pcl::PointCloud<PointT> PointCloudT;
-
+bool new_cloud_available = false;
 PointCloudT::Ptr cloud_obj (new PointCloudT);
 
 void cloudCallback(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
 {         
     try{
+        if(new_cloud_available)
+            return;
+	
         PointCloudT::Ptr cloud (new PointCloudT);
         pcl::fromROSMsg(*cloud_in,*cloud);
         listener->waitForTransform(robot_frame, cloud_in->header.frame_id, cloud_in->header.stamp, ros::Duration(1.0));
@@ -44,14 +46,19 @@ void cloudCallback(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
         sensor_msgs::PointCloud2 cloud_tf_out;
         pcl::toROSMsg(*cloud_obj,cloud_tf_out);
         cloud_tf.publish(cloud_tf_out);
+        new_cloud_available = true;
       }
       catch(tf::TransformException& ex){
         ROS_ERROR("Received an exception trying to transform a point from %s to %s: %s", cloud_in->header.frame_id.c_str(),pan_frame.c_str(),ex.what());
       }
 }
 
-void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
+//void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
+void processObstacle()
 {         
+    if(!new_cloud_available)
+	return;
+
     ROS_INFO("Camera points : %d", (int)cloud_obj->points.size());
     
     // sampling data
@@ -121,7 +128,7 @@ void processObstacle(const sensor_msgs::PointCloud2::ConstPtr& cloud_in)
     pcl::toROSMsg(*virtual_scan,cloud_out);
     cloud_out.header.stamp = ros::Time::now();
     virtual_scan_pub.publish(cloud_out);
-    
+    new_cloud_available = false;    
 }
 
 int main(int argc, char **argv)
@@ -130,12 +137,18 @@ int main(int argc, char **argv)
     ros::NodeHandle n;
     ros::Subscriber cloub_sub = n.subscribe("/camera/depth_registered/points", 1, cloudCallback);
     //ros::Subscriber cloub_sub = n.subscribe("/depth_registered/depth_registered/points", 1, cloudCallback);
-    ros::Subscriber obstacle = n.subscribe("/camera/cloud_tf", 1, processObstacle);
+    //ros::Subscriber obstacle = n.subscribe("/camera/cloud_tf", 1, processObstacle);
     cloud_tf = n.advertise<sensor_msgs::PointCloud2>("/camera/cloud_tf",1);
     virtual_scan_pub = n.advertise<sensor_msgs::PointCloud2>("/kinect/virtual_scan",1);
     listener = new tf::TransformListener();
-
-    ros::spin();
+    ros::Rate loop_rate(10);
+    while(ros::ok())
+    {
+    	processObstacle();
+        ros::spinOnce();
+	loop_rate.sleep();
+    }
+    //ros::spin();
 
     return 0;
 }
