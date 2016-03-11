@@ -47,7 +47,7 @@ left_wrist_1_controller:
     joint_torque_limit : 1.00
     motor:
         id: 45
-        init: 968
+        init: 966
         min: 630
         max: 3000         
 
@@ -75,7 +75,7 @@ left_wrist_3_controller:
     joint_torque_limit : 1.00
     motor:
         id: 47
-        init: 1800
+        init: 1808
         min: 770
         max: 3000
 
