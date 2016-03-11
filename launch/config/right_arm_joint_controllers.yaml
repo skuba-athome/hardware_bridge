@@ -7,7 +7,7 @@ right_shoulder_1_controller:
     joint_speed: 0.4
     motor:
         id: 20
-        init: 38207
+        init: 42239
         min: 6200
         max: 60600
 
@@ -20,7 +20,7 @@ right_shoulder_2_controller:
     joint_speed: 0.4
     motor:
         id: 21
-        init: 31295
+        init: 29695
         min: 13120
         max: 40000
 
@@ -33,7 +33,7 @@ right_elbow_controller:
     joint_speed: 0.4
     motor:
         id: 22
-        init: 39871
+        init: 40255
         min: 27970
         max: 43380
 
