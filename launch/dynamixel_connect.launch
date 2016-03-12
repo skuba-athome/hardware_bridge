@@ -117,7 +117,7 @@
                 left_gripper_controller
                 left_gripper_joint_controller
                "
-    output="screen"/>
+          output="screen"/>
 
     <!-- publish virtual odom if needed  -->
     <node if="$(arg use_virtual_odom)" pkg="tf" type="static_transform_publisher" name="virtual_odom_tf" args="0.0 0.0 0.0 0.0 0.0 0.0 odom_combined base_link 100"/>
