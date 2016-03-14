@@ -1,0 +1,24 @@
+image_width: 1280
+image_height: 720
+camera_name: external_cam
+camera_matrix:
+  rows: 3
+  cols: 3
+  data: [941.360565, 0.000000, 624.181961,
+0.000000, 937.367342, 383.146543,
+0.000000, 0.000000, 1.000000]
+distortion_model: plumb_bob
+distortion_coefficients:
+  rows: 1
+  cols: 5
+  data: [0.105776, -0.177866, 0.004647, -0.006294, 0.000000]
+rectification_matrix:
+  rows: 3
+  cols: 3
+  data: [1.000000, 0.000000, 0.000000, 0.000000, 1.000000, 0.000000, 0.000000, 0.000000, 1.000000]
+projection_matrix:
+  rows: 3
+  cols: 4
+  data: [950.483032, 0.000000, 614.339634, 0.000000,
+0.000000, 955.110413, 385.495122, 0.000000,
+0.000000, 0.000000, 1.000000, 0.000000]
