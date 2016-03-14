@@ -69,7 +69,7 @@ void processObstacle()
         PointCloudT::Ptr cloud_partition (new PointCloudT);
         passThrough.setInputCloud (cloud_sampling);
         passThrough.setFilterFieldName ("z");
-        passThrough.setFilterLimits (0.2, 2.0);
+        passThrough.setFilterLimits (0.0, 2.0);
         passThrough.filter (*cloud_partition);
 
         if (cloud_partition->points.size() == 0) return;
