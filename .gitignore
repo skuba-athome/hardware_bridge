@@ -1,0 +1,10 @@
+*~
+*.pyc
+bin
+build
+CMakeCache.txt
+CMakeFiles
+src/robot_connect/*
+.idea
+cmake_install.cmake
+*.orig
