@@ -86,7 +86,7 @@ right_gripper_joint_controller:
         type: JointPositionController
     joint_name: right_gripper_joint
     joint_speed: 0.6
-    joint_torque_limit : 1.0
+    joint_torque_limit : 0.3
     motor:
         id: 43
         init: 770
