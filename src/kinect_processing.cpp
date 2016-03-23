@@ -64,6 +64,11 @@ void processObstacle()
         voxelGrid.setLeafSize (VOXEL_SIZE, VOXEL_SIZE, VOXEL_SIZE);
         voxelGrid.filter (*cloud_sampling);
 
+        //ROS_INFO("Cloud_sampling points : %d", (int)cloud_sampling->points.size());
+        sensor_msgs::PointCloud2 cloud_out_tf;
+        pcl::toROSMsg(*cloud_sampling,cloud_out_tf);
+        cloud_out_tf.header.stamp = ros::Time::now();
+        cloud_tf.publish(cloud_out_tf);
         // remove ground plane
         pcl::PassThrough<PointT> passThrough;
         PointCloudT::Ptr cloud_partition (new PointCloudT);
@@ -72,7 +77,10 @@ void processObstacle()
         passThrough.setFilterLimits (0.0, 2.0);
         passThrough.filter (*cloud_partition);
 
-        if (cloud_partition->points.size() == 0) return;
+        if (cloud_partition->points.size() == 0) {
+            new_cloud_available = false;
+            return;
+        }
         // project point to ground plane
         pcl::ModelCoefficients::Ptr coefficients (new pcl::ModelCoefficients ());
         coefficients->values.resize (4);
@@ -118,7 +126,7 @@ void processObstacle()
         virtual_scan->is_dense = true;
         virtual_scan->header = cloud_obj->header;
 
-        //ROS_INFO("Virtual scan : %d", (int)virtual_scan->points.size());
+        ROS_INFO("Virtual scan : %d", (int)virtual_scan->points.size());
        
         sensor_msgs::PointCloud2 cloud_out;
         pcl::toROSMsg(*virtual_scan,cloud_out);
