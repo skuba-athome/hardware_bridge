@@ -7,8 +7,8 @@ pan_controller:
     joint_speed: 0.7
     motor:
         id: 10
-        init: 2386
-        min: 1450
+        init: 2435
+        min: 1531
         max: 3410
 
 tilt_controller:
@@ -20,6 +20,6 @@ tilt_controller:
     joint_speed: 0.4
     motor:
         id: 11
-        init: 1788
-        min: 1300
-        max: 1900
+        init: 1771
+        min: 1259
+        max: 2008
