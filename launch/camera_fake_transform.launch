@@ -1,0 +1,12 @@
+ 
+<launch>
+ <node ns="tf" pkg="tf" type="static_transform_publisher" name="external_cam_to_kinect" args="-0.019 -0.032 0.000 0.018 -0.006 -0.038 camera_depth_optical_frame external_cam 100 " />
+
+  <node ns="tf" pkg="tf" type="static_transform_publisher" name="camera_cam_to_depthframe" args="0.0 -0.02 0.00 0.00 0.00 0.00 camera_link camera_depth_frame 100 " /> 
+
+   <node ns="tf" pkg="tf" type="static_transform_publisher" name="rgb_frame_to_rgb_optical_frame" args="0.0 0.00 0.000 -1.5707963267948968 0.00 -1.5707963267948968 camera_rgb_frame camera_rgb_optical_frame 100 " />
+
+    <node ns="tf" pkg="tf" type="static_transform_publisher" name="depth_frame_to_depth_optical_frame" args="0.0 0.00 0.000 -1.5707963267948968 0.00 -1.5707963267948968 camera_depth_frame camera_depth_optical_frame 100 " />
+
+<node ns="tf" pkg="tf" type="static_transform_publisher" name="camera_link_to_rgb_frame" args="0.0 -0.045 0.000 0.00 0.00 0.00 camera_link camera_rgb_frame 100 " />
+    </launch>
