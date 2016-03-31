@@ -90,5 +90,5 @@ right_gripper_joint_controller:
     motor:
         id: 43
         init: 770
-        min: 760
+        min: 200
         max: 1500
