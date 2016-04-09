@@ -18,8 +18,9 @@ class BaseSerial(object):
         #self.base_imu = rospy.Publisher('imu', Imu)
         self.base_twist = rospy.Publisher('base_vel',TwistWithCovarianceStamped)
 
-        self.w_list = []
-        self.window_size = 7
+        # TD-prediction
+        self.TD_alpha = 0.3
+        self.TD_predict_z = 0.0
 
         rospy.on_shutdown(self.Stop)
         self.mySerialDataGateway = SerialDataGateway(port, baudrate, self.HandleReceivedLine)
@@ -112,7 +113,7 @@ class BaseSerial(object):
             fdb_odom.twist.twist.linear.x = self.twochar2signedint16(line[1]+line[2])*2.0/32767.0
             fdb_odom.twist.twist.linear.y = self.twochar2signedint16(line[3]+line[4])*2.0/32767.0
             new_z = self.twochar2signedint16(line[5]+line[6])*6.0/32767.0
-            fdb_odom.twist.twist.angular.z = self.get_w(new_z)
+            fdb_odom.twist.twist.angular.z = self.get_z(new_z)
             fdb_odom.twist.covariance[0] = 0.001
             fdb_odom.twist.covariance[7] = 0.001
             fdb_odom.twist.covariance[35] = 0.0008
@@ -135,12 +136,10 @@ class BaseSerial(object):
             #rospy.loginfo('Return is: ' + str((self.fdb_dx,self.fdb_dy,self.fdb_dth,self.fdb_vx,self.fdb_vy,self.fdb_vth,self.fdb_ax,self.fdb_ay,self.fdb_ath)))
             #rospy.loginfo('Return is: ' + str((self.fdb_dth,self.fdb_vth)))
 
-    def get_w(self, new_value):
-        self.w_list.append(new_value)
-        if len(self.w_list) >= self.window_size:
-            self.w_list = self.w_list[-self.window_size:]
-        # calculate avg
-        return sum(self.w_list)*1.0/self.window_size
+    # TD-Prediction
+    def get_z(self, new_value):
+        self.TD_predict_z = self.TD_predict_z + self.TD_alpha * (new - self.TD_predict_z)
+        return self.TD_predict_z
 
     def signedint2twochar(self,data):
         temp = data%2**16
