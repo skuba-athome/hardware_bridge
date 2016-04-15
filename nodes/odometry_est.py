@@ -22,7 +22,7 @@ class OdometryEstimation(object):
         self.last_est_time = rospy.Time()
         self.init = True
         self.OdometryTransformBroadcaster = tf.TransformBroadcaster()
-        self.pose_odom = rospy.Publisher("odom", Odometry)
+        self.pose_odom = rospy.Publisher("odom", Odometry, queue_size=1)
         rospy.Subscriber("base_vel", TwistWithCovarianceStamped, self.velOdom_callback)
         rospy.spin()
                 

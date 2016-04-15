@@ -38,9 +38,9 @@ class PanTiltControl(object):
         #self.mani_height = 0.82  #float(sys.argv[1])########
         self.mani_height = 0.20  #float(sys.argv[1])########
 
-        self.tilt_cmd = rospy.Publisher("/dynamixel/tilt_kinect/command", Float64)
-        self.pan_cmd = rospy.Publisher("/dynamixel/pan_kinect/command", Float64)
-        self.pris_cmd = rospy.Publisher("/mark43_pris/command", Float64)
+        self.tilt_cmd = rospy.Publisher("/dynamixel/tilt_kinect/command", Float64, queue_size=1)
+        self.pan_cmd = rospy.Publisher("/dynamixel/pan_kinect/command", Float64, queue_size=1)
+        self.pris_cmd = rospy.Publisher("/mark43_pris/command", Float64, queue_size=1)
 
         rospy.Subscriber("/mark43_pris/state", JointState, self.pantilt_callback)
         rospy.Subscriber("/tilt_kinect/state", JointState, self.pantilt_callback)

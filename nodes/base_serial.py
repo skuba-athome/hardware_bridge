@@ -16,7 +16,7 @@ class BaseSerial(object):
         rospy.Subscriber("joy_cmd_vel", TwistStamped, self.JoyTwist2Cmd)
         rospy.Subscriber("cmd_vel", Twist, self.Twist2Cmd)
         #self.base_imu = rospy.Publisher('imu', Imu)
-        self.base_twist = rospy.Publisher('base_vel',TwistWithCovarianceStamped)
+        self.base_twist = rospy.Publisher('base_vel',TwistWithCovarianceStamped, queue_size=1)
 
         # TD-prediction
         self.TD_alpha = 0.3
@@ -138,7 +138,7 @@ class BaseSerial(object):
 
     # TD-Prediction
     def get_z(self, new_value):
-        self.TD_predict_z = self.TD_predict_z + self.TD_alpha * (new - self.TD_predict_z)
+        self.TD_predict_z = self.TD_predict_z + self.TD_alpha * (new_value - self.TD_predict_z)
         return self.TD_predict_z
 
     def signedint2twochar(self,data):

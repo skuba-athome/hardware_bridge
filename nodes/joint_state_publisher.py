@@ -29,8 +29,8 @@ class JointStatesPublisher:
             joint_state_topic = '/dynamixel/' + motor + '/state'
             rospy.Subscriber(joint_state_topic, JointState, self.state_callback)
 
-        self.publisher = rospy.Publisher(joint_state_publisher_topic, SensorJointState)
-        self.fix_publisher = rospy.Publisher('/joint_states', SensorJointState)
+        self.publisher = rospy.Publisher(joint_state_publisher_topic, SensorJointState, queue_size=1)
+        self.fix_publisher = rospy.Publisher('/joint_states', SensorJointState, queue_size=1)
     
         rate = rospy.Rate(20)
         while not rospy.is_shutdown():
