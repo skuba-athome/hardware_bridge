@@ -138,11 +138,7 @@ class BaseSerial(object):
 
     # TD-Prediction
     def get_z(self, new_value):
-<<<<<<< HEAD
         self.TD_predict_z = self.TD_predict_z + self.TD_alpha * (new_value - self.TD_predict_z)
-=======
-        self.TD_predict_z = self.TD_predict_z + self.TD_alpha * (new - self.TD_predict_z)
->>>>>>> 62b92e785a01de4e595110570c363700b2c2ef19
         return self.TD_predict_z
 
     def signedint2twochar(self,data):
