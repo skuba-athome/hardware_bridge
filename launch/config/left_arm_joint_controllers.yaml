@@ -89,6 +89,6 @@ left_gripper_joint_controller:
     joint_torque_limit : 0.3
     motor:
         id: 48
-        init: 684
-        min: 665
+        init: 653
+        min: 0
         max: 985 
