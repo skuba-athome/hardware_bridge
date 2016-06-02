@@ -6,9 +6,9 @@ left_shoulder_1_controller:
     joint_name: left_shoulder_1_joint
     joint_speed: 0.4
     motor:
-        id: 25
-        init: 55167
-        min: 12000
+        id: 35
+        init: 2427
+        min: 1000
         max: 58500
 
 left_shoulder_2_controller:
@@ -19,9 +19,9 @@ left_shoulder_2_controller:
     joint_name: left_shoulder_2_joint
     joint_speed: 0.4
     motor:
-        id: 26
-        init: 30527
-        min: 10000
+        id: 36
+        init: 33131
+        min: 23120
         max: 45000
 
 left_elbow_controller:
@@ -32,10 +32,10 @@ left_elbow_controller:
     joint_name: left_elbow_joint
     joint_speed: 0.4
     motor:
-        id: 27
-        init: 39871
-        min: 25150
-        max: 43270
+        id: 37
+        init: 14020
+        min: 12000
+        max: 27000
 
 left_wrist_1_controller:
     controller:
