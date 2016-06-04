@@ -130,6 +130,8 @@ class GripperCommandActionController():
         self.goal_effort = command.max_effort
         self.command_pub.publish(command.position)
             
+        self.msg.stalled = False
+        self.msg.reached_goal = False
         rospy.loginfo('Gripper start requested at %.3lf, waiting...', rospy.Time.now().to_sec())
         rate = rospy.Rate(self.update_rate)
         
