@@ -64,7 +64,7 @@ class GripperCommandActionController():
         
     def initialize(self):
         ns = self.controller_namespace + '/gripper_command_action_node/constraints'
-        self.goal_tolerance_constraint = rospy.get_param(ns + '/goal_tolerance', 0.1)
+        self.goal_tolerance_constraint = rospy.get_param(ns + '/goal_tolerance', 0.05)
         self.effort_tolerance_constraint = rospy.get_param(ns + '/effort_tolerance', 0.1)
         self.velocity_constraint = rospy.get_param(ns + '/velocity', 0.4)
         
@@ -83,7 +83,7 @@ class GripperCommandActionController():
         self.running = True
         
         self.state_sub = rospy.Subscriber(self.joint_namespace + '/state', JointState, self.process_state)
-        self.command_pub = rospy.Publisher(self.joint_namespace + '/command', Float64, queue_size=None)
+        self.command_pub = rospy.Publisher(self.joint_namespace + '/command', Float64, queue_size=1)
 
         self.command_sub = rospy.Subscriber(self.controller_namespace + '/command', GripperCommand, self.process_command)
         self.state_pub = rospy.Publisher(self.controller_namespace + '/state', GripperCommandFeedback, queue_size=None)
@@ -134,10 +134,9 @@ class GripperCommandActionController():
         self.msg.reached_goal = False
         rospy.loginfo('Gripper start requested at %.3lf, waiting...', rospy.Time.now().to_sec())
         rate = rospy.Rate(self.update_rate)
-        
-        while not self.msg.stalled and not self.msg.reached_goal:
+        while not self.msg.stalled or not self.msg.reached_goal:
             rate.sleep()
-            
+        
         res = GripperCommandResult()
         res.position = self.msg.position
         res.effort =  self.msg.effort
