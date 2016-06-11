@@ -19,7 +19,7 @@ class BaseSerial(object):
         self.base_twist = rospy.Publisher('base_vel',TwistWithCovarianceStamped, queue_size=1)
 
         # TD-prediction
-        self.TD_alpha = 0.5
+        self.TD_alpha = 0.9
         self.TD_predict_z = 0.0
 
         rospy.on_shutdown(self.Stop)

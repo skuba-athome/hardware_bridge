@@ -16,9 +16,6 @@ class OdometryEstimation(object):
         self.vy_odom = 0.0
         self.w_odom = 0.0
         
-        self.w_list = []
-        self.window_size = 20
-
         self.last_est_time = rospy.Time()
         self.init = True
         self.OdometryTransformBroadcaster = tf.TransformBroadcaster()
@@ -37,7 +34,6 @@ class OdometryEstimation(object):
         #update odom variable
         self.vx_odom = vel_odom.twist.twist.linear.x
         self.vy_odom = vel_odom.twist.twist.linear.y
-        #self.w_odom = self.get_w_odom(vel_odom.twist.twist.angular.z)
         self.w_odom = vel_odom.twist.twist.angular.z
         
 #----------------------------------Position calculation--------------------------#
@@ -63,23 +59,16 @@ class OdometryEstimation(object):
         self.pose_odom.publish(odometry)
         
 #---------------------------------------------------------------------------------#
-        self.OdometryTransformBroadcaster.sendTransform(
-            (self.odomPose.x, self.odomPose.y, 0),
-            q,
-            #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
-            timenow,
-            #rospy.Time.now(),
-            "base_link",
-            "odom"
-        )
+        #self.OdometryTransformBroadcaster.sendTransform(
+        #    (self.odomPose.x, self.odomPose.y, 0),
+        #    q,
+        #    #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
+        #    timenow,
+        #    #rospy.Time.now(),
+        #    "base_link",
+        #    "odom"
+        #)
         self.last_est_time = timenow
-
-    def get_w_odom(self, new_value):
-        self.w_list.append(new_value)
-        if len(self.w_list) > self.window_size:
-            self.w_list = self.w_list[-self.window_size:]
-        # return average self.w_list
-        return sum(self.w_list)*1.0/self.window_size
 
 if __name__ == '__main__':
     OdometryEstimation()
