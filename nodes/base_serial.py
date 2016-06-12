@@ -113,7 +113,7 @@ class BaseSerial(object):
             fdb_odom.twist.twist.linear.x = self.twochar2signedint16(line[1]+line[2])*2.0/32767.0
             fdb_odom.twist.twist.linear.y = self.twochar2signedint16(line[3]+line[4])*2.0/32767.0
             new_z = self.twochar2signedint16(line[5]+line[6])*6.0/32767.0
-            fdb_odom.twist.twist.angular.z = self.get_z(new_z)
+            fdb_odom.twist.twist.angular.z = new_z
             fdb_odom.twist.covariance[0] = 0.001
             fdb_odom.twist.covariance[7] = 0.001
             fdb_odom.twist.covariance[35] = 0.0008

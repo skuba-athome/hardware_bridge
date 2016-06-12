@@ -1,6 +1,7 @@
 <launch>
     <node pkg="laser_scan_matcher" type="laser_scan_matcher_node" name="laser_scan_matcher_node" output="screen">
         <remap from="scan" to="/laser/scan"/>
+        <remap from="odom" to="/base/odom"/>
         <!-- Coordinate frames -->
         <param name="fixed_frame" value="odom"/>
         <param name="base_frame" value="base_link"/>
