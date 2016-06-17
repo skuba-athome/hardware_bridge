@@ -5,8 +5,8 @@
         <param name="serial_baud" type="int" value="115200"/>
         <param name="frame_id" type="string" value="laser_Link"/>
         <param name="publish_intensity" type="bool" value="false"/>
-        <param name="angle_min" type="double" value="-1.57"/>
-        <param name="angle_max" type="double" value="1.57"/>
+        <param name="angle_min" type="double" value="-2"/>
+        <param name="angle_max" type="double" value="2"/>
     </node>
 
     <!--
