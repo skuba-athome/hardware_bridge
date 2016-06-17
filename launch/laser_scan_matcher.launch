@@ -27,7 +27,7 @@
 
         <!-- Scan matching -->
         <param name="max_iterations" value="10"/>
-        <param name="max_correspondence_dist" value="0.3"/>
+        <param name="max_correspondence_dist" value="25.0"/>
         <param name="max_angular_correction_deg" value="45.0"/>
         <param name="max_linear_correction" value="0.5"/>
         <param name="epsilon_xy" value="0.000001"/>
@@ -36,7 +36,7 @@
 
         <param name="sigma" value="0.01"/>
         <param name="use_corr_tricks" value="1"/>
-        <param name="restart" value="0"/>
+        <param name="restart" value="1"/>
         <param name="restart_threshold_mean_error" value="0.01"/>
         <param name="restart_dt" value="1.0"/>
         <param name="restart_dtheta" value="0.1"/>
