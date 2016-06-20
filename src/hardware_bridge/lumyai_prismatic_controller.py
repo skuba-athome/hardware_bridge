@@ -51,7 +51,7 @@ class LumyaiPrismaticController(JointPositionController):
     def __init__(self, dxl_io, controller_namespace, port_namespace):
         JointPositionController.__init__(self, dxl_io, controller_namespace, port_namespace)
         self.VOLTAGE_DROP_BIAS = 2360
-        self.TUNNING_BIAS = 0
+        self.TUNNING_BIAS = -5
 
     def raw_to_rad(self, raw, initial_position_raw, flipped, radians_per_encoder_tick):
         raw = raw + self.VOLTAGE_DROP_BIAS + self.TUNNING_BIAS #raw bias value to fix voltage drop in sensor line
