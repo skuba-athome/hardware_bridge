@@ -4,12 +4,12 @@ left_shoulder_1_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: left_shoulder_1_joint
-    joint_speed: 0.4
+    joint_speed: 15
     motor:
         id: 35
-        init: 2427
-        min: 1000
-        max: 58500
+        init: 250
+        min: 56
+        max: 1306
 
 left_shoulder_2_controller:
     controller:
@@ -17,12 +17,12 @@ left_shoulder_2_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: left_shoulder_2_joint
-    joint_speed: 0.4
+    joint_speed: 15
     motor:
         id: 36
-        init: 33131
-        min: 23120
-        max: 45000
+        init: 2036
+        min: 1022
+        max: 3068
 
 left_elbow_controller:
     controller:
@@ -30,12 +30,12 @@ left_elbow_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: left_elbow_joint
-    joint_speed: 0.4
+    joint_speed: 15
     motor:
         id: 37
-        init: 14020
-        min: 12000
-        max: 27000
+        init: 898
+        min: 625
+        max: 1931
 
 left_wrist_1_controller:
     controller:
@@ -47,9 +47,9 @@ left_wrist_1_controller:
     joint_torque_limit : 1.00
     motor:
         id: 45
-        init: 966
-        min: 630
-        max: 3000         
+        init: 1106
+        min: 0
+        max: 4095         
 
 left_wrist_2_controller:
     controller:
@@ -61,9 +61,9 @@ left_wrist_2_controller:
     joint_torque_limit : 1.00
     motor:
         id: 46
-        init: 2255
-        min: 1750
-        max: 3300
+        init: 2034
+        min: 0
+        max: 4095
 
 left_wrist_3_controller:
     controller:
@@ -75,9 +75,9 @@ left_wrist_3_controller:
     joint_torque_limit : 1.00
     motor:
         id: 47
-        init: 1808
-        min: 770
-        max: 3000
+        init: 999
+        min: 0
+        max: 4095
 
 left_gripper_joint_controller:
     controller:
@@ -89,6 +89,6 @@ left_gripper_joint_controller:
     joint_torque_limit : 0.3
     motor:
         id: 48
-        init: 653
+        init: 699
         min: 0
-        max: 985 
+        max: 1023
