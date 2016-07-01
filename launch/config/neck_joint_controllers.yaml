@@ -20,6 +20,6 @@ tilt_controller:
     joint_speed: 0.4
     motor:
         id: 11
-        init: 1790
+        init: 1870
         min: 1259
         max: 2008
