@@ -13,7 +13,7 @@
     <include file="$(find hardware_bridge)/launch/base_laser_connect.launch"/>
 
     <!-- Publish odom transform -->
-    <include file="$(find hardware_bridge)/launch/laser_scan_matcher.launch"/>
+
 
     <!-- Publish transform  -->
     <include if="$(arg use_local_robot_descriptions)" file="$(find hardware_bridge)/launch/robot_state_publisher.launch"/>

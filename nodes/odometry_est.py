@@ -59,15 +59,15 @@ class OdometryEstimation(object):
         self.pose_odom.publish(odometry)
         
 #---------------------------------------------------------------------------------#
-        #self.OdometryTransformBroadcaster.sendTransform(
-        #    (self.odomPose.x, self.odomPose.y, 0),
-        #    q,
-        #    #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
-        #    timenow,
-        #    #rospy.Time.now(),
-        #    "base_link",
-        #    "odom"
-        #)
+        self.OdometryTransformBroadcaster.sendTransform(
+            (self.odomPose.x, self.odomPose.y, 0),
+            q,
+            #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
+            timenow,
+            #rospy.Time.now(),
+            "base_link",
+            "odom"
+        )
         self.last_est_time = timenow
 
 if __name__ == '__main__':
