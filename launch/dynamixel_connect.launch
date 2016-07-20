@@ -1,6 +1,6 @@
 <launch>
 
-    <arg name="dynamixel_port_name" default="/dev/ttyUSB0"/>
+    <arg name="dynamixel_port_name" default="/dev/ttyUSB-Manipurator"/>
 
     <arg name="use_virtual_odom" default="true"/>
     <arg name="use_local_robot_descriptions" default="$(arg use_virtual_odom)"/>

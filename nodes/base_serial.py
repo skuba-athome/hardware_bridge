@@ -11,7 +11,7 @@ from std_msgs.msg import String
 from SerialDataGateway import SerialDataGateway
 
 class BaseSerial(object):
-    def __init__(self, port="/dev/ttyUSB0", baudrate=9600):
+    def __init__(self, port="/dev/ttyUSB-Base", baudrate=9600):
         rospy.init_node('base_serial')
         rospy.Subscriber("joy_cmd_vel", TwistStamped, self.JoyTwist2Cmd)
         rospy.Subscriber("cmd_vel", Twist, self.Twist2Cmd)

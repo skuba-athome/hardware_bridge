@@ -7,7 +7,7 @@
     
     <!-- Connect to Dynamixel and publish transform -->
     <include file="$(find hardware_bridge)/launch/dynamixel_connect.launch">
-        <arg name="dynamixel_port_name" value="/dev/ttyUSB1"/>
+        <arg name="dynamixel_port_name" value="/dev/ttyUSB-Manipurator"/>
         <arg name="use_virtual_odom" value="false"/>
     </include>
 
