@@ -7,6 +7,6 @@ prismatic_controller:
     joint_speed: 0.4
     motor:
         id: 50
-        init: 0
-        min: 13680
-        max: 32000
+        init: 12400
+        min: 10000
+        max: 12400

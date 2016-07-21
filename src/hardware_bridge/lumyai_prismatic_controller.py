@@ -54,10 +54,16 @@ class LumyaiPrismaticController(JointPositionController):
         self.TUNNING_BIAS = -5
 
     def raw_to_rad(self, raw, initial_position_raw, flipped, radians_per_encoder_tick):
-        raw = raw + self.VOLTAGE_DROP_BIAS + self.TUNNING_BIAS #raw bias value to fix voltage drop in sensor line
-        inverse_distance = 1.88170825382235e-6 * raw - 0.0040422542 
-        distance = (1.0 / (inverse_distance)) - 15.6
-        return (distance/100.00)
+        #raw = raw + self.VOLTAGE_DROP_BIAS + self.TUNNING_BIAS #raw bias value to fix voltage drop in sensor line
+        #inverse_distance = 1.88170825382235e-6 * raw - 0.0040422542 
+        #distance = (1.0 / (inverse_distance)) - 15.6
+        #return (distance/100.00)
+        # inverse_distance = (-0.01904761904761905 * (raw - 11025)) + 54.5 - 30.5 - 3.4
+        inverse_distance = 54.5 - ((raw - 10000) / 100) - 30.5
+        # print inverse_distance
+        # print (-0.01904761904761905 * (raw - 11025)) + 54.5, raw
+        return inverse_distance / 100.0
+
         
     def process_motor_states(self, state_list):
         if self.running:
@@ -76,10 +82,13 @@ class LumyaiPrismaticController(JointPositionController):
                 self.joint_state_pub.publish(self.joint_state)
 
     def pos_rad_to_raw(self, pos_rad):
-        pos_rad = pos_rad * 100 + 15.6
-        inverse_distance = (1.0 / pos_rad)
-        raw = 529095.560329262 * inverse_distance + 2233.4055946581 - self.VOLTAGE_DROP_BIAS - self.TUNNING_BIAS
+        # pos_rad = pos_rad * 100 + 15.6
+        # inverse_distance = (1.0 / pos_rad)
+        # raw = 529095.560329262 * inverse_distance + 2233.4055946581 - self.VOLTAGE_DROP_BIAS - self.TUNNING_BIAS
+        pos_rad = pos_rad * 100
+        raw = (-1 * (pos_rad - 54.5 + 30.5) * 100) + 10000
         if raw < self.min_angle_raw : raw = self.min_angle_raw
         elif raw > self.max_angle_raw : raw = self.max_angle_raw
+        print pos_rad, raw
         return int(raw)
 
