@@ -68,6 +68,15 @@ class OdometryEstimation(object):
             "base_link",
             "odom"
         )
+        self.OdometryTransformBroadcaster.sendTransform(
+            (0, 0, 0),
+            q,
+            #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
+            timenow,
+            #rospy.Time.now(),
+            "odom",
+            "odom_combined"
+        )
         self.last_est_time = timenow
 
 if __name__ == '__main__':

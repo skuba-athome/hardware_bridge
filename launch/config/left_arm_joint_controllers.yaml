@@ -7,7 +7,7 @@ left_shoulder_1_controller:
     joint_speed: 15
     motor:
         id: 35
-        init: 382
+        init: 432
         min: 56
         max: 1306
 
@@ -20,7 +20,7 @@ left_shoulder_2_controller:
     joint_speed: 15
     motor:
         id: 36
-        init: 2036
+        init: 2104
         min: 1022
         max: 3068
 
@@ -33,9 +33,9 @@ left_elbow_controller:
     joint_speed: 15
     motor:
         id: 37
-        init: 807
-        min: 625
-        max: 1931
+        init: 910
+        min: 1931
+        max: 625
 
 left_wrist_1_controller:
     controller:
@@ -61,7 +61,7 @@ left_wrist_2_controller:
     joint_torque_limit : 1.00
     motor:
         id: 46
-        init: 2218
+        init: 2350
         min: 0
         max: 4095
 
@@ -89,6 +89,6 @@ left_gripper_joint_controller:
     joint_torque_limit : 0.3
     motor:
         id: 48
-        init: 699
+        init: 701
         min: 0
         max: 1023
