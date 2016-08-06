@@ -20,7 +20,7 @@ right_shoulder_2_controller:
     joint_speed: 0.2
     motor:
         id: 31
-        init: 55423
+        init: 56895
         min: 40050
         max: 62000
 
@@ -49,7 +49,7 @@ right_wrist_1_controller:
         id: 40
         init: 473
         min: 100
-        max: 900
+        max: 1000
 
 right_wrist_2_controller:
     controller:

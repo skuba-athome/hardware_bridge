@@ -4,7 +4,7 @@ left_shoulder_1_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: left_shoulder_1_joint
-    joint_speed: 15
+    joint_speed: 0.4
     motor:
         id: 35
         init: 432
@@ -17,10 +17,10 @@ left_shoulder_2_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: left_shoulder_2_joint
-    joint_speed: 15
+    joint_speed: 0.4
     motor:
         id: 36
-        init: 2104
+        init: 1990
         min: 1022
         max: 3068
 
@@ -30,7 +30,7 @@ left_elbow_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: left_elbow_joint
-    joint_speed: 15
+    joint_speed: 0.4
     motor:
         id: 37
         init: 910
