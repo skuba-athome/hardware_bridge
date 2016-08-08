@@ -5,6 +5,7 @@
     <!-- Connect to base and joy -->
     <include file="$(find hardware_bridge)/launch/joy_play.launch"/>
 
+    <!--<node pkg="hardware_bridge" type="odometry_est.py" name="odometry_est" output="screen"/>-->
     <node ns="base" name="odometry_est" pkg="hardware_bridge" type="odometry_est.py">
         <remap from="base_vel" to="velocity"/>
     </node>

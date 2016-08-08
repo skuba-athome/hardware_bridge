@@ -25,10 +25,30 @@ class OdometryEstimation(object):
         rospy.spin()
                 
     def odom_combined_callback(self, odomPose):
-    	print 1111
+    	# print 1111
+        print odomPose.pose.pose.orientation
+        quaternion = (
+            odomPose.pose.pose.orientation.x,
+            odomPose.pose.pose.orientation.y,
+            odomPose.pose.pose.orientation.z,
+            odomPose.pose.pose.orientation.w)
+        euler = tf.transformations.euler_from_quaternion(quaternion)
+        roll = euler[0]+pi
+        pitch = euler[1]
+        yaw = euler[2]
+        print roll, pitch, yaw
+
+        orientation = Quaternion()
+        quaternion = tf.transformations.quaternion_from_euler(roll, pitch, yaw)
+        # type(pose) = geometry_msgs.msg.Pose
+        orientation.x = quaternion[0]
+        orientation.y = quaternion[1]
+        orientation.z = quaternion[2]
+        orientation.w = quaternion[3]
+        print orientation
     	self.OdometryTransformBroadcaster.sendTransform(
             (odomPose.pose.pose.position.x, odomPose.pose.pose.position.y, 0),
-            (odomPose.pose.pose.orientation.x, odomPose.pose.pose.orientation.y, odomPose.pose.pose.orientation.z, odomPose.pose.pose.orientation.w),
+            (orientation.x, orientation.y, orientation.z, orientation.w),
             #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
             odomPose.header.stamp,
             #rospy.Time.now(),
