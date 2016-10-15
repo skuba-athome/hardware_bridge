@@ -4,12 +4,12 @@ right_shoulder_1_controller:
         module: joint_position_controller
         type: JointPositionController
     joint_name: right_shoulder_1_joint
-    joint_speed: 0.2
+    joint_speed: 0.05
     motor:
         id: 30
-        init: 18175
-        min: 3600
-        max: 58300
+        init: 14143
+        min: 8000
+        max: 59000 
 
 right_shoulder_2_controller:
     controller:
@@ -20,7 +20,7 @@ right_shoulder_2_controller:
     joint_speed: 0.2
     motor:
         id: 31
-        init: 28863
+        init: 28799
         min: 10922
         max: 36408
 

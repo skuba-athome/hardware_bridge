@@ -21,7 +21,7 @@ class OdometryEstimation(object):
         self.OdometryTransformBroadcaster = tf.TransformBroadcaster()
         self.pose_odom = rospy.Publisher("odom", Odometry, queue_size=1)
         rospy.Subscriber("base_vel", TwistWithCovarianceStamped, self.velOdom_callback)
-        rospy.Subscriber("/robot_pose_ekf/odom_combined", PoseWithCovarianceStamped, self.odom_combined_callback)
+        # rospy.Subscriber("/robot_pose_ekf/odom_combined", PoseWithCovarianceStamped, self.odom_combined_callback)
         rospy.spin()
                 
     def odom_combined_callback(self, odomPose):
@@ -87,10 +87,10 @@ class OdometryEstimation(object):
         odometry.pose.pose.orientation = quaternion
         odometry.pose.covariance = [0.01,  0.0,  0.0,  0.0,  0.0,  0.0,
                                     0.0,  0.01,  0.0,  0.0,  0.0,  0.0,
-                                    0.0,   0.0, 0.01,  0.0,  0.0,  0.0,
-                                    0.0,   0.0,  0.0,  0.1,  0.0,  0.0,
-                                    0.0,   0.0,  0.0,  0.0,  0.1,  0.0,
-                                    0.0,   0.0,  0.0,  0.0,  0.0,  0.1]
+                                    0.0,   0.0, 10000,  0.0,  0.0,  0.0,
+                                    0.0,   0.0,  0.0,  10000,  0.0,  0.0,
+                                    0.0,   0.0,  0.0,  0.0,  10000,  0.0,
+                                    0.0,   0.0,  0.0,  0.0,  0.0,  0.01]
 
         odometry.child_frame_id = "base_link"
         odometry.twist.twist.linear.x = self.vx_odom
@@ -98,31 +98,29 @@ class OdometryEstimation(object):
         odometry.twist.twist.angular.z = self.w_odom
         odometry.twist.covariance = [0.01,  0.0,  0.0,  0.0,  0.0,  0.0,
                                     0.0,  0.01,  0.0,  0.0,  0.0,  0.0,
-                                    0.0,   0.0, 0.01,  0.0,  0.0,  0.0,
-                                    0.0,   0.0,  0.0,  0.1,  0.0,  0.0,
-                                    0.0,   0.0,  0.0,  0.0,  0.1,  0.0,
-                                    0.0,   0.0,  0.0,  0.0,  0.0,  0.1]
+                                    0.0,   0.0, 10000,  0.0,  0.0,  0.0,
+                                    0.0,   0.0,  0.0,  10000,  0.0,  0.0,
+                                    0.0,   0.0,  0.0,  0.0,  10000,  0.0,
+                                    0.0,   0.0,  0.0,  0.0,  0.0,  0.01]
         self.pose_odom.publish(odometry)
         
 #---------------------------------------------------------------------------------#
-        #self.OdometryTransformBroadcaster.sendTransform(
-        #    (self.odomPose.x, self.odomPose.y, 0),
-        #    q,
-        #    #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
-        #    timenow,
-        #    #rospy.Time.now(),
-        #    "base_link",
-        #    "odom"
-        #)
-        #self.OdometryTransformBroadcaster.sendTransform(
+        self.OdometryTransformBroadcaster.sendTransform(
+           (self.odomPose.x, self.odomPose.y, 0),
+           q,
+           rospy.Time.now(),
+           "base_link",
+           "odom"
+        )
+        # self.OdometryTransformBroadcaster.sendTransform(
         #    (0, 0, 0),
         #    q,
-        #    #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
+        #    tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
         #    timenow,
-        #    #rospy.Time.now(),
+        #    rospy.Time.now(),
         #    "odom",
         #    "odom_combined"
-        #)
+        # )
         self.last_est_time = timenow
 
 if __name__ == '__main__':

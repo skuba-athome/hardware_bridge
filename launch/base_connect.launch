@@ -19,15 +19,14 @@
     <!-- Publish transform  -->
     <include if="$(arg use_local_robot_descriptions)" file="$(find hardware_bridge)/launch/robot_state_publisher.launch"/>
 
-    <!-- 
-    <include file="$(find hardware_bridge)/launch/laser_scan_matcher.launch"/>
-    -->
+
+    <!--<include file="$(find hardware_bridge)/launch/laser_imu.launch"/>-->
 
     <node pkg="um6" type="um6_driver" name="imu_um6" output="screen">
 	<param name="port" value="/dev/ttyUSB-IMU"/>
     </node>
     
     <!-- Connect to IMU -->
-    <include file="$(find hardware_bridge)/launch/base_IMU_connect.launch"/>
+    <!--<include file="$(find hardware_bridge)/launch/base_IMU_connect.launch"/>-->
 
 </launch>

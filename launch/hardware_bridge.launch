@@ -16,6 +16,7 @@
     <!-- Connect to kinect and webcam -->
     <include file="$(find hardware_bridge)/launch/open_kinect_webcam.launch"/>
 
+
     <!-- Publish transform -->
     <include file="$(find hardware_bridge)/launch/robot_state_publisher.launch"/>
 </launch>
