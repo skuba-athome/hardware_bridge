@@ -2,7 +2,7 @@
 
 import rospy
 import tf
-
+from sensor_msgs.msg import Imu
 from math import sin, cos, pi
 from nav_msgs.msg import Odometry
 from geometry_msgs.msg import TwistStamped, TwistWithCovarianceStamped, Quaternion, Pose2D, TransformStamped, PoseWithCovarianceStamped
@@ -18,43 +18,47 @@ class OdometryEstimation(object):
         
         self.last_est_time = rospy.Time()
         self.init = True
-        self.OdometryTransformBroadcaster = tf.TransformBroadcaster()
+        # self.OdometryTransformBroadcaster = tf.TransformBroadcaster()
         self.pose_odom = rospy.Publisher("odom", Odometry, queue_size=1)
+        self.imu_msg = rospy.Publisher("imu", Imu, queue_size=1)
         rospy.Subscriber("base_vel", TwistWithCovarianceStamped, self.velOdom_callback)
         # rospy.Subscriber("/robot_pose_ekf/odom_combined", PoseWithCovarianceStamped, self.odom_combined_callback)
+        rospy.Subscriber("/imu/data", Imu, self.odom_combined_callback)
+
         rospy.spin()
                 
     def odom_combined_callback(self, odomPose):
     	# print 1111
-        print odomPose.pose.pose.orientation
+        print odomPose
         quaternion = (
-            odomPose.pose.pose.orientation.x,
-            odomPose.pose.pose.orientation.y,
-            odomPose.pose.pose.orientation.z,
-            odomPose.pose.pose.orientation.w)
+            odomPose.orientation.x,
+            odomPose.orientation.y,
+            odomPose.orientation.z,
+            odomPose.orientation.w)
         euler = tf.transformations.euler_from_quaternion(quaternion)
-        roll = euler[0]+pi
+        roll = euler[0]
         pitch = euler[1]
         yaw = euler[2]
         print roll, pitch, yaw
 
-        orientation = Quaternion()
-        quaternion = tf.transformations.quaternion_from_euler(roll, pitch, yaw)
+        # orientation = Quaternion()
+        quaternion = tf.transformations.quaternion_from_euler(0, 0, yaw)
         # type(pose) = geometry_msgs.msg.Pose
-        orientation.x = quaternion[0]
-        orientation.y = quaternion[1]
-        orientation.z = quaternion[2]
-        orientation.w = quaternion[3]
-        print orientation
-    	self.OdometryTransformBroadcaster.sendTransform(
-            (odomPose.pose.pose.position.x, odomPose.pose.pose.position.y, 0),
-            (orientation.x, orientation.y, orientation.z, orientation.w),
-            #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
-            odomPose.header.stamp,
-            #rospy.Time.now(),
-            "base_link",
-            "odom"
-       	)
+        odomPose.orientation.x = quaternion[0]
+        odomPose.orientation.y = quaternion[1]
+        odomPose.orientation.z = quaternion[2]
+        odomPose.orientation.w = quaternion[3]
+        # print orientation
+        self.imu_msg.publish(odomPose)
+    	# self.OdometryTransformBroadcaster.sendTransform(
+         #    (odomPose.angular_velocity.x, odomPose.angular_velocity.y, 0),
+         #    (orientation.x, orientation.y, orientation.z, orientation.w),
+         #    #tf.transformations.quaternion_from_euler(0, 0, self.odomPose.theta),
+         #    odomPose.header.stamp,
+         #    #rospy.Time.now(),
+         #    "base_link",
+         #    "odom"
+       	# )
 
 
     def velOdom_callback(self,vel_odom):
@@ -105,13 +109,14 @@ class OdometryEstimation(object):
         self.pose_odom.publish(odometry)
         
 #---------------------------------------------------------------------------------#
-        self.OdometryTransformBroadcaster.sendTransform(
-           (self.odomPose.x, self.odomPose.y, 0),
-           q,
-           rospy.Time.now(),
-           "base_link",
-           "odom"
-        )
+        # self.OdometryTransformBroadcaster.sendTransform(
+        #    (self.odomPose.x, self.odomPose.y, 0),
+        #    q,
+        #    rospy.Time.now(),
+        #    "base_link",
+        #    "odom"
+        # )
+
         # self.OdometryTransformBroadcaster.sendTransform(
         #    (0, 0, 0),
         #    q,
