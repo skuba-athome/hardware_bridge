@@ -16,7 +16,6 @@ class ScanMatcher2IMU:
         rospy.spin()
 
     def scan_matcher_callback(self, data):
-        print '^^^^^^^^^^^^^^', data
         self.current_time = rospy.Time.now()
         dt = (self.current_time - self.last_time).to_sec()
         # Calculate Relative Yaw
@@ -52,8 +51,7 @@ class ScanMatcher2IMU:
         imu_noises = pow(0.00017, 2)  # = 0.01 degrees / sec
         imu_msg.orientation_covariance = [1e3, 0, 0, 0, 1e3, 0, 0, 0, imu_noises]
         self.last_imu_angle = current_imu_angle
-        self.last_time = self.current_time
-        print "------------------------", imu_msg
+        self.last_time = self.current_times
         self.imu_pub.publish(imu_msg)
 
 if __name__ == "__main__":
