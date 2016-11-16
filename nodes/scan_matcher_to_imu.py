@@ -51,7 +51,7 @@ class ScanMatcher2IMU:
         imu_noises = pow(0.00017, 2)  # = 0.01 degrees / sec
         imu_msg.orientation_covariance = [1e3, 0, 0, 0, 1e3, 0, 0, 0, imu_noises]
         self.last_imu_angle = current_imu_angle
-        self.last_time = self.current_times
+        self.last_time = self.current_time
         self.imu_pub.publish(imu_msg)
 
 if __name__ == "__main__":
