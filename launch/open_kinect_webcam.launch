@@ -1,9 +1,14 @@
 <launch>
   <!-- Bring up Kinect -->
 
+  <!--
   <include file="$(find openni_launch)/launch/openni.launch">
     <arg name="depth_camera_info_url" default="package://hardware_bridge/calibrations/depth_0000000000000000.yaml" />
+  </include>
+  -->
 
+  <include file="$(find freenect_launch)/launch/freenect.launch">
+    <arg name="depth_camera_info_url" default="package://hardware_bridge/calibrations/depth_0000000000000000.yaml" />
   </include>
 
   <include file="$(find hardware_bridge)/launch/open_webcam.launch"/>
