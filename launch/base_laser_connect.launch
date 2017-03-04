@@ -1,6 +1,7 @@
 <launch>
 
     <!-- Hokuyo 5m -->
+<!-->
     <node ns="laser" name="base_laser" pkg="hokuyo_node" type="hokuyo_node" respawn="true" output="screen">
         <param name="serial_port" type="string" value="/dev/ttyUSB-Hokuyo"/>
         <param name="serial_baud" type="int" value="115200"/>
@@ -9,9 +10,9 @@
         <param name="angle_min" type="double" value="-2"/>
         <param name="angle_max" type="double" value="2"/>
     </node>
-
+-->
     <!-- Hokuyo 30m -->
-<!-- 
+ 
     <node ns="laser" name="base_laser" pkg="urg_node" type="urg_node" respawn="true" output="screen">
         <param name="serial_port" type="string" value="/dev/ttyUSB-Hokuyo"/>
         <param name="serial_baud" type="int" value="115200"/>
@@ -20,7 +21,7 @@
         <param name="angle_min" type="double" value="-2"/>
         <param name="angle_max" type="double" value="2"/>
     </node>
--->
+
 
     <!--
 	<node ns="tf" pkg="tf" type="static_transform_publisher" name="base_link_to_laser" args="0.27027 0.0 0.204 0.0 0.0 0.0 base_link base_laser 100" />
