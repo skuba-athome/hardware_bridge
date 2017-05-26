@@ -1,0 +1,5 @@
+SUBSYSTEM=="tty", ATTRS{serial}=="SKUBAM[0-9]*", GROUP="dialout",SYMLINK+="ttyUSB-Manipurator"
+SUBSYSTEM=="tty", ATTRS{serial}=="SKUBAB[0-9]*", GROUP="dialout",SYMLINK+="ttyUSB-Base"
+SUBSYSTEM=="tty", ATTRS{idVendor}=="15d1", GROUP="dialout", SYMLINK+="ttyUSB-Hokuyo"
+SUBSYSTEM=="tty", ATTRS{serial}=="A1014JKX", GROUP="dialout",SYMLINK+="ttyUSB-IMU"
+SUBSYSTEMS=="usb", ATTRS{idVendor}=="046d", MODE="0666" 
